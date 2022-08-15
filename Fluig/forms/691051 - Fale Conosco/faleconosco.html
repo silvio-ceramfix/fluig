@@ -1,0 +1,74 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="zoom.js"></script>
+	<script type="text/javascript" src="controle.js"></script>
+	
+	<script type="text/javascript" src='jquery.maskMoney.min.js'></script>	
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript" src="modalZoom.js"></script>	
+	<script type="text/javascript" src="valida.js"></script>
+	<script type="text/javascript" src="anexos.js"></script>
+	
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="fileUpload.js" charset="utf-8"></script>
+</head>
+<body onload="loadBody()">
+<div class="fluig-style-guide">
+<form name="form" role="form">
+	<div class="panel panel-primary tipo_documento">
+					<div class="panel-heading fs-txt-center">
+						<table width='100%'>
+							<tr>
+								<td width='10%' align=left></td>
+								<td style="background: {$color}; color: #fff;" width='80%' align=center><b>Fale Conosco</b></td>
+								<td width='10%' align=right></td>
+							</tr>
+						</table>
+					</div>
+					<div class="panel-body">
+					
+						<div class="row">
+						
+									
+							<div class="col-md-10">
+								<label>Colaborador</label>
+								<input type="text" id="solicitante" name="solicitante" class="form-control" readonly />												
+							</div>	
+							
+							<div class="col-md-2">
+									<label for="identifica">Deseja se Identificar?</label>
+									<select class="form-control" name="identifica" id="identifica" onchange="escolheanonimo(this.value)">
+										<option value='S' > SIM </option>
+										<option value='N' > NÃO </option>
+									</select>
+							</div>
+				
+						</div>
+						
+						<div class="row">
+				
+							<div class="col-md-12">
+								<label for="exampleTag">Comentários</label> 
+								<textarea class="form-control" rows="3" id="comentarios" name="comentarios" pattern="[a-zA-Z0-9]+" "></textarea>
+							</div>
+						
+						</div>
+
+				</div>
+		</div>
+	
+	<input type="hidden" name="numSolic" id="numSolic" class="form-control">
+	 <input type="hidden" name="nomSolic" id="nomSolic" class="form-control"> 
+	<input type="hidden" name="Params" id="Params" class="form-control">
+	<input type="hidden" name="task" id="task" class="form-control">
+	<input type="hidden" name="matricula" id="matricula" class="form-control">
+	
+</form>
+</div>
+</body>
+</html>
