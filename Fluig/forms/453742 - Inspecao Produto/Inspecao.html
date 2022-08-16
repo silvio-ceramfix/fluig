@@ -1,0 +1,190 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	
+	<script type="text/javascript" src="controle.js"></script>
+	<script type="text/javascript" src="jquery.maskMoney.min.js"></script>
+	<script type="text/javascript" src="zoom.js"></script>
+	<script type="text/javascript" src="modalZoom.js"></script>
+	<script type="text/javascript" src="util.js"></script>
+	
+	<script src="/webdesk/vcXMLRPC.js"></script>
+	
+</head>
+<body onLoad="loadBody()">
+<form name="form" role="form">
+<div class="fluig-style-guide">
+	<div class="panel panel-info">
+		<div class="panel-heading fs-txt-center">
+			<b>Inspe&ccedil;&atilde;o</b>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-2">
+					<label for="data_insp" >Data</label>
+					<input type="text" name="data_insp" id="data_insp" class="form-control data-fluig" onblur="validaData( this.id )" />
+				</div>
+				<div class="col-md-2">
+					<label for="hora_insp" >Hora</label>
+					<input type="text" name="hora_insp" id="hora_insp" class="form-control hora-fluig" mask="99:99" />
+				</div>
+				
+				<div class="col-md-2">
+					<label for="situacao" >Status</label>
+					<select name="situacao" id="situacao" class="form-control" >
+						<option value='E' >Em Analise</option>	
+						<option value='A' >Aprovado</option>
+						<option value='S' >Aprovado com resalva</option>
+						<option value='R' >Reprovado</option>
+					</select>
+					<input type="hidden" name="completo" id="completo" />
+					<input type="hidden" name="task" id="task" />
+				</div>
+				
+				<div class="col-md-2">
+					<label for="complemento" >Complemento</label>
+					<select name="complemento" id="complemento" class="form-control" >	
+						<option value='N' >N&atilde;o</option>
+						<option value='S' >Sim</option>
+					</select>
+				</div>
+				
+				<div class="col-md-2">
+					<label for="situacao" >Ativo</label>
+					<select name="ativo" id="ativo" class="form-control" >
+						<option value='S' >Sim</option>	
+						<option value='N' >N&atilde;o</option>
+					</select>
+				</div>
+				
+				<div class="col-md-1">
+					<label for="cod_item" >&nbsp;</label>
+					<button type="button" class="btn btn-primary" style="margin-top: 0px; height: 39px; width: 86px; padding-top: 4px;">
+						<span id="readOP" name="readOP" class="flaticon flaticon-bar-code icon-sm" onclick="showBarcodeReader()" ></span>
+					</button>
+				</div>
+					
+			</div>
+			
+			<div class="row">
+				
+				<div class="col-md-2">
+					<label for="exampleTag" >Empresa</label>
+					<select name="empresa" id="empresa" class="form-control abertura" onchange="$('den_empresa').val( $('empresa option:selected').text() );" >
+					</select>
+					<input type="hidden" name="den_empresa" id="den_empresa" />
+				</div>
+								
+				
+				<div class="col-md-2">
+					<label for="cod_item" >Num Ordem</label>
+					<div class="input-group">
+						<input type="text" name="num_ordem" id="num_ordem"  class="form-control" onblur="zoom('bt_op',this.id)" />
+						<span id = "bt_op" name="bt_op" class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm" onclick="zoom(this.id)" ></span>
+					</div>
+				</div>
+				
+				<div class="col-md-2">
+					<label for="cod_item" >Operação</label>
+					<div class="input-group">
+						<input type="text" name="den_operac" id="den_operac"  class="form-control" readonly />
+						<input type="hidden" name="operacao" id="operacao"  class="form-control" />
+						<span id = "bt_oper" name="bt_oper" class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm" onclick="zoom(this.id)" ></span>
+					</div>
+				</div>
+				
+				<div class="col-md-2">
+					<label for="cod_item" >Produto</label>
+					<div class="input-group">
+						<input type="text" name="cod_item" id="cod_item"  class="form-control" readonly />
+						<span id = "bt_item" name="bt_item" class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm" onclick="zoom(this.id)" ></span>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<label for="den_item" >Produto</label>
+					<input type="text" name="den_item" id="den_item"  class="form-control" readonly />
+					<input type="hidden" name="den_item_lote" id="den_item_lote"  />
+				</div>
+				
+			</div>
+			<div class="row">
+				
+					<label for="exampleTag" >
+						Parametro
+					</label>
+					<table class="table table-condensed table-bordered" border="1" tablename="tipo_teste"  noaddbutton=true nodeletebutton=true addbuttonclass="wdkbuttonClass"   >
+						<tr  style="display: none;">
+							<td width='100%' class="cell-ellipsis"><b></b></td>
+						</tr>
+						<tr id='linha_base' >
+							<td style="padding: 0px;">	
+								<div class="col-xs-6" style="padding-left: 0px; padding-right: 0px;" >
+									<input type="text" class="form-control" name="den_tipo_teste" id="den_tipo_teste" readonly tabindex="-1" >
+								</div>
+								<div class="col-xs-6" style="padding-left: 0px; padding-right: 0px;" >
+									<select name="opcao" id="opcao" class="form-control" onchange="setOpcao(this.id);" >
+									</select>
+									<input type="tel" class="form-control" name="metrica" id="metrica" onkeyup="sairCampoNumero(event)" onblur="validaLinha( $(this).attr('id').split('___')[1] ); atualizaFormulasPF();" />
+									<input type="hidden" class="form-control" name="metrica_media" id="metrica_media" readonly tabindex="-1" />
+									<input type="hidden" name="metrica_total" id="metrica_total" />
+									<input type="hidden" name="metrica_qtd" id="metrica_qtd" />
+									<input type="text" class="form-control" name="informado" id="informado" />
+								</div>
+								
+								<input type="hidden" name="cod_tipo_teste" id="cod_tipo_teste" >
+								<input type="hidden" name="obrigatorio" id="obrigatorio" >
+								
+								<input type="hidden" name="opc_tem_obs" id="opc_tem_obs" >
+								
+								<input type="hidden" name="tipo_teste" id="tipo_teste" >
+								<input type="hidden" name="num_precisao" id="num_precisao" >
+								<input type="hidden" name="valor_ref" id="valor_ref" >
+								<input type="hidden" name="tol_acima" id="tol_acima" >
+								<input type="hidden" name="tol_abaixo" id="tol_abaixo" >
+								<input type="hidden" name="tem_analise" id="tem_analise" >
+								
+								<input type="hidden" name="tol_acima_2" id="tol_acima_2" >
+								<input type="hidden" name="tol_abaixo_2" id="tol_abaixo_2" >
+								<input type="hidden" name="tipo_tol" id="tipo_tol" >
+								<input type="hidden" name="cod_um" id="cod_um" >
+								<input type="hidden" name="seq_print" id="seq_print" >
+								<input type="hidden" name="tipo_controle" id="tipo_controle" >
+								<input type="hidden" name="print_laudo" id="print_laudo" >
+								
+								<input type="hidden" name="aplic_formula" id="aplic_formula" >
+								<input type="hidden" name="formula" id="formula" >
+								
+								<input type="hidden" name="analise" id="analise" >
+								<input type="hidden" name="analise_media" id="analise_media" >
+								
+							</td>
+						</tr>
+					</table>					
+				
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info">
+		<div class="panel-heading fs-txt-center">
+			<b>Observa&ccedil;&atilde;o</b>
+		</div>
+		<div class="panel-body" style="padding-top: 0px; padding-right: 0px; padding-left: 0px; padding-bottom: 0px;" >	
+			<div class="row">
+				<div class="col-md-12">
+					<textarea rows="3" class="form-control" name="observacao" id="observacao" ></textarea> 
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	<input type="hidden" name="user_atual" id="user_atual" >
+	
+</div>	
+</form>
+</body>
+</html>
