@@ -163,7 +163,7 @@ function createDocument(document, parentFolder) {
 					var nrMarca = Number( td.getValue(0,"marca_dagua") );
 					log.info(' nrMarca......... '+ nrMarca );
 					if( nrMarca != 0 ){
-						document.setWatermarkId​( nrMarca );
+						document.setWatermarkId(integer,nrMarca );
 						log.info(' Depois nrMarca......... '+ nrMarca );
 					}
 				}
@@ -388,7 +388,7 @@ function sendMail( destinatarios ){
 				
 				
 				
-				var url = docServ.getDownloadURL​(  parseInt( idDocumento ) ); // urlServer+"/portal/p/1/ecmnavigation?app_ecm_navigation_doc="+idDocumento;
+				var url = docServ.ref.getDownloadURL(parseInt( idDocumento ) ); // urlServer+"/portal/p/1/ecmnavigation?app_ecm_navigation_doc="+idDocumento;
 	
 				log.info("URL3... " + url);
 				html += "<a href=" + url + ">ANEXO" + (i + 1) +" - "+ attachment.getDocumentDescription() + "</a><br>";
