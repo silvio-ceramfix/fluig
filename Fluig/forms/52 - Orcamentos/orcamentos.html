@@ -1,0 +1,1417 @@
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
+
+	<link type="text/css" rel="stylesheet" href="/portal/resources/style-guide/css/fluig-style-guide.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/portal/resources/style-guide/css/fluig-style-guide-filter.min.css"/>
+	
+	<link href="FLUIGADHOC.css" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery.mask.min.js"></script>
+	
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script	type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide-filter.min.js"></script>
+	
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	
+	<script type="text/javascript" src="zoom.js"></script>
+	<script type="text/javascript" src="modalZoom.js"></script>
+	<script type="text/javascript" src="wizardItem.js"></script>	
+	<script type="text/javascript" src="modalEndEntrega.js"></script>	
+	<script type="text/javascript" src="valida.js"></script>
+	<script type="text/javascript" src="controle.js"></script>
+	<script type="text/javascript" src='jquery.maskMoney.min.js'></script>	
+	
+	
+	<script type="text/javascript">
+			
+		
+	</script>
+
+</head>
+
+<body class="fluig-style-guide"  onload="loadBody()"> 
+        
+	<form id="form" name="form" role="form">
+
+	<div class="container-fluid">
+	
+		<div class="fluig-style-guide" id="divPrincipal">
+			<div class="panel panel-info" id="aba_1"  >
+				<div class="panel-heading fs-txt-center">
+					<table width='100%' >
+						<tr>
+							<td  align=center ><b>Orcamento</b></td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-2">
+							<label for="exampleTag">Cad. Cliente</label>
+							<select name="tipo_cadastro" id="tipo_cadastro" class="form-control" onchange="setTipoFormulario( 'change' );" >
+								<option value="E">Existente</option>
+								<option value="N">Novo</option>
+							</select>
+							<input type="hidden" name="tipo_cadastro_hd" id="tipo_cadastro_hd" class="form-control" />
+						</div>
+						
+						<div class="col-md-2">
+							<label  for="data_emissao">Data Emiss&atilde;o</label>
+							<input type="tel" name="data_emissao" id="data_emissao" class="form-control" readonly />
+						</div>
+
+						<div class="col-md-2">
+							<label  for="data_validade">Data Validade</label>
+							<input type="tel" name="data_validade" id="data_validade" class="form-control" readonly />
+						</div>
+
+						<div class="col-md-2">
+							<label  for="data_prevista">Data Previs&#227;o</label>
+							<input type="tel" name="data_prevista" id="data_prevista" class="form-control" />
+						</div>
+
+						<div class="col-md-2">
+							<label  for="acao">Simulação</label>
+							<select name="simulacao" id="simulacao" class="form-control" >
+									<option value="N">Não</option>
+									<option value="S">Sim</option>
+							</select>
+						</div>
+
+						<div class="col-md-2">
+							<label  for="acao">A&ccedil;&atilde;o</label>
+							<select name="acao" id="acao" class="form-control" valida="Acao"  >
+									<option value=""></option>
+									<option value="E">Enviar E-Mail</option>
+									<option value="P">Gerar Pedido</option>
+							</select>
+						</div>
+											
+					</div>
+					<div class="row">
+
+						<div class="col-md-2">
+							<label  for="razao_social">CNPJ</label>
+							<input type="tel" mask="000.000.000/0000-00" name="cnpj" id="cnpj" class="form-control" valida="CNPJ" regra="cnpjcpf" onblur="setCodCliente( this.id )" readonly />
+							<input type="hidden" name="cod_cliente" id="cod_cliente" class="form-control"/>
+							<input type="hidden" name="cod_class" id="cod_class" class="form-control"/>
+							<input type="hidden" name="ins_estadual" id="ins_estadual" class="form-control"/>
+							<input type="hidden" name="cod_tip_carteira_cli" id="cod_tip_carteira_cli" class="form-control"/>
+							<input type="hidden" name="cod_moeda_cli" id="cod_moeda_cli" class="form-control"/>
+							<input type="hidden" name="cod_tip_cli" id="cod_tip_cli" class="form-control"/>
+							<input type="hidden" name="ies_inf_pedido" id="ies_inf_pedido" class="form-control"/>
+							<input type="hidden" name="cli_exc_mix" id="cli_exc_mix" class="form-control"/>
+							<input type="hidden" name="ies_tip_fornec" id="ies_tip_fornec" class="form-control" />
+							<input type="hidden" name="eh_contribuinte" id="eh_contribuinte" class="form-control" />
+							<input type="hidden" name="aprovacao_cre" id="aprovacao_cre" class="form-control"/>
+							<input type="hidden" name="reginal_user" id="reginal_user" class="form-control"/>
+							
+						</div>
+
+						<div class="col-md-6" style="z-index:1" id = "razao_social_zoom_grp" >
+							<label for="exampleTag">Razao Social</label>
+								<div id='rs_zoom' >
+									<input	type="zoom"
+											id = "razao_social_zoom"
+											name="razao_social_zoom"
+											class="foco"
+											valida="Razao Social"
+											data-zoom="{
+												'displayKey':'nom_cliente',
+												'datasetId':'clientes_logix',
+												'fields':[{
+														'field':'cod_cliente',
+														'label':'Codigo',
+											   			'standard':'true'
+													},{
+														'field':'nom_cliente',
+														'label':'Cliente'
+													}]
+												}" 
+									/>
+								</div>
+								<div id='rs_input' style="display:none">
+									<input type="text" name="razao_social" id="razao_social" class="form-control" valida="Razão Social" />
+								</div>
+						</div>
+<!--						<div class="col-md-6" id = "razao_social_zoom_grp" >	
+							<div class="form-group">
+								<label  for="razao_social">Cliente</label>
+								<div class="input-group">
+									<div id='rs_zoom' >
+										<input	type="zoom"
+												id = "razao_social"
+												name="razao_social"
+												class="foco"
+												valida="Cliente"
+												data-zoom="{
+													'displayKey':'nom_cliente',
+													'datasetId':'clientes_logix',
+													'fields':[
+														{
+														   'field':'cod_cliente',
+														   'label':'Codigo',
+														   'standard':'true'
+														},{
+														  'field':'nom_cliente',
+														  'label':'Cliente'
+														}
+													]
+												 }" 
+											/>
+									</div>
+									<div id='rs_input' style="display:none;">
+										<input type="text" name="razao_social_edit" id="razao_social_edit" class="form-control" valida="RazÃ£o Social" />
+									</div>
+								</div>
+							</div>
+						</div> -->
+						<div class="col-md-4">	
+							<label  for="tipo_cliente">Tipo Cliente</label>
+							<select name="tipo_cliente" id="tipo_cliente" class="form-control"  onchange="setTipoCliente( 'change' );" > </select>
+							<input type="hidden" name="tipo_cliente_hd" id="tipo_cliente_hd" class="form-control" />
+						</div>
+					</div>
+					<div class="row">
+
+						<div class="col-md-2">
+						<label  for="representate">Cod.</label>
+							<div class="input-group">
+								
+								<input	type="text" id = "cod_repres" name="cod_repres" class="form-control" readonly />
+								<span id="bt_repres" name="bt_repres" class="input-group-addon group-zoom no-view zoom-click btn-primary" onclick="zoomButton( this.id );">
+								<span class="fluigicon fluigicon-zoom-in icon-sm"></span>
+							</span>
+							</div>	
+						</div>
+						<div class="col-md-4">	
+							<label  for="representate">Representante</label>
+							<input	type="text" id = "raz_social" name="raz_social" class="form-control"  valida="Representate" readonly />
+						</div>
+						<div class="col-md-6" id = "cidade_grp" >
+							<div class="form-group">
+								<label for="exampleTag">Cidade</label>
+								<input	type="zoom"
+										id = "cidade"
+										name="cidade"
+										class="foco"
+										valida="Cidade"
+										data-zoom="{
+											'displayKey':'den_cidade',
+											'datasetId':'cidades_repres',
+											'filterValues':'cod_user,__,cod_repres,___',
+											'standard':'true', 
+											'search':'true',
+											'fields':[
+												{
+												   'field':'cod_cidade',
+												   'label':'Codigo'
+												},{
+												  'field':'den_cidade',
+												  'label':'Cidade',
+												  'standard':'true', 
+												  'search':'true'
+												}
+											]
+										 }" 
+									/>
+								<input type="hidden" name="cod_cidade" id="cod_cidade" class="form-control" valida="Codigo Cidade"/> 
+							</div>
+						</div>
+					</div>					
+
+					<div class="row">
+						<div class="col-md-2">	
+							<label  for="empresa">Empresa</label>
+							<select name="empresa" id="empresa" class="form-control"  valida="Empresa" onchange="setLista(); atualizaEmpresa()" > </select>
+							<input type="hidden" name="empresa_hd" id="empresa_hd" />
+						</div>
+						<div class="col-md-2">	
+							<label  for="moeda">Moeda</label>
+							<select name="moeda" id="moeda" class="form-control"  valida="Moeda" onchange="setMoeda()" > </select>
+						</div>
+						<div class="col-md-2">	
+							<label  for="cond_pagamento">Cond. Pagamento</label>
+							<select name="cond_pagamento" id="cond_pagamento" class="form-control"  valida="Condicao Pagamento" onchange="setCondPagto()" > </select>
+							<input type="hidden" name="ies_emite_dupl_cond" id="ies_emite_dupl_cond" class="form-control" />
+						</div>			
+						
+						<div class="col-md-2">
+							<label  for="nat_operacao">Nat. Opera&ccedil;&atilde;o</label>
+							<select name="nat_operacao" id="nat_operacao" class="form-control"  valida="Natureza de Operacao" onchange="setNatOper()" > </select>
+							<input type="hidden" name="ies_emite_dupl" id="ies_emite_dupl" class="form-control" />
+						</div>
+
+						<div class="col-md-2">
+							<label  for="acao">Uso Consumo</label>
+							<select name="uso_consumo" id="uso_consumo" class="form-control existe" >
+									<option value="N">Não</option>
+									<option value="S">Sim</option>
+							</select>
+						</div>
+
+						<div class="col-md-2">
+							<label  for="acao">Isento IE</label>
+							<select name="ies_isento_ie" id="ies_isento_ie" class="form-control existe" >
+									<option value="N">Não</option>
+									<option value="S">Sim</option>
+							</select>
+						</div>
+						
+					</div>
+							
+					<div class="row">		
+															
+						<div class="col-md-4">
+							<label  for="ista_preco">Lista de Pre&ccedil;o</label>
+							<select name="lista_preco" id="lista_preco" class="form-control validaAltera"  valida="Lista de Preco" onchange="setListaPreco()"> </select>
+							<input type="hidden" name="lista_preco_hd" id="lista_preco_hd" />
+						</div>
+						<div class="col-md-2">	
+							<label  for="ped_cliente">% Desc. Adicional</label>
+							<input	type="tel" id = "pct_desc_adicional" name="pct_desc_adicional" class="form-control decimal_2 validaAltera" style="text-align:right" maxlength="5" onblur="setMoeda(); atulizaRecalcTotal( this.id )" />
+						</div>
+						
+						<div class="col-md-2">
+							<label  for="tipo_venda">Tipo Venda</label>
+							<select name="tipo_venda" id="tipo_venda" class="form-control"  valida="Tipo de Venda" > </select>
+						</div>
+						<div class="col-md-2">
+							<label  for="pedido_cliente">Num Pedido cliente</label>
+							<input type="text" name="pedido_cliente" id="pedido_cliente" class="form-control" /> 
+						</div>
+						
+					</div>
+					
+					<div class="row">
+						<div class="col-md-6 pd_her">
+							<label for="exampleTag">Texto do Or&ccedil;amento</label>
+							<input type="text" name="texto_pedido_1" id="texto_pedido_1" class="form-control" maxlength="76" />
+						</div>
+						<div class="col-md-6 pd_her">
+							<label for="exampleTag">&nbsp;</label>
+							<input type="text" name="texto_pedido_2" id="texto_pedido_2" class="form-control" maxlength="76" />
+						</div>						
+					</div>
+					<div class="row">
+						<div class="col-md-12 pd_her">
+							<label for="email2">E-Mail envio orcamento</label>
+							<input type="text" name="emailOrc" id="emailOrc" class="form-control" valida="E-Mail" regra="email" maxlength="255" />
+						</div>
+					</div>	
+					<div class="row" style="padding: 10px 10px; " >
+					</div>
+					<div class="row fs-txt-center" style="background-color: #d9edf7; padding: 10px 15px;">
+						<b>Frete</b>
+					</div>
+					<div class="row" style="padding: 10px 10px; " >
+					</div>										
+					<div class="row">
+						<div class="col-md-2">	
+							<label  for="tipo_frete">Tipo Frete</label>
+							<select name="tipo_frete" id="tipo_frete" class="form-control"  valida="Tipo Frete" onchange="setTipoFrete()" > </select>
+							<input type="hidden" name="tipo_frete_logix" id="tipo_frete_logix" class="form-control" />
+						</div>
+						<div class="col-md-8"  id = "transportadora_grp" >
+							<label  for="transportadora">Transportadora</label>
+							<input	type="zoom"
+									id = "transportadora"
+									name="transportadora"
+									class="foco"
+									valida="Transportadora"
+									data-zoom="{
+										'displayKey':'nom_cliente',
+										'datasetId':'transportador_logix',
+										'filterValues':'ies_pedido,S,cod_tip_cli,99',
+										'standard':'true', 
+										'search':'true',
+										'fields':[
+											{
+											   'field':'cod_cliente',
+											   'label':'Codigo',
+											   'standard':'true',
+											   'search':'true'
+											},{
+											  'field':'nom_cliente',
+											  'label':'Transportadora',
+											  'standard':'true', 
+											  'search':'true'
+											}
+										]
+									 }" 
+								/>
+						</div>
+						<div class="col-md-2">
+							<label  for="cnpj_trans">CNPJ</label>
+							<input type="tel" mask="000.000.000/0000-00" name="cnpj_trans" id="cnpj_trans" class="form-control" valida="Transportador"  readonly />
+							<input type="hidden" name="cod_trans" id="cod_trans" class="form-control"/>
+						</div>
+					</div>	
+					
+					<div class="row" id="obs_reg" style="display:none;">
+						<div class="col-md-12">	
+							<label  for="ped_cliente">OBS. Gerente  Regional</label>
+							<textarea name="obs_ger_reg" id="obs_ger_reg" rows="3" class="form-control" ></textarea>
+						</div>
+					</div>
+					<div class="row" id="obs_nac" style="display:none;">
+						<div class="col-md-12">	
+							<label  for="ped_cliente">OBS. Gerente Nacional</label>
+							<textarea name="obs_ger_nac" id="obs_ger_nac" rows="3" class="form-control" ></textarea>
+						</div>
+					</div>
+					<div class="row" id="obs_ctr" style="display:none;">
+						<div class="col-md-12">	
+							<label  for="ped_cliente">OBS. Controler</label>
+							<textarea name="obs_ctr" id="obs_ctr" rows="3" class="form-control" ></textarea>
+						</div>
+					</div>
+									
+				</div>
+			</div>
+
+			
+			<div class="panel panel-info" id="aba_2" style="display:none;"  >
+				<div class="panel-heading fs-txt-center">
+					<table width='100%' >
+						<tr>
+							<td width='90%' align=center ><b>Item do Pedido</b></td>
+							<td width='10%' align=right > <input type="text" name="cotacao" id="cotacao" readonly style=" border-top-width: 0px; padding-bottom: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px; padding-top: 0px; background-color: #d9edf7;" size="10" /> </td>
+						</tr>
+					</table>
+				
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-2">	
+							<label  for="cod_item_edit">Codigo</label>
+							<div class="input-group">
+								<input	type="text" id = "cod_item_edit" name="cod_item_edit" class="form-control"  onblur="buscaItem( this.id );" />
+								<span class="input-group-addon fluigicon fluigicon-paste fluigicon-lg" onClick="modalWizardItem()" ></span>
+							</div>
+							<input	type="hidden" id = "cod_item_zoom_edit" name="cod_item_zoom_edit" class="form-control"  />
+							
+							<input type="hidden" name="den_item_reduz_edit" id="den_item_reduz_edit" class="form-control"   />							
+							<input type="hidden" name="peso_edit" id="peso_edit" class="form-control"   />
+							<input type="hidden" name="cubagem_edit" id="cubagem_edit" class="form-control"   />
+							<input type="hidden" name="qtd_pad_edit" id="qtd_pad_edit" class="form-control"   />
+							<input type="hidden" name="cod_lin_prod_edit" id="cod_lin_prod_edit" class="form-control"   />
+							<input type="hidden" name="cod_lin_recei_edit" id="cod_lin_recei_edit" class="form-control"   />
+							<input type="hidden" name="cod_seg_merc_edit" id="cod_seg_merc_edit" class="form-control"   />
+							<input type="hidden" name="cod_cla_uso_edit" id="cod_cla_uso_edit" class="form-control"   />
+							<input type="hidden" name="cod_grupo_item_edit" id="cod_grupo_item_edit" class="form-control"   />
+							<input type="hidden" name="cod_tip_carteira_edit" id="cod_tip_carteira_edit" class="form-control"   />
+							<input type="hidden" name="ies_mix_edit" id="ies_mix_edit" class="form-control"   />							
+							<input type="hidden" name="linha_edit" id="linha_edit" class="form-control"   />
+							<input type="hidden" name="cod_motivo_edit" id="cod_motivo_edit" />
+							<input type="hidden" name="sequencia_edit" id="sequencia_edit" />
+							
+							<input type="hidden" name="editar" id="editar" />
+							
+						</div>
+						<div class="col-md-10">
+							<label  for="den_item_edit">Produto</label>
+							<input	type="zoom"
+									id = "den_item_edit"
+									name="den_item_edit"
+									class="foco"
+									data-zoom="{
+										'displayKey':'den_item',
+										'datasetId':'lista_de_preco_item',
+										'filterValues':'',
+										'fields':[
+											{
+											   'field':'cod_item',
+											   'label':'Codigo',
+											   'standard':'true'
+											},{
+											  'field':'den_item',
+											  'label':'Produto'
+											},{
+											   'field':'cod_unid_med',
+											   'label':'UM'
+											}
+										]
+									 }" 
+								/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<label  for="valor_unit_edit"><span class="lbl_moeda">*</span>Vlr. Unit&aacute;rio</label>
+							<input type="text" name="valor_unit_edit" id="valor_unit_edit" class="form-control preco_unit"  onblur="alteraPreco( this.id ); calcDescTotal( this.id );" style="text-align:right" />
+							<input type="hidden" name="valor_unit_lista_edit" id="valor_unit_lista_edit" />
+							<input type="hidden" name="valor_unit_moeda_edit" id="valor_unit_moeda_edit" />
+						</div>
+						<div class="col-md-2">
+							<label  for="quantidade_edit">Quantidade / 
+								<input type="text" name="um_edit" id="um_edit" readonly style="width: 34px; border-top-width: 0px; padding-bottom: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px; padding-top: 0px; " />
+							</label>
+							<div class="input-group">
+								<span class="input-group-addon fluigicon fluigicon-minus-circle fluigicon-lg" onClick="removeLote()" ></span>
+								<input type="tel" name="quantidade_edit" id="quantidade_edit" class="form-control decimal_2" onblur="calcDescTotal( this.id )" style="text-align:right" />
+								<span class="input-group-addon fluigicon fluigicon-plus-circle fluigicon-lg" onClick="addLote()" ></span>
+							</div>
+						</div>  
+						<div class="col-md-2">
+							<label  for="desconto_edit">Desconto</label>
+							<div class="input-group">
+								<input type="tel" name="desconto_edit" id="desconto_edit" class="form-control decimal_2" onblur="calcDescTotal( this.id )" maxlength="5" style="text-align:right" />
+								<span class="input-group-addon fluigicon fluigicon-money-circle fluigicon-lg" onClick="buscaUltimoPreco()" ></span>
+							</div>	
+							<input type="hidden" name="pct_desc_adic_edit" id="pct_desc_adic_edit" />
+						</div>
+						<div class="col-md-2">
+							<label  for="valor_total_edit"><span class="lbl_moeda">*</span>Vlr. Total</label>
+							<input type="text" name="valor_total_edit" id="valor_total_edit" class="form-control" readonly style="text-align:right" />
+						</div>
+						<div class="col-md-2">
+							<label  for="data_entrega_edit">Data Coleta Sugerida</label>
+							<input type="tel" name="data_entrega_edit" id="data_entrega_edit" class="form-control"  />
+						</div>
+						<div class="col-md-1">
+							
+						</div>						
+						<div class="col-md-1">
+							<label  for="grava_edit">&nbsp;</label>
+							<button id="grava_edit" name="grava_edit" class="form-control btn btn-success" onclick="gravaItem('ped_itens', true);" >Gravar</button>
+						</div>
+						
+					</div>
+					
+					<div class="row simulacao gerencial">
+						
+						<div class="col-md-2">
+							<label  for="valor_unit_liq_edit"><span class="lbl_moeda">*</span>Vlr Unit&aacute;rio Liq. </label>
+							<input type="text" name="valor_unit_liq_edit" id="valor_unit_liq_edit" class="form-control" readonly style="text-align:right" />
+						</div>
+										
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_icms_edit">%</label>
+								<input type="text" name="perc_icms_edit" id="perc_icms_edit" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">							
+								<label  for="val_icms_edit">ICMS</label>
+								<input type="text" name="val_icms_edit" id="val_icms_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_icms_edit">%</label>
+								<input type="text" name="perc_pis_edit" id="perc_pis_edit" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_pis_edit">PIS</label>
+								<input type="text" name="val_pis_edit" id="val_pis_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_cofins_edit">%</label>
+								<input type="text" name="perc_cofins_edit" id="perc_cofins_edit" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_cofins_edit">Cofins</label>
+								<input type="text" name="val_cofins_edit" id="val_cofins_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_st_edit">%</label>
+								<input type="text" name="perc_st_edit" id="perc_st_edit" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_st_edit">ST</label>
+								<input type="text" name="val_st_edit" id="val_st_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_ipi_edit">%</label>
+								<input type="text" name="perc_ipi_edit" id="perc_ipi_edit" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_ipi_edit">IPI</label>
+								<input type="text" name="val_ipi_edit" id="val_ipi_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_rol_edit">%</label>
+								<input type="text" name="perc_rol_edit" id="perc_rol_edit" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_rol_edit">ROL</label>
+								<input type="text" name="val_rol_edit" id="val_rol_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_custo_edit">%</label>
+								<input type="text" name="perc_custo_edit" id="perc_custo_edit" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="custo_edit">Custo</label>
+								<input type="text" name="custo_edit" id="custo_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_trans_edit">%</label>
+								<input type="text" name="perc_trans_edit" id="perc_trans_edit" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="custo_trans_edit">Custo Transf.</label>
+								<input type="text" name="custo_trans_edit" id="custo_trans_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_comis_edit">%</label>
+								<input type="text" name="perc_comis_edit" id="perc_comis_edit" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_comis_edit">Vlr Comissão</label>
+								<input type="text" name="val_comis_edit" id="val_comis_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_comis_edit">%</label>
+								<input type="text" name="perc_comis_adic_edit" id="perc_comis_adic_edit" class="form-control decimal_2" style="text-align:right" onblur="atuComissAdicional()" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_comis_edit">Vlr Comissão Adiconal</label>
+								<input type="text" name="val_comis_adic_edit" id="val_comis_adic_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_comis_edit">%</label>
+								<input type="text" name="perc_royaltie_edit" id="perc_royaltie_edit" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_comis_edit">Vlr Royaltie</label>
+								<input type="text" name="val_royaltie_edit" id="val_royaltie_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_acordo_edit">%</label>
+								<input type="text" name="perc_acordo_edit" id="perc_acordo_edit" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_acordo_edit">Vlr Acord. Comerc.</label>
+								<input type="text" name="val_acordo_edit" id="val_acordo_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_verba_edit">%</label>
+								<input type="text" name="perc_verba_edit" id="perc_verba_edit" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_verba_edit">Vlr Verba Market.</label>
+								<input type="text" name="val_verba_edit" id="val_verba_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_finac_edit">%</label>
+								<input type="text" name="perc_finac_edit" id="perc_finac_edit" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_finac_edit">Vlr Custo Finac.</label>
+								<input type="text" name="val_finac_edit" id="val_finac_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<label  for="val_lob_edit">Vlr LOB Unit.</label>
+							<input type="text" name="val_lob_edit" id="val_lob_edit" class="form-control" readonly style="text-align:right" />
+						</div>
+
+						<div class="col-md-2">
+							<label  for="val_lob_ton_edit">LOB Ton.</label>
+							<input type="text" name="val_lob_ton_edit" id="val_lob_ton_edit" class="form-control" readonly style="text-align:right" />
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="val_lob_perc_edit">%</label>
+								<input type="text" name="val_lob_perc_edit" id="val_lob_perc_edit" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_finac_edit">Vlr LOB Total</label>
+								<input type="text" name="val_lob_total_edit" id="val_lob_total_edit" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+					</div>
+					<div class="lbl_moeda">* Valores expressos na moeda da lista.</div>
+					<div class="row" id="info_Pedido">
+						<div class="col-md-2">
+							<label  for="pedido_cli_edit">Pedido Cliente</label>
+							<input type="text" name="pedido_cli_edit" id="pedido_cli_edit" onblur="validaPedSeq( this.id )" class="form-control" />
+						</div>
+						<div class="col-md-2">
+							<label  for="seq_pedido_cli_edit">Seq. Item Pedido Cliente</label>
+							<input type="text" name="seq_pedido_cli_edit" id="seq_pedido_cli_edit" onblur="validaPedSeq( this.id )" class="form-control" />
+						</div>						
+					</div>
+					
+					<div class="row" style="padding: 10px 10px; " >
+					</div>										
+					<div class="row fs-txt-center" style="background-color: #d9edf7; padding: 10px 15px;">
+						<b>Itens do Pedido</b>
+					</div>
+					<div class="row" style="padding: 10px 10px; " >
+					</div>										
+					<div class="row">
+						
+						<!-- <div class="col-md-12">-->
+							<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+								<table class="table table-condensed table-bordered table-striped" border="1" tablename="ped_itens" nodeletebutton=false noaddbutton=true addbuttonclass="wdkbuttonClass" deleteicon="trash.png" customFnDelete="fnCustomDelete(this)" >
+									<thead>
+										<tr class="tableHeadRow" >	
+											<th width="8%" class="tableColumn"><b>C&oacute;digo</b></th>
+											<th width="18%" class="tableColumn"><b>Produto</b></th>
+											<th width="10%" class="tableColumn" ><b>Coleta</b></th>
+											<th width="10%" class="tableColumn"><b>Col.Calc</b></th>
+											<th width="5%" class="tableColumn"><b>UM</b></th>
+											<th width="8%" class="tableColumn"><b>P.Unit B</b></th>
+											<th width="8%" class="tableColumn"><b>P.Unit L</b></th>
+											<th width="10%" class="tableColumn"><b>Quant.</b></th>
+											<th width="7%" class="tableColumn"><b>Desc.</b></th>
+											<th width="10%" class="tableColumn" ><b>Total</b></th>
+											<th width="1%" class="tableColumn margem gerencial" ><b></b></th>
+										</tr>
+									</thead>
+									<tr id="linha" name="linha" ondblclick="editItem( this.id )">
+										<td ><input type="text" class="form-control" name="cod_item" id="cod_item" readonly valida="Cod Item" pf="S" ></td>
+										<td ><input type="hidden" class="form-control" name="den_item" id="den_item" >
+											<input type="text" class="form-control" name="den_item_reduz" id="den_item_reduz" readonly > </td>
+										<td ><input type="text" class="form-control" name="data_entrega" id="data_entrega" readonly valida="Data Colete" pf="S" ></td>
+										<td ><input type="text" class="form-control" name="data_entrega_calc" id="data_entrega_calc" readonly ></td>
+										<td ><input type="text" class="form-control" name="um" id="um" readonly valida="Unidade de Medida" pf="S" >
+											<input type="hidden" name="peso" id="peso" />
+											<input type="hidden" name="cubagem" id="cubagem" />
+											<input type="hidden" name="qtd_pad" id="qtd_pad" />
+											<input type="hidden" name="valor_unit_lista" id="valor_unit_lista" />
+											<input type="hidden" name="valor_unit_moeda" id="valor_unit_moeda" />
+											<input type="hidden" name="pct_desc_adic" id="pct_desc_adic" />
+											
+											<input type="hidden" name="val_icms" id="val_icms" />
+											<input type="hidden" name="perc_icms" id="perc_icms" />
+											<input type="hidden" name="val_pis" id="val_pis" />
+											<input type="hidden" name="perc_pis" id="perc_pis" />
+											<input type="hidden" name="val_cofins" id="val_cofins" />
+											<input type="hidden" name="perc_cofins" id="perc_cofins" />
+											<input type="hidden" name="val_ipi" id="val_ipi" />
+											<input type="hidden" name="perc_ipi" id="perc_ipi" />
+											<input type="hidden" name="val_st" id="val_st" />
+											<input type="hidden" name="perc_st" id="perc_st" />
+											<input type="hidden" name="val_rol" id="val_rol" />
+											<input type="hidden" name="perc_rol" id="perc_rol" />
+											<input type="hidden" name="custo" id="custo" />
+											<input type="hidden" name="perc_custo" id="perc_custo" />
+											<input type="hidden" name="custo_trans" id="custo_trans" />
+											<input type="hidden" name="perc_trans" id="perc_trans" />
+											<input type="hidden" name="val_comis" id="val_comis" />
+											<input type="hidden" name="perc_comis" id="perc_comis" />
+											
+											<input type="hidden" name="val_comis_adic" id="val_comis_adic" />
+											<input type="hidden" name="perc_comis_adic" id="perc_comis_adic" />
+											
+											<input type="hidden" name="val_royaltie" id="val_royaltie" />
+											<input type="hidden" name="perc_royaltie" id="perc_royaltie" />
+											
+											<input type="hidden" name="val_acordo" id="val_acordo" />
+											<input type="hidden" name="perc_acordo" id="perc_acordo" />
+											<input type="hidden" name="val_verba" id="val_verba" />
+											<input type="hidden" name="perc_verba" id="perc_verba" />
+											<input type="hidden" name="val_finac" id="val_finac" />
+											<input type="hidden" name="perc_finac" id="perc_finac" />
+											<input type="hidden" name="val_lob" id="val_lob" />
+											<input type="hidden" name="val_lob_total" id="val_lob_total" />
+											<input type="hidden" name="val_lob_ton" id="val_lob_ton" />
+											<input type="hidden" name="val_lob_perc" id="val_lob_perc" />
+		
+											<input type="hidden" name="custo_aditivo" id="custo_aditivo" />
+											<input type="hidden" name="custo_agregado" id="custo_agregado" />
+											<input type="hidden" name="custo_cimento" id="custo_cimento" />
+											<input type="hidden" name="custo_embalagem" id="custo_embalagem" />
+											<input type="hidden" name="custo_materia_prima" id="custo_materia_prima" />
+											<input type="hidden" name="custo_material_secundario" id="custo_material_secundario" />
+											<input type="hidden" name="custo_material_revenda" id="custo_material_revenda" />
+											<input type="hidden" name="custo_servico_terceiro" id="custo_servico_terceiro" />
+											<input type="hidden" name="custo_embalagem_logistica" id="custo_embalagem_logistica" />
+											<input type="hidden" name="custo_transferecia" id="custo_transferecia" />
+
+											<input type="hidden" name="verba_marketing" id="verba_marketing" />
+											<input type="hidden" name="acordo_comercial" id="acordo_comercial" />
+											<input type="hidden" name="verba_rapel" id="verba_rapel" />
+											<input type="hidden" name="verba_cross_dock" id="verba_cross_dock" />
+										
+											<input type="hidden" name="cod_lin_prod" id="cod_lin_prod" />
+											<input type="hidden" name="cod_lin_recei" id="cod_lin_recei" />
+											<input type="hidden" name="cod_seg_merc" id="cod_seg_merc" />
+											<input type="hidden" name="cod_cla_uso" id="cod_cla_uso" />
+											<input type="hidden" name="cod_grupo_item" id="cod_grupo_item" />
+											<input type="hidden" name="cod_tip_carteira" id="cod_tip_carteira" />
+										
+											<input type="hidden" name="pedido_cli_item" id="pedido_cli_item" />
+											<input type="hidden" name="seq_pedido_cli_item" id="seq_pedido_cli_item" />
+
+											<input type="hidden" name="sequencia" id="sequencia" />
+											<input type="hidden" name="qtd_orig" id="qtd_orig" />
+										
+											<input type="hidden" name="obs_item_1" id="obs_item_1" />
+											<input type="hidden" name="obs_item_2" id="obs_item_2" />
+											<input type="hidden" name="obs_item_3" id="obs_item_3" />
+											<input type="hidden" name="obs_item_4" id="obs_item_4" />
+											<input type="hidden" name="obs_item_5" id="obs_item_5" />
+
+											<input type="hidden" name="ies_mix" id="ies_mix" />										
+										
+											<input type="hidden" name="cod_motivo" id="cod_motivo" />
+
+										</td>
+										<td ><input type="text" class="form-control" name="valor_unit" id="valor_unit" style="text-align:right" readonly valida="Pre&ccedil;o Unit&aacute;rio" pf="S" ></td>
+										<td ><input type="text" class="form-control" name="valor_unit_liq" id="valor_unit_liq" style="text-align:right" readonly valida="Pre&ccedil;o Unit&aacute;rio" pf="S" ></td>
+										<td ><input type="text" class="form-control" name="quantidade" id="quantidade" style="text-align:right" readonly valida="Quantidade" pf="S" ></td>
+										<td ><input type="text" class="form-control" name="desconto" id="desconto" style="text-align:right" readonly ></td>
+										<td ><input type="text" class="form-control" name="valor_total" id="valor_total" style="text-align:right" readonly valida="Valor Total" pf="S" ></td>
+										
+									<td class="margem gerencial">
+										<span class="input-group-addon fluigicon fluigicon-ellipsis-vertical fluigicon-sm" onclick="modalMargem( this.children[0].id )" >
+											<input type="hidden" id="bt_margem" name="bt_margem"  />
+										</span>
+									</td>
+									</tr>
+								</table>
+							</div>
+						<!-- </div> -->
+					</div>
+						
+							
+					<div class="row" id="linha_totais">
+						<div class="col-md-4">
+							<label  for="grava_edit">&nbsp;</label>
+							<button id="atualiza_preco_edit" name="atualiza_preco_edit" class="form-control btn btn-default" onclick="atulizaPrecos();" >Atualiza Preço conforme lista atual</button>
+						</div>						
+												
+						<div class="col-md-2" >
+							<label class="valor_real lbl_moeda" id="lb_valor_total_geral" for="valor_total_edit">Total (R$)</label>
+							<input type="text" name="valor_total_real" id="valor_total_real" class="form-control valor_real lbl_moeda" readonly />
+						</div>
+						
+						<div class="col-md-2">
+							<label for="valor_total_edit">Total KG</label>
+							<input type="text" name="peso_total_geral" id="peso_total_geral" class="form-control" style="text-align:right" readonly>
+							<input type="hidden" name="cubagem_total_geral" id="cubagem_total_geral" class="form-control"/>
+						</div>
+						
+						<div class="col-md-2" >
+							<label class="margem gerencial" for="valor_total_edit">% Desc.</label>
+							<input type="text" name="desc_medio" id="desc_medio" class="form-control margem gerencial" readonly />
+						</div>
+						<div class="col-md-2" >
+							<label class="margem gerencial" for="valor_total_edit">% Mix.</label>
+							<input type="text" name="mix_geral" id="mix_geral" class="form-control gerencial" readonly />
+							<input type="hidden" name="qtd_item_desc_sup" id="qtd_item_desc_sup" />
+						</div>
+						<div class="col-md-2" >
+							<label id="lb_valor_total_geral" for="valor_total_edit"><span class="lbl_moeda">*</span>Total</label>
+							<input type="text" name="valor_total_geral" id="valor_total_geral" class="form-control" readonly />
+							<input type="hidden" name="valor_minimo" id="valor_minimo" />
+							<input type="hidden" name="valor_bruto" id="valor_bruto" />
+							<input type="hidden" name="desc_maximo" id="desc_maximo" />
+							<input type="hidden" name="total_desc" id="total_desc" />
+							
+							<input type="hidden" name="perc_mix_ger_reg" id="perc_mix_ger_reg" />
+							<input type="hidden" name="perc_mix_ger_nac" id="perc_mix_ger_nac" />
+							<input type="hidden" name="perc_desc_ger_reg" id="perc_desc_ger_reg" />
+							<input type="hidden" name="perc_desc_ger_nac" id="perc_desc_ger_nac" />
+							<input type="hidden" name="perc_lob_ger_nac" id="perc_lob_ger_nac" />
+							<input type="hidden" name="perc_lob_ctr" id="perc_lob_ctr" />
+							
+							<input type="hidden" name="ies_desc_medio_reg" id="ies_desc_medio_reg" />
+							<input type="hidden" name="ies_mix_geral_reg" id="ies_mix_geral_reg" />
+							<input type="hidden" name="ies_desc_medio_nac" id="ies_desc_medio_nac" />
+							<input type="hidden" name="ies_mix_geral_nac" id="ies_mix_geral_nac" />
+							
+						</div>
+					</div>
+					
+					<div class="row frete_calculo" id="linha_frete" name="linha_frete">
+						<div class="col-md-12">
+							<div class="col-md-2">
+									<label for="fretetotal" >Frete Total Estimado</label>
+									<input	type="text" id = "fretetotal" name="fretetotal" class="form-control" readonly />	
+							</div>
+							<div class="panel-body">
+								<div id="divbuttonfrete" class="col-md-2 fs-txt-left" >
+									<label for="btn_calc_frete" ></label>
+									<button id="btn_calc_frete" name="btn_calc_frete" class="btn btn-danger"  onclick="calculafrete()">Calcular Frete</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="row simulacao-totais gerencial simulacao">
+										
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_icms_edit">%</label>
+								<input type="text" name="perc_icms_total" id="perc_icms_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">							
+								<label  for="val_icms_edit">ICMS</label>
+								<input type="text" name="val_icms_total" id="val_icms_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_icms_edit">%</label>
+								<input type="text" name="perc_pis_total" id="perc_pis_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_pis_edit">PIS</label>
+								<input type="text" name="val_pis_total" id="val_pis_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_cofins_edit">%</label>
+								<input type="text" name="perc_cofins_total" id="perc_cofins_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_cofins_edit">Cofins</label>
+								<input type="text" name="val_cofins_total" id="val_cofins_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_st_edit">%</label>
+								<input type="text" name="perc_st_total" id="perc_st_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_st_edit">ST</label>
+								<input type="text" name="val_st_total" id="val_st_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_ipi_edit">%</label>
+								<input type="text" name="perc_ipi_total" id="perc_ipi_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_ipi_edit">IPI</label>
+								<input type="text" name="val_ipi_total" id="val_ipi_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<label  for="val_rob_total">ROB</label>
+							<input type="text" name="val_rob_total" id="val_rob_total" class="form-control" readonly style="text-align:right" />
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_rol_edit">%</label>
+								<input type="text" name="perc_rol_total" id="perc_rol_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_rol_edit">ROL</label>
+								<input type="text" name="val_rol_total" id="val_rol_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_custo_edit">%</label>
+								<input type="text" name="perc_custo_total" id="perc_custo_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="custo_edit">Custo</label>
+								<input type="text" name="custo_total" id="custo_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_trans_edit">%</label>
+								<input type="text" name="perc_trans_total" id="perc_trans_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="custo_trans_edit">Custo Transf.</label>
+								<input type="text" name="custo_trans_total" id="custo_trans_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_comis_edit">%</label>
+								<input type="text" name="perc_frete_total" id="perc_frete_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_comis_edit">Frete</label>
+								<input type="text" name="vlr_frete_total" id="vlr_frete_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+						
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_comis_edit">%</label>
+								<input type="text" name="perc_comis_total" id="perc_comis_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_comis_edit">Vlr Comissão</label>
+								<input type="text" name="val_comis_total" id="val_comis_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+						
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_comis_total">%</label>
+								<input type="text" name="perc_comis_adic_total" id="perc_comis_adic_total" class="form-control" style="text-align:right" readonly />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_comis_total">Vlr Comissão Adiconal</label>
+								<input type="text" name="val_comis_adic_total" id="val_comis_adic_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_comis_edit">%</label>
+								<input type="text" name="perc_royaltie_total" id="perc_royaltie_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_comis_edit">Vlr Royaltie</label>
+								<input type="text" name="val_royaltie_total" id="val_royaltie_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_acordo_edit">%</label>
+								<input type="text" name="perc_acordo_total" id="perc_acordo_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_acordo_edit">Vlr Acord. Comerc.</label>
+								<input type="text" name="val_acordo_total" id="val_acordo_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_verba_edit">%</label>
+								<input type="text" name="perc_verba_total" id="perc_verba_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_verba_edit">Vlr Verba Market.</label>
+								<input type="text" name="val_verba_total" id="val_verba_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_finac_edit">%</label>
+								<input type="text" name="perc_finac_total" id="perc_finac_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_finac_edit">Vlr Custo Finac.</label>
+								<input type="text" name="val_finac_total" id="val_finac_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+						<div class="col-md-2">
+							<label  for="val_lob_ton_edit">LOB Ton.</label>
+							<input type="text" name="val_lob_ton_total" id="val_lob_ton_total" class="form-control" readonly style="text-align:right" />
+						</div>
+
+						<div class="col-md-2">
+							<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;">
+								<label  for="perc_lob_geral_total">%</label>
+								<input type="text" name="perc_lob_geral_total" id="perc_lob_geral_total" class="form-control" readonly style="text-align:right" />						
+							</div>
+							<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">		
+								<label  for="val_lob_geral_total">LOB</label>
+								<input type="text" name="val_lob_geral_total" id="val_lob_geral_total" class="form-control" readonly style="text-align:right" />
+							</div>
+						</div>
+
+					
+					</div>
+										
+				</div>
+			</div>
+
+			<!--  Aba Complementar -->
+			<div class="panel panel-info" id="aba_3" style="display:none;"  >
+				<div class="panel-heading fs-txt-center"><b>Complemento para Pedido</b></div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-2">
+							<label for="exampleTag">Pais</label>
+							<input type="text" name="pais_ent" id="pais_ent" class="form-control" valida="Pais" readonly />
+							<input type="hidden" name="cod_pais_ent" id="cod_pais_ent" class="form-control" readonly />
+						</div>
+						<div class="col-md-2">
+							<label for="exampleTag">Estado</label>
+							<input type="text" name="estado_ent" id="estado_ent" class="form-control" valida="UF" readonly />
+						</div>
+						<div class="col-md-3">
+							<label  for="tipo_entrega">Tipo Entrega</label>
+							<select name="tipo_entrega" id="tipo_entrega" class="form-control"  valida="Tipo de Entrega" > 
+								<option value='1' > TOTAL </option>
+								<option value='2' > PARCIAL ITEM TOTAL </option>
+								<option value='3' selected > PARCIAL ITEM PARCIAL </option>
+							</select>
+						</div>						
+					</div>
+					<div class="row">
+						<div class="col-md-2">	
+							<label  for="ped_cliente">Pedido Cliente</label>
+							<input	type="text" id = "ped_cliente" name="ped_cliente" class="form-control" maxlength="25" />
+						</div>
+						<div class="col-md-2">
+							<label  for="cei">CEI</label>
+							<input type="text" name="cei" id="cei" class="form-control" maxlength="12" />
+						</div>
+						<div class="col-md-8" >
+							<label  for="tipo_desconto">Tipo de Desconto</label>
+							<div id="div_tip_desc" >
+								<select id="tipo_desconto" name="tipo_desconto" class="form-control"  dataset="tipo_desconto" datasetkey="tip_desc" datasetvalue="des_tip_desc"  addBlankLine="true" > </select>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-xs-12">			
+							<label for="exampleTag" >
+								CheckList
+							</label>
+							<table class="table table-condensed table-bordered" border="1" tablename="perguntas"  noaddbutton=true nodeletebutton=true addbuttonclass="wdkbuttonClass" >
+								<thead>
+									<tr>
+										<td width='100%' class="cell-ellipsis"><b></b></td>
+									</tr>
+								</thead>
+								<tr id='linha_base' >
+									<td>	
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="col-xs-6" >
+													<input type="text" class="form-control" name="den_pergunta" id="den_pergunta" readonly tabindex="-1" >
+													<input type="hidden" name="cod_pergunta" id="cod_pergunta" >
+													<input type="hidden" name="tipo_pergunta" id="tipo_pergunta" >
+													<input type="hidden" name="cod_um" id="cod_um" >
+													<input type="hidden" name="num_precisao" id="num_precisao" >
+												</div>
+												<div class="col-xs-6" >
+													<select name="opcao" id="opcao" class="form-control" onchange="montaTextoPed()" >
+													</select>
+													<input type="tel" class="form-control" name="metrica" id="metrica" onblur="montaTextoPed()" />
+													<input type="text" class="form-control" name="informado" id="informado" onblur="montaTextoPed()" />
+												</div>
+											</div>
+										</div>
+										
+									</td>
+								</tr>
+							</table>					
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">			
+							<label for="exampleTag" >
+								Complemento NF
+							</label>
+							<input type="text" name="compl_nf" id="compl_nf" class="form-control" maxlength="380" onblur="montaTextoPed();" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 pd_her">								
+							<label for="exampleTag">Texto do NF</label>
+							<input type="text" name="texto_nf_1" id="texto_nf_1" class="form-control" maxlength="76" readonly/>
+							<input type="text" name="texto_nf_2" id="texto_nf_2" class="form-control" maxlength="76" readonly/>
+							<input type="text" name="texto_nf_3" id="texto_nf_3" class="form-control" maxlength="76" readonly/>
+							<input type="text" name="texto_nf_4" id="texto_nf_4" class="form-control" maxlength="76" readonly/>
+							<input type="text" name="texto_nf_5" id="texto_nf_5" class="form-control" maxlength="76" readonly/>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+			<!--  Aba Complementar -->
+			<!-- style="display:none;" -->
+			<div class="panel panel-info" id="aba_4" style="display:none;" >
+				<div class="panel-heading fs-txt-center">
+				
+					<table>
+						<tr>
+							<td><span class="fluigicon fluigicon-map-marker fluigicon-sm" name='btEndereco' id='btEndereco' onclick="zoomButton( this.id );" ></span> </td>
+							<td><span class="fluigicon fluigicon-copy fluigicon-sm" name='btCopyEndereco' id='btCopyEndereco' onclick="copyEndereco( );" ></span> </td>
+							<td width='99%' align=center ><b>Endere&ccedil;o de Entrega</b></td>
+							<td><span class="fluigicon fluigicon-eraser fluigicon-sm" name='btEndereco' id='btEndereco' onclick="clearEndereco(  this.id );"  ></span> </td>
+						</tr>
+					</table>
+				
+				</div>
+				<div class="panel-body">
+						
+					<div class="row">
+						<div class="col-md-2">
+							<label for="exampleTag">Tipo de Logradouro</label>
+							<select name="tipo_logradouro_ent" id="tipo_logradouro_ent" class="form-control validaAltera" valida="Tipo Logradou" dataset="tip_logradouro" datasetkey="tip_logradouro" datasetvalue="tip_logradouro" addBlankLine="true" >
+							</select>
+						</div>
+						<div class="col-md-8">
+							<div class="form-group">
+								<label for="exampleTag">Endere&ccedil;o</label>
+								<input type="text" name="endereco_ent" id="endereco_ent" class="form-control validaAltera" valida="Endereço" maxlength="22" pattern="[a-zA-Z0-9]+" onBlur="retiraAcento(this.value, this); cargaCidadesEnt();"/>
+								<input type="hidden" name="seq_end" id="seq_end" />
+							</div>
+						</div> 
+						<div class="col-md-2">
+							<div class="form-group">
+								<label for="exampleTag">N&uacute;mero</label>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<input type="checkbox" name="sem_numero_ent" id="sem_numero_ent" onchange="setSemNumero( this.id, 'numero_ent' )" >
+									</span>
+									<input type="tel" mask="000000"  maxlength=6 name="numero_ent" id="numero_ent" class="form-control  validaAltera" valida="N&uacute;mero" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6" id = "cidade_ent_grp">
+							<div class="form-group">
+								<label for="exampleTag">Cidade</label>
+								<input	type="zoom"
+										id = "cidade_ent"
+										name="cidade_ent"
+										class="foco  validaAltera"
+										valida="Cidade"
+										data-zoom="{
+											'displayKey':'den_cidade',
+											'datasetId':'cidades',
+											'filterValues':'cod_uni_feder,__',
+											'standard':'true', 
+											'search':'true',
+											'fields':[
+												{
+												   'field':'cod_cidade',
+												   'label':'Codigo',
+												   'standard':'true',
+											       'search':'true'
+												},{
+												  'field':'den_cidade',
+												  'label':'Cidade',
+												  'standard':'true', 
+												  'search':'true'
+												}
+											]
+										 }" 
+									/>
+								<input type="hidden" name="cod_cidade_ent" id="cod_cidade_ent" class="form-control" valida="Codigo Cidade"/> 
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								<label for="exampleTag">CEP</label>
+								<input type="tel" mask="00000-000" name="cep_ent" id="cep_ent" class="form-control  validaAltera" valida="CEP"  regra="cep"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="exampleTag">Bairro</label>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<input type="checkbox" name="ies_bairro_ent_manual" id="ies_bairro_ent_manual" onchange="alteraCampos( this.id, 'bairro_ent_sel', 'bairro_ent' )">
+									</span>
+									<select name="bairro_ent_sel" id="bairro_ent_sel" class="form-control  validaAltera" valida="Bairro" ></select>
+									<input type="text"  maxlength=30 name="bairro_ent" id="bairro_ent" class="form-control  validaAltera" valida="Bairro" pattern="[a-zA-Z0-9]+" onBlur="retiraAcento(this.value, this)"/>
+								</div>	
+							</div>
+						</div>		
+						<div class="col-md-3">
+							<label for="exampleTag">CNPJ / CPF </label>
+							<input type="tel" mask="000.000.000/0000-00" name="cnpj_ent" id="cnpj_ent" class="form-control  validaAltera" regra="cnpjcpf" />
+						</div>
+						
+						<div class="col-md-3">
+							<label for="exampleTag">IE</label>
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<input type="checkbox" name="isento_ie_ent" id="isento_ie_ent" onchange="setIsento( this.id, 'ie_ent', 'estado_ent' )"  >
+									</span>
+									<input type="text" name="ie_ent" id="ie_ent" class="form-control validaAltera" regra="ie" campoEstado="estado" />
+								</div>
+							</div>
+						</div>	
+					</div>
+					<div class="row fs-txt-center" style="background-color: #d9edf7; padding: 10px 15px;">
+						<b>Cancelamento</b>
+					</div>
+					<div class="col-md-12">	
+						<label  for="motivo_cancelamento">Motivo de Cancelamento</label>
+						<select id="motivo_cancelamento" name="motivo_cancelamento" class="form-control"  dataset="motivos_cancelamento" datasetkey="cod_motivo_cancelamento" datasetvalue="desc_motivo_cancelamento"  addBlankLine="true"></select>
+					</div>
+				</div>
+			</div>
+			
+			<!--  #### navegacao #### -->
+			<div class="vertical-align-parent">
+				<div id="actions_wizard" class="row">
+					<div class="row" >
+						<table width = '100%'>
+							<tr>
+								<td width = '2%' >
+								</td>
+								<td width = '30%' >
+									<div id="divPreviousStopButton" class="col-md-12 fs-txt-left" >
+										<button id="btn_cancel" name="btn_cancel" class="btn btn-danger"  style="display:none;" onclick="lastPage()">Voltar</button>
+									</div>
+								</td>
+								<td width = '30%'>
+									<div id="divPreviousStopButton" class="col-md-12 fs-txt-center">
+										<h3><span id="current_step"></span> de <span id="total_steps"></span></h3>
+									</div>
+								</td>
+								<td width = '30%'>
+									<div id="divNextStopButton" class="col-md-12 fs-txt-right">
+										<button id="btn_confirma" name="btn_confirma" class="btn btn-success" onClick="nextPage()">Avan&ccedil;ar</button>
+									</div>
+								</td>
+								<td width = '2%' >
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<input type="hidden" name="cod_cidade_ent_md" id="cod_cidade_ent_md" />		
+		<input type="hidden" name="bairro_ent_sel_md" id="bairro_ent_sel_md" />
+		<input type="hidden" name="userFluig" id="userFluig" />
+		<input type="hidden" name="userFluigNome" id="userFluigNome" />
+		<input type="hidden" name="tipoCadUser" id="tipoCadUser" />
+		
+		<input type="hidden" name="task" id="task" />	
+		<input type="hidden" name="processo" id="processo" />
+		
+		<input type="hidden" name="dup_item" id="dup_item" />
+		<input type="hidden" name="casas_preco" id="casas_preco" />
+
+		<input type="hidden" name="sit_pedido" id="sit_pedido" />
+		<input type="hidden" name="modo" id="modo" />
+		<input type="hidden" name="consistencias" id="consistencias" />
+
+		<input type="hidden" name="orcamento_alterado" id="orcamento_alterado" />
+		<input type="hidden" name="cliente_cadastrado" id="cliente_cadastrado" />
+
+		<input type="hidden" name="ies_orcamento" id="ies_orcamento" />
+		<input type="hidden" name="per_sel_cidades" id="per_sel_cidades" />
+
+		<input type="hidden" name="ies_alt_list_reg" id="ies_alt_list_reg" />
+		<input type="hidden" name="ies_desc_item_reg" id="ies_desc_item_reg" />
+		<input type="hidden" name="ies_pct_lob_reg" id="ies_pct_lob_reg" />
+		<input type="hidden" name="ies_desc_item_nac" id="ies_desc_item_nac" />
+		<input type="hidden" name="ies_pct_lob_nac" id="ies_pct_lob_nac" />
+		<input type="hidden" name="ies_pct_lob_ctr" id="ies_pct_lob_ctr" />
+		<input type="hidden" name="ies_finalidade" id="ies_finalidade" />
+		
+		<input type="hidden" name="perc_adic_tipo_venda" id="perc_adic_tipo_venda" />
+			
+		<input type="hidden" name="ies_end_entrega" id="ies_end_entrega" />
+
+		<div style="display:none">
+			<div id="div_mot_cancel" >
+				<select id="mot_cancel" name="mot_cancel" class="form-control"  dataset="motivo_cancel" datasetkey="cod_motivo" datasetvalue="den_motivo"  addBlankLine="true" > </select>
+			</div>		
+			
+			
+						<div class="col-md-2">
+							<label  for="data_coleta">Data Coleta</label>
+							<input type="tel" name="data_coleta" id="data_coleta" class="form-control" />
+						</div>
+						
+						
+						<div class="col-md-2">
+							<label  for="ped_representante">Num. Processo</label>
+							<input type="text" name="ped_representante" id="ped_representante" class="form-control" readonly />
+						</div>
+						
+						
+						
+						<div class="col-md-2">	
+							<label  for="ped_cliente">% Desc. Financeiro</label>
+							<input	type="text" id = "pct_desc_financ" name="pct_desc_financ" class="form-control" style="text-align:right" readonly />
+						</div>
+
+						<div class="col-md-1">
+							<label  for="valor_total_edit">OBS.</label>
+							<input type="checkbox" name="inf_obs" id="inf_obs" class="form-control" style="box-shadow:none" value="S" onchange="setObsItem()" />
+						</div>						
+
+					<div class="row" id="obs_item">
+						<div class="col-md-8">
+							<label  for="pedido_cli_edit">Observa&ccedil;&atilde;o </label>
+							<input type="text" name="obs_item_1_edit" id="obs_item_1_edit" class="form-control" maxlength="76" />
+							<input type="text" name="obs_item_2_edit" id="obs_item_2_edit" class="form-control" maxlength="76" />
+							<input type="text" name="obs_item_3_edit" id="obs_item_3_edit" class="form-control" maxlength="76" />
+							<input type="text" name="obs_item_4_edit" id="obs_item_4_edit" class="form-control" maxlength="76" />
+							<input type="text" name="obs_item_5_edit" id="obs_item_5_edit" class="form-control" maxlength="76" />
+						</div>						
+					</div>
+						
+			
+		</div>
+	</div>	
+	V.01A
+	</form>
+</body>
+
+</html>

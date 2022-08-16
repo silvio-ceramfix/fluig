@@ -1,0 +1,334 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	
+	<script type="text/javascript" src="/portal/resources/js/jquery.mask.min.js"></script>
+	
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="controle.js" charset="utf-8"></script>
+	<script type="text/javascript" src="zoom.js" charset="utf-8"></script>
+	<script type="text/javascript" src="modalZoom.js" charset="utf-8"></script>
+	<script type="text/javascript" src="jquery.maskMoney.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="util.js" charset="utf-8"></script>
+	<script type="text/javascript" src="order.js" charset="utf-8"></script>
+	<script type="text/javascript" src="itens.js" charset="utf-8"></script>
+	
+	
+</head>
+<body onload="loadBody( this.name )" >
+<div class="fluig-style-guide">
+<form name="form" role="form">
+
+	<input type="hidden" name="cod_cliente" id="cod_cliente"/>
+	<input type="hidden" name="uni_feder" id="uni_feder"/>
+	<input type="hidden" name="data_pedido_fat" id="data_pedido_fat"/>
+		
+	
+	<div class="row">
+	
+		<div class="col-md-2">
+			<div class="input-group">
+				<label for="exampleTag" >Cod. Filial Origem</label>
+				<div class="input-group">
+					<input type="text" name="cod_empresa" id="cod_empresa" class="form-control pedido" readonly>
+					<span class="input-group-btn">
+						<button class="btn btn-default fluigicon fluigicon-company fluigicon-xs" name="btEmpresa" id="btEmpresa" type="button" onclick="zoom(this.name)" ></button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<label for="exampleTag">Filial Origem</label>
+				<input type="text" name="den_empresa" id="den_empresa" class="form-control pedido" readonly />
+			</div>
+		</div>
+	
+	
+		<div class="col-md-2">
+			<div class="input-group">
+				<label for="exampleTag" >Cod. Filial Destino</label>
+				<div class="input-group">
+					<input type="text" name="cod_empresa_dest" id="cod_empresa_dest" class="form-control pedido" readonly>
+					<span class="input-group-btn">
+						<button class="btn btn-default fluigicon fluigicon-company fluigicon-xs" name="btEmpresaDest" id="btEmpresaDest" type="button" onclick="zoom(this.name)" ></button>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<label for="exampleTag">Filial Destino</label>
+				<input type="text" name="den_empresa_dest" id="den_empresa_dest" class="form-control pedido" readonly />
+			</div>
+		</div>
+
+		<div class="col-md-2">
+			<div class="form-group">
+				<label for="exampleTag">Data Envio</label>
+				<input type="text" name="data_envio" id="data_envio" class="form-control data-fluig pedido" />
+			</div>
+		</div>
+		
+		<div class="col-md-2">
+			<div class="form-group">
+				<label for="exampleTag">Pedido</label>
+				<input type="text" name="num_pedido" id="num_pedido" class="form-control" readonly />
+				<input type="hidden" name="sit_pedido" id="sit_pedido" class="form-control" readonly />
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+	
+		<div class="col-xs-6">
+			<label for="exampleTag">AEN</label>
+			<div class="input-group">
+				<input type="text" name="den_aen_transf" id="den_aen_transf"  class="form-control pedido" readonly />
+				<span id="btAENtransf" name="btAENtranf" class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm"  onclick="zoom( id )" ></span>
+			</div>
+			<input type="hidden" name="cod_aen_transf" id="cod_aen_transf" />
+		</div>
+	
+		<div class="col-md-3">
+			<label for="exampleTag" >Natureza OperaÃ§Ã£o</label>
+			<select name="nat_oper_transf" id="nat_oper_transf" class="form-control pedido"  >
+			</select>
+		</div>
+
+		<div class="col-md-3">
+			<label for="exampleTag" >Cond. Pagamento</label>
+			<select name="cond_pagto_transf" id="cond_pagto_transf" class="form-control pedido"  >
+			</select>
+		</div>
+
+	</div>
+	
+	<div class="row">
+		
+		<div class="col-md-3">
+			<label for="exampleTag" >Carteira</label>
+			<select name="carteira_transf" id="carteira_transf" class="form-control pedido"  >
+			</select>
+		</div>				
+	
+		<div class="col-md-3">
+			<label for="exampleTag" >Tipo Venda</label>
+			<select name="tipo_venda_transf" id="tipo_venda_transf" class="form-control pedido"  >
+			</select>
+		</div>
+		
+		<div class="col-md-3">
+			<label for="exampleTag" >Lista de pre&ccedil;o</label>
+			<select name="lista_preco_transf" id="lista_preco_transf" class="form-control pedido"  >
+			</select>
+		</div>
+		
+		<div class="col-md-3">
+			<label for="exampleTag" >Finalidade</label>
+			<select name="finalidade_transf" id="finalidade_transf" class="form-control pedido"  >
+				<option value='' ></option>
+				<option value='1' >Contrib. (Industr/Comerc)</option>
+				<option value='2' >Nao Contrib.</option>
+				<option value='3' >Contrib. Uso/Consumo</option>
+			</select>
+		</div>				
+	
+	</div>
+	
+	<div class="row">
+		
+		<div class="col-md-3">
+			<label  for="tipo_entrega">Tipo Entrega</label>
+			<select name="tipo_entrega_transf" id="tipo_entrega_transf" class="form-control pedido"  valida="Tipo de Entrega" >
+				<option value='' ></option>
+				<option value='1'> Total </option>
+				<option value='2'> Parcial Item Total </option>
+				<option value='3'> Parcial Item Parcial </option>
+			</select>
+		</div>
+	
+		<div class="col-md-3">
+			<label for="exampleTag" >Tipo Frete</label>
+			<select name="tipo_frete_transf" id="tipo_frete_transf" class="form-control pedido"  >
+				<option value='' ></option>
+				<option value='1' >CIF Pago</option>
+				<option value='2' >CIF Cobrado</option>
+				<option value='3' >FOB</option>
+				<option value='4' >CIF Inf. Pct.</option>
+				<option value='5' >CIF Inf. Unit.</option>
+				<option value='6' >Item Tot.</option>
+			</select>
+		</div>				
+		
+		
+		<div class="col-xs-3">
+			<label for="exampleTag">CNPJ</label>
+			<div class="input-group">
+				<input type="text" name="cnpj_fornecedor_transf" id="cnpj_fornecedor_transf"  class="form-control" readonly />
+				<span id="btFornecedorTransf" name="btFornecedorTransf" class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm"  onclick="zoom( id )" ></span>
+			</div>
+			<input type="hidden" name="cod_fornecedor_transf" id="cod_fornecedor_transf" />
+		</div>
+				
+		<div class="col-xs-3">
+			<label for="exampleTag">Transportadora</label>
+			<input type="text" name="fornecedor_transf" id="fornecedor_transf"  class="form-control pedido" readonly />
+		</div>
+		
+	</div>
+	<div class="panel panel-info" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr>
+					<td width='10%' align=left ></span></td>
+					<td width='80%' align=center ><b>Filtro Itens</b></td>
+					<td width='10%' align=right ></span></td>
+				</tr>
+			</table>
+		</div>
+		<div class="panel-body" style="padding-top: 0px; padding-bottom: 0px;">		
+			<div class="row">
+
+
+				<div class="col-md-1">
+					<label for="exampleTag" >Operação</label>
+					<select name="tipo_familia" id="tipo_familia" class="form-control"  >
+						<option value='I' >Igual</option>
+						<option value='D' >Diferente</option>
+					</select>
+				</div>
+
+				<div class="col-md-4">
+            		<label for="exampleTag" >Familia</label>
+            		<input 
+						class="form-control"
+						name="den_familia" id="den_familia"
+						type="zoom"
+						data-zoom="{
+							'displayKey':'DEN_FAMILIA',
+							'datasetId':'familia',
+							'filterValues':'COD_EMPRESA,00',
+							'maximumSelectionLength': '20',
+							'placeholder':'Escolha familia',
+							'fields':[
+								{
+									'field':'COD_FAMILIA',
+									'label':'Codigo',
+									'visible':'false'
+								},{
+									'field':'DEN_FAMILIA',
+									'label':'Familia',
+									'standard':'true'
+								}
+							]
+						}" />
+            		<input type="hidden" name="cod_familia" id="cod_familia">
+          		</div>
+          	
+				<div class="col-md-1">
+					<label for="exampleTag" >Operação</label>
+					<select name="tipo_grupo" id="tipo_grupo" class="form-control"  >
+						<option value='I' >Igual</option>
+						<option value='D' >Diferente</option>
+					</select>
+				</div>
+
+				<div class="col-md-4">
+            		<label for="exampleTag" >Grupo Estoque</label>
+            		<input 
+						class="form-control"
+						name="den_gru_ctr_estoq" id="den_gru_ctr_estoq"
+						type="zoom"
+						data-zoom="{
+							'displayKey':'DEN_GRU_CTR_ESTOQ',
+							'datasetId':'grupo_ctr_estoq',
+							'filterValues':'COD_EMPRESA,00',
+							'maximumSelectionLength': '20',
+							'placeholder':'Escolha grupo de estoque',
+							'fields':[
+								{
+									'field':'GRU_CTR_ESTOQ',
+									'label':'Codigo',
+									'visible':'false'
+								},{
+									'field':'DEN_GRU_CTR_ESTOQ',
+									'label':'Familia',
+									'standard':'true'
+								}
+							]
+						}" />
+            		<input type="hidden" name="gru_ctr_estoq" id="gru_ctr_estoq">
+            	</div>
+            	
+            	
+				<div class="col-md-2">
+					<button type="button" class="btn btn-success" onclick="zoom( 'btDem' );" ><i class="fluigicon fluigicon-transfer icon-xl" ></i>
+					Buscar</button>
+				</div>
+            	
+          	</div>
+			
+		</div>
+	</div>
+			
+	<div class="panel panel-info" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr>
+					<td width='10%' align=left ><span class="fluigicon fluigicon-plus-circle fluigicon-md" name='btItem' id='btItem' onclick="zoom( this.id );" ></span></td>
+					<td width='80%' align=center ><b>Itens</b></td>
+					<td width='10%' align=right ><span class="fluigicon fluigicon-transfer fluigicon-md" name='btDem' id='btDem' onclick="zoom( this.id );/" ></span></td>
+				</tr>
+			</table>
+		</div>
+		<div class="panel-body" style="padding-top: 0px; padding-bottom: 0px;">		
+			<div class="row">
+				<div class="col-xs-12" style="padding-left: 0px; padding-right: 0px;">
+					<table class="table table-condensed table-bordered table-striped" border="0" tablename="itens" nodeletebutton=true noaddbutton=true style="margin-bottom: 0px;">
+						<thead>
+							<tr>
+								<td width='10%' class="cell-ellipsis"><b>C&oacute;digo</b></td>
+								<td width='50%' class="cell-ellipsis"><b>Item</b></td>
+								<td width='5%' class="cell-ellipsis"><b>UM</b></td>
+								<td width='10%' class="cell-ellipsis"><b>Qtd. Nec.</b></td>
+								<td width='10%' class="cell-ellipsis"><b>Qtd. Envio</b></td>
+								<td width='10%' class="cell-ellipsis"><b>Custo Trans.</b></td>
+								<td width='5%' class="cell-ellipsis"></td>
+							</tr>
+						</thead>
+						<tr id='linha_base' >
+							<td> <input type="text" name="cod_item" id="cod_item"  class="form-control" readonly />
+							<td> <input type="text" name="den_item" id="den_item"  class="form-control" readonly /></td>
+							<td> <input type="text" name="cod_unid_med" id="cod_unid_med"  class="form-control" readonly /></td>
+							<td> <input type="text" name="qtd_nec" id="qtd_nec"  class="form-control decimal-0" style="text-align:right" readonly /></td>
+							<td> <input type="text" name="qtd_envio" id="qtd_envio"  class="form-control decimal-0" style="text-align:right" /></td>
+							<td> <input type="text" name="custo" id="custo"  class="form-control decimal-3" style="text-align:right" /></td>
+							<td> <button class="btn btn-default btn-sm fluigicon fluigicon-trash fluigicon-xs" type="button" onclick="fnWdkRemoveChild(this);" tabindex="-1" >
+								 	<input type="hidden" name="btDelAlter" id="btDelAlter" />
+								 </button>							
+								 
+								 <input type="hidden" name="cod_lin_prod" id="cod_lin_prod"  class="form-control" readonly />
+								 <input type="hidden" name="cod_lin_recei" id="cod_lin_recei"  class="form-control" readonly />
+								 <input type="hidden" name="cod_seg_merc" id="cod_seg_merc"  class="form-control" readonly />
+								 <input type="hidden" name="cod_cla_uso" id="cod_cla_uso"  class="form-control" readonly />
+								 
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+</form>
+</div>
+
+
+</body>
+</html>

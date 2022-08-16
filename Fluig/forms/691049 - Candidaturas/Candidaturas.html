@@ -1,0 +1,89 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="zoom.js"></script>
+	<script type="text/javascript" src="controle.js"></script>
+	
+	<script type="text/javascript" src='jquery.maskMoney.min.js'></script>	
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript" src="modalZoom.js"></script>	
+	<script type="text/javascript" src="valida.js"></script>
+	<script type="text/javascript" src="anexos.js"></script>
+	
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="fileUpload.js" charset="utf-8"></script>
+</head>
+<body onload="loadBody()">
+<div class="fluig-style-guide">
+<form name="form" role="form">
+	<div class="panel panel-primary tipo_documento">
+					<div class="panel-heading fs-txt-center">
+						<table width='100%'>
+							<tr>
+								<td width='10%' align=left></td>
+								<td style="background: {$color}; color: #fff;" width='80%' align=center><b>Candidatura a Vagas Internas</b></td>
+								<td width='10%' align=right></td>
+							</tr>
+						</table>
+					</div>
+					<div class="panel-body">
+					
+						<div class="row">
+						
+									
+							<div class="col-md-12">
+								<label>Candidato</label>
+								<input type="text" id="solicitante" name="solicitante" class="form-control" readonly />												
+							</div>	
+				
+						</div>
+						<div class="row">
+				
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="hidden" id="cod_vaga" name="cod_vaga" class="empresa">
+									<label for="empresa2">Vaga:</label>
+									<div class="input-group">
+										<input name="den_vaga" id="den_vaga" type="text" class="form-control empresa final" readonly="">
+										<span class="input-group-addon fluigicon fluigicon-eraser fluigicon-sm bt_repres" onclick="$('.den_vaga').val('')"></span>
+										<span id="bt_vaga" class="input-group-addon group-zoom no-view zoom-click btn-primary" onclick="zoom(this.id)">
+											<span class="fluigicon fluigicon-zoom-in "></span>
+										</span>
+									</div>
+								</div>
+							</div>
+						
+						</div>
+						
+						<div class="row">
+				
+							<div class="col-md-12">
+								<label for="exampleTag">Comentários</label> 
+								<input type="text" name="comentarios" id="comentarios" class="form-control" rows="3"/>
+							</div>
+						
+						</div>
+
+						<div class="row">
+							<div class="col-md-4">
+								<label for="documento" data-toggle="tooltip" data-placement="bottom" title="Anexar Documento" >Clique no bot&atilde;o abaixo para selecionar o currículo Atualizado:</label>
+								<button type="button" class="btn btn-primary" onclick="window.parent.document.getElementById('ecm-navigation-inputFile-clone').click()">Selecione o documento</button>																																																											
+							</div>
+							
+						</div>
+				</div>
+		</div>
+	
+	<input type="hidden" name="numSolic" id="numSolic" class="form-control">
+	<input type="hidden" name="Params" id="Params" class="form-control">
+	<input type="hidden" name="task" id="task" class="form-control">
+	<input type="hidden" name="matricula" id="matricula" class="form-control">
+	
+</form>
+</div>
+</body>
+</html>

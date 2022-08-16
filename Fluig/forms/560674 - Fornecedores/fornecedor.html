@@ -1,0 +1,582 @@
+<html>
+
+
+<head>
+
+	<link type="text/css" rel="stylesheet" href="/portal/resources/style-guide/css/fluig-style-guide.min.css"/>
+	
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery.mask.min.js"></script>
+	
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	
+	<script type="text/javascript" src="zoom.js"></script>
+	<script type="text/javascript" src="modalZoom.js"></script>	
+	<script type="text/javascript" src="controle.js"></script>
+	<script type="text/javascript" src="valida.js"></script>
+	<script type="text/javascript" src="zoom.js"></script>
+	
+<style>
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>	
+	
+	<style>
+	
+		#email:valid {background:#006600;color:#fff }
+		
+		#email:invalid {background:#990000; color:#fff}
+	  
+    </style>
+	
+	<script type="text/javascript">
+												
+	</script>
+
+</head>
+
+<body onload="loadBody(); setTipoFormulario( 'body' );"> 
+
+        
+	<form id="form" name="form" role="form">					    
+
+		<div class="fluig-style-guide" id="divPrincipal">
+			<div class="panel panel-info" id="aba_1" >
+				<div class="panel-heading fs-txt-center">
+				
+					<table width='100%' >
+						<tr>
+							<td width='10%' align=left ></td>
+							<td width='70%' align=center ><b>Dados cadastrais</b></td>
+							<td width='20%' align=right > <input type="text" name="situacao" id="situacao" readonly style=" border-top-width: 0px; padding-bottom: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px; padding-top: 0px; background-color: #d9edf7;" size="25" /> </td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-2">
+							<label for="exampleTag">Tipo de Cadastro</label>
+							<select name="tipo_cadastro" id="tipo_cadastro" class="form-control" onchange="setTipoFormulario( 'change' );" >
+								<option value="N">Novo</option>
+							</select>
+						</div>
+						
+						<div class="col-md-3">
+							<div class="input-group">
+								<label for="exampleTag">Tipo Cliente</label>
+									<div class="input-group">
+										<select name="tipo_cliente" id="tipo_cliente" class="form-control" onchange="setTipoCliente( 'change' );"  valida="Tipo Cliente">
+										<input type="hidden" name="tipo_cliente_hd" id="tipo_cliente_hd"  />
+										<!-- dataset="tipo_cliente" datasetkey="cod_tip_cli" datasetvalue="den_tip_cli" addBlankLine='true' -->
+										</select>
+			
+										<span class="input-group-btn">
+												<button class="btn btn-default fluigicon fluigicon-question-sign fluigicon-xs" name="btTipoCliente" id="btTipoCliente" type="button" onclick="exibeComentarios(tipo_cliente.value)" ></button>
+										</span>
+									</div>	
+							</div>
+						</div>		
+						
+						<div class="col-md-3">
+							<label for="exampleTag">CNPJ / CPF </label>
+							<div class="input-group">
+								<input type="tel" mask="000.000.000/0000-00" name="cnpj" id="cnpj" class="form-control" valida="CNPJ / CPF" regra="cnpjcpf" />
+								<span id="btnFornecedor" class="input-group-addon group-zoom no-view zoom-click btn-primary" onclick="searchCPNJ()" >
+									<span class="fluigicon fluigicon-parabolicsatellite "></span>
+								</span>
+							</div>
+						</div>
+								
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="exampleTag">Nome Reduzido</label>
+								<input type="text" name="nom_reduzido" id="nom_reduzido" class="form-control" valida="Nome Reduzido" />
+							</div>
+						</div>
+							<!--<div class="input-group">
+								<input type="text" name="razao_social" id="razao_social" class="form-control" />
+								<span class="input-group-btn" >
+									<button class="btn btn-default fluigicon fluigicon-user-search fluigicon-xs" name="btRazaoSocial" id="btRazaoSocial" onclick="zoom(this.name)" >  </button>
+								</span>
+							</div>-->
+					</div>
+					
+					
+						<div class="row">
+							<div class="col-md-12" style="z-index:1" id = "razao_social_zoom_grp" >
+							<label for="exampleTag">Razão Social</label>
+							<div class="input-group">
+								<span class="input-group-addon">
+									<input type="checkbox" name="editName" id="editName" value='manual' onchange="setEditName( this.id )" checked=true disabled="disabled" >
+									<input type="hidden" name="valEditName" id="valEditName"  >
+								</span>
+								<div id='rs_zoom' >
+									<input	type="zoom"
+											id = "razao_social_zoom"
+											name="razao_social_zoom"
+											class="foco"
+											valida="Razao Social"
+											data-zoom="{
+												'displayKey':'nom_cliente',
+												'datasetId':'clientes_logix',
+												'filterValues':'',
+												'standard':'true', 
+												'search':'true',
+												'fields':[{
+														'field':'cod_cliente',
+														'label':'Codigo'
+													},{
+														'field':'nom_cliente',
+														'label':'Cliente',
+														'standard':'true', 
+														'search':'true'
+													}]
+												}" 
+									/>
+								</div>
+								<div id='rs_input'>
+									<input type="text" name="razao_social" id="razao_social" class="form-control" valida="RazÃ£o Social" />
+								</div>
+							</div>
+						</div>
+							
+					</div>
+					
+					<div class="row">
+						<div class="col-md-2">
+							<label for="exampleTag">Tipo de Logradouro</label>
+							<select name="tipo_logradouro" id="tipo_logradouro" class="form-control"  dataset="tip_logradouro" datasetkey="tip_logradouro" addBlankLine="true" datasetvalue="tip_logradouro" valida="Tipo Logradouro">
+							</select>
+						</div>
+						<div class="col-md-8">
+							<div class="form-group">
+								<label for="exampleTag">Endereço</label>
+								<input type="text" name="endereco" id="endereco" class="form-control" valida="EndereÃ§o" />
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								<label for="exampleTag">Numero</label>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<input type="checkbox" name="sem_numero" id="sem_numero" onchange="setSemNumero( this.id, 'numero' )" >
+									</span>
+									<input type="number" name="numero" id="numero" class="form-control foco" valida="Numero" min="1" max="9999999999999" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-10">
+							<div class="form-group">
+								<label for="exampleTag">Complemento Endereco</label>
+								<input type="text" name="complemento" id="complemento" class="form-control" />
+							</div>
+						</div>
+						<div class="col-md-2" style='display:none'>
+							<div class="form-group">
+								<label for="antecipado">Antecipado?</label>
+								<input type="checkbox" name="antecipado" id="antecipado" class="form-control" style="box-shadow:none" value="S"/>
+							</div>	
+						</div>
+					</div>					
+					<div class="row">
+									
+						<div class="col-md-9" id = "cidade_grp" >
+							<div class="form-group">
+								<label for="exampleTag">Cidade</label>
+								<div class="form-group" name="div_cidade" id="div_cidade" >
+									<input	type="zoom"
+											id = "cidade"
+											name="cidade"
+											class="foco"
+											onfocus="setFilterUF( 'estado', 'cidade', 'userFluig' )"
+											valida="Cidade"
+											data-zoom="{
+												'displayKey':'den_cidade',
+												'datasetId':'cidades',
+												'filterValues':'',
+												'standard':'true', 
+												'search':'true',
+												'resultLimit':'100',
+												'fields':[
+													{
+													   'field':'cod_cidade',
+													   'label':'Codigo'
+													},{
+													  'field':'den_cidade',
+													  'label':'Cidade',
+													  'standard':'true', 
+													  'search':'true'
+													},{
+													  'field':'cod_uni_feder',
+													  'label':'UF'
+													}
+												]
+											 }" 
+										/>
+									</div>
+									<div class="form-group" name="div_cidade_geral" id="div_cidade_geral" style='display:none'>
+										<input type="zoom"
+											id = "cidade_geral"
+											name="cidade_geral"
+											class="foco"
+											valida="Cidade"
+											data-zoom="{
+												'displayKey':'den_cidade',
+												'datasetId':'cidades',
+												'standard':'true', 
+												'search':'true',
+												'resultLimit':'100',
+												'fields':[
+													{
+													   'field':'cod_cidade',
+													   'label':'Codigo'
+													},{
+													  'field':'den_cidade',
+													  'label':'Cidade',
+													  'standard':'true', 
+													  'search':'true'
+													},{
+													   'field':'cod_uni_feder',
+													   'label':'UF'
+													}
+												]
+											 }" 
+										/>
+									</div>
+								<input type="hidden" name="cod_cidade" id="cod_cidade" class="form-control" valida="Codigo Cidade"/> 
+							</div>
+						</div>
+						<div class="col-md-1">
+							<label for="exampleTag">Estado</label>
+							<!--  <select name="estado" id="estado" class="form-control foco"  onchange="setMaskIE( this.value, 'ie' ); /*setFilterUF( 'estado', 'cidade', 'userFluig' )*/" valida="Estado" > 
+							</select>-->
+							<input type="text" name="estado" id="estado" class="form-control" valida="UF" readonly />
+						</div>
+						
+						<div class="col-md-2">
+							<label for="exampleTag">Pais</label>
+							<!-- <select name="pais" id="pais" class="form-control"  onchange="/*loadUF(this.value, 'estado', 'cidade', 'userFluig'); alteraPais(); setFilterUF( 'estado', 'cidade', 'userFluig' );*/" valida="Pais" >
+							</select> -->
+							<input type="text" name="pais" id="pais" class="form-control" valida="Pais" readonly/>
+							<input type="hidden" name="cod_pais" id="cod_pais" />
+						</div>						
+					</div>
+					<div class="row">
+						<div class="col-md-3">
+							<div class="form-group">
+								<label for="exampleTag">CEP</label>
+								<input type="tel" mask="00000-000" name="cep" id="cep" class="form-control" valida="CEP" regra="cep" />
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="exampleTag">Bairro</label>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<input type="checkbox" name="ies_bairro_manual" id="ies_bairro_manual" onchange="alteraCampos( this.id, 'bairro_sel', 'bairro' )">
+									</span>
+									<select name="bairro_sel" id="bairro_sel" class="form-control"  valida="Bairro" ></select>
+									<input type="text" name="bairro" id="bairro" class="form-control" valida="Bairro" />
+								</div>
+							</div>
+						</div>
+						<input type="hidden" name="cod_bairro" id="cod_baixxo" class="form-control" />
+						<div class="col-md-3" >
+							<label for="exampleTag">Contribuinte de IPI?</label>
+							<select name="ies_contrib_ipi" id="ies_contrib_ipi" class="form-control" valida="Contribuinte IPI"  >
+								<option value="">&nbsp;</option>
+								<option value="N" class="form-control" >Não</option>
+								<option value="S" class="form-control" >Sim</option>
+								<option value="A" class="form-control" >Industria/Comercio</option>
+								<option value="E" class="form-control" >Optante do Simples</option>
+							</select>
+						</div>
+						
+						<div class="col-md-3" style='display:none'>
+							<label for="exampleTag">Rede</label>
+							<select name="rede" id="rede" class="form-control"  dataset="cad_redes" datasetkey="desc_rede" datasetvalue="desc_rede" addBlankLine='true' >
+							</select>
+						</div>
+					</div>					
+					<div class="row">
+						
+						<div class="col-md-4">
+							<label for="exampleTag">IE</label>
+							<div class="form-group">
+								<div class="input-group">
+									<span class="input-group-addon">
+										<input type="checkbox" name="isento_ie" id="isento_ie" onchange="setIsento( this.id, 'ie', 'estado' )"  >
+									</span>
+									<input type="text" name="ie" id="ie" class="form-control" valida="IE" regra="ie" campoEstado="estado" />
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="exampleTag">Telefone</label>
+								<input type="tel" name="fone" id="fone" class="form-control" onkeyup="maskFone(this.id)" valida="Telefone" />
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<label for="exampleTag">Fax</label>
+								<input type="tel" name="fax" id="fax" class="form-control"  onkeyup="maskFone(this.id)"/>
+							</div>
+						</div>						
+					</div>					
+				</div>
+			</div>
+
+			<div class="panel panel-info" id="aba_2" style='display:none'>
+				<div class="panel-heading">
+					<table>
+						<tr>
+							<td><button class="fluigicon fluigicon-plus-sign fluigicon-sm" name='btConato' onclick="addChild('lista_email');" ></button> </td>
+							<td width='99%' align=center ><b>E-Mail</b></td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-12">
+							<label for="exampleTag" >
+									
+							</label>
+							<table class="table table-condensed table-bordered table-striped" border="1" tablename="lista_email" nodeletebutton=false noaddbutton=true addbuttonclass="wdkbuttonClass" deleteicon="trash.png" >
+								<thead>
+									<tr>								
+										<td width='80%' class="cell-ellipsis"><b>E-Mail</b></td>
+										<td width='20%' class="cell-ellipsis"><b>Grupo</b></td>
+									</tr>
+								</thead>	
+								<tr>  
+									<td><input type="email" class="form-control" name="email" id="email" valida="E-Mail" regra="email" pf="S">
+										<input type="hidden" class="form-control" name="tip_registro" id="tip_registro" >
+									</td>
+									<td>
+										<select name="grupo_email" id="grupo_email" class="form-control"  dataset="grupo_email" datasetkey="grupo_email" datasetvalue="des_grupo_email" valida="Grupo E-Mail"  pf="S" >
+										</select>
+										<input type="hidden" class="form-control" name="des_grupo_email" id="des_grupo_email" >
+									</td>									
+								</tr>
+							</table>
+						</div>
+					</div>			
+				</div>
+			</div>					
+
+
+
+			<!--  ########  InsformaÃ§ÃÂµes Adcionais do setor de cadastro  ######### cod_repres -->
+			<div class="panel panel-info" id="aba_3"  style="display:none;" >
+				<div class="panel-heading fs-txt-center"><b>Parecer do Cadastro</b></div>
+				<div class="panel-body">
+				
+					<div class="row" >
+						<div class="col-md-2">
+							<label for="exampleTag">Situação</label>
+							<select name="situacao_cadastro" id="situacao_cadastro" class="form-control" valida="Situacao" >
+								<option value="">&nbsp;</option>
+								<option value="A" class="form-control" >Aprovado</option>
+								<option value="R" class="form-control" >Reprovado</option>
+							</select>
+						</div>			
+						<div class="col-md-6">
+							<label for="exampleTag">Motivo Reprovação</label>
+							<select name="motivo_reprovacao" id="motivo_reprovacao" class="form-control" dataset="mot_cancel_cad_cli" datasetkey="mot_cancel" datasetvalue="mot_cancel" addBlankLine='true' >
+							</select>
+						</div>
+						<div class="col-md-2">
+							<label for="exampleTag">Classe</label>
+							<input type="text" class="form-control" name="cod_class" id="cod_class" maxlength="1" valida="Classe" value="A">
+							</select>
+						</div>
+					</div>
+					
+					<div class="row"  style="display:none;">
+						<div class="col-md-10" >
+							<label for="exampleTag">Codigo</label>
+							<input type="text" class="form-control" name="cod_repres" id="cod_repres" value="1101" />	
+							<input type="hidden" name="represAlterado" id="represAlterado"  >
+							<input type="hidden" name="represOld" id="represOld"  >
+						
+
+							<input type="text" class="form-control"  name="nom_representante" id="nom_representante"  value='VENDAS INTERNAS'/>
+						</div>
+			
+					</div>
+					
+					<div class="row"  style="padding: 10px 10px; "  >
+					</div>					
+					<div class="row fs-txt-center" style="background-color: #d9edf7; padding: 10px 15px; ">
+						<b>Comentário </b>
+					</div>					
+					<div class="row" style="padding: 10px 10px; " >
+					</div>
+					<div class="row" >
+						<div class="col-md-12">
+							<textarea rows="5" name="comentario" id="comentario" class="form-control" />
+							</textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="vertical-align-parent">
+				<div id="actions_wizard" class="row">
+					<div class="row" >
+						<table width = '100%'>
+							<tr>
+								<td width = '2%' >
+								</td>
+								<td width = '30%' >
+									<div id="divPreviousStopButton" class="col-md-12 fs-txt-left" >
+										<button id="btn_cancel" name="btn_cancel" class="btn btn-danger"  style="display:none;" onclick="lastPage()">Voltar</button>
+									</div>
+								</td>
+								<td width = '30%'>
+									<div id="divPreviousStopButton" class="col-md-12 fs-txt-center">
+										<h3>Etapa <span id="current_step"></span> de <span id="total_steps"></h3>
+									</div>
+								</td>
+								<td width = '30%'>
+									<div id="divNextStopButton" class="col-md-12 fs-txt-right">
+										<button id="btn_confirma" name="btn_confirma" class="btn btn-success" onClick="nextPage()">Avançar</button>
+									</div>
+								</td>
+								<td width = '2%' >
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id='msg'  style="display:none;" >
+			<span style="color:red;font-size:20px"> <b>Favor solicitar ao comercial revisÃ£o dos parametros de representante relacionado com seu usuÃ¡rio!</b> </span>
+			<br><br>
+			<span style="color:red" id='msg_cpl'> <b></b> </span>
+		</div>
+		
+		<input type="hidden" name="descricao" id="descricao" />
+		<input type="hidden" name="cod_cliente" id="cod_cliente" />
+		
+		<input type="hidden" name="num_caixa_postal" id="num_caixa_postal" />
+		<input type="hidden" name="num_suframa" id="num_suframa" />
+		<input type="hidden" name="den_marca" id="den_marca" />
+		<input type="hidden" name="den_frete_posto" id="den_frete_posto" />
+		<input type="hidden" name="cod_portador" id="cod_portador" />
+		<input type="hidden" name="ies_tip_portador" id="ies_tip_portador" />
+		<input type="hidden" name="cod_cliente_matriz" id="cod_cliente_matriz" />
+		<input type="hidden" name="cod_consig" id="cod_consig" />
+		<input type="hidden" name="ies_cli_forn" id="ies_cli_forn" />
+		<input type="hidden" name="ies_zona_franca" id="ies_zona_franca" />
+		<input type="hidden" name="ies_situacao" id="ies_situacao" />
+		<input type="hidden" name="cod_rota" id="cod_rota" />
+		<input type="hidden" name="cod_praca" id="cod_praca" />
+		<input type="hidden" name="dat_cadastro" id="dat_cadastro" />
+		<input type="hidden" name="dat_atualiz" id="dat_atualiz" />
+		<input type="hidden" name="nom_contato" id="nom_contato" />
+		<input type="hidden" name="dat_fundacao" id="dat_fundacao" />
+		<input type="hidden" name="cod_local" id="cod_local" />
+		<input type="hidden" name="correio_eletronico" id="correio_eletronico" />
+		<input type="hidden" name="correi_eletr_secd" id="correi_eletr_secd" />
+		<input type="hidden" name="correi_eletr_venda" id="correi_eletr_venda" />
+		<input type="hidden" name="endereco_web" id="endereco_web" />
+		<input type="hidden" name="telefone_2" id="telefone_2" />
+		<input type="hidden" name="iden_estrangeiro" id="iden_estrangeiro" />
+		<input type="hidden" name="ind_cprb" id="ind_cprb" />
+		<input type="hidden" name="tipo_servico" id="tipo_servico" />
+		
+		<input type="hidden" name="ies_fis_juridica" id="ies_fis_juridica" />
+		<input type="hidden" name="nom_guerra" id="nom_guerra" />
+		<input type="hidden" name="cod_cidade_pgto" id="cod_cidade_pgto" />
+		<input type="hidden" name="camara_comp" id="camara_comp" />
+		<input type="hidden" name="cod_banco" id="cod_banco" />
+		<input type="hidden" name="num_agencia" id="num_agencia" />
+		<input type="hidden" name="num_conta_banco" id="num_conta_banco" />
+		<input type="hidden" name="tmp_transpor" id="tmp_transpor" />
+		<input type="hidden" name="tex_observ" id="tex_observ" />
+		<input type="hidden" name="num_lote_transf" id="num_lote_transf" />
+		<input type="hidden" name="pct_aceite_div" id="pct_aceite_div" />
+		<input type="hidden" name="ies_tip_entrega" id="ies_tip_entrega" />
+		<input type="hidden" name="ies_dep_cred" id="ies_dep_cred" />
+		<input type="hidden" name="ult_num_coleta" id="ult_num_coleta" />
+		<input type="hidden" name="ies_gera_ap" id="ies_gera_ap" />
+		<input type="hidden" name="cod_nivel_1" id="cod_nivel_1" />
+		<input type="hidden" name="cod_nivel_2" id="cod_nivel_2" />
+		<input type="hidden" name="cod_nivel_3" id="cod_nivel_3" />
+		<input type="hidden" name="cod_nivel_4" id="cod_nivel_4" />
+		<input type="hidden" name="cod_nivel_5" id="cod_nivel_5" />
+		<input type="hidden" name="cod_nivel_6" id="cod_nivel_6" />
+		<input type="hidden" name="cod_nivel_7" id="cod_nivel_7" />
+		<input type="hidden" name="ies_nivel" id="ies_nivel" />
+		<input type="hidden" name="cod_tip_carteira" id="cod_tip_carteira" />
+		<input type="hidden" name="cod_mercado" id="cod_mercado" />
+		<input type="hidden" name="cod_continente" id="cod_continente" />
+		<input type="hidden" name="cod_regiao" id="cod_regiao" />
+		<input type="hidden" name="qtd_dias_atr_dupl" id="qtd_dias_atr_dupl" />
+		<input type="hidden" name="qtd_dias_atr_med" id="qtd_dias_atr_med" />
+		<input type="hidden" name="val_ped_carteira" id="val_ped_carteira" />
+		<input type="hidden" name="val_dup_aberto" id="val_dup_aberto" />
+		<input type="hidden" name="dat_ult_fat" id="dat_ult_fat" />
+		<input type="hidden" name="val_limite_cred" id="val_limite_cred" />
+		<input type="hidden" name="dat_val_lmt_cr" id="dat_val_lmt_cr" />
+		<input type="hidden" name="ies_nota_debito" id="ies_nota_debito" />		
+		<input type="hidden" name="numProcesso" id="numProcesso" />
+		
+		
+		<input type="hidden" name="pais_md" id="pais_md" />
+		<input type="hidden" name="estado_md" id="estado_md" />
+		<input type="hidden" name="estado_cob_md" id="estado_cob_md" />
+		<input type="hidden" name="tipo_cliente_md" id="tipo_cliente_md" />
+		<input type="hidden" name="cod_cidade_md" id="cod_cidade_md" />
+		<input type="hidden" name="cod_cidade_cob_md" id="cod_cidade_cob_md" />		
+		<input type="hidden" name="bairro_sel_md" id="bairro_sel_md" />
+		<input type="hidden" name="bairro_cob_sel_md" id="bairro_cob_sel_md" />
+		<input type="hidden" name="userFluig" id="userFluig" />
+		<input type="hidden" name="userFluigNome" id="userFluigNome" />
+		<input type="hidden" name="task" id="task" />	
+		<input type="hidden" name="tipCadUser" id="tipCadUser" />	
+		
+		<input type="hidden" name="ies_protesto" id="ies_protesto" />	
+		<input type="hidden" name="ies_emis_autom_nd" id="ies_emis_autom_nd" />	
+		<input type="hidden" name="tex_obs" id="tex_obs" />	
+		<input type="hidden" name="qtd_dias_protesto" id="qtd_dias_protesto" />	
+		<input type="hidden" name="ies_tip_cliente" id="ies_tip_cliente" />	
+		<input type="hidden" name="cod_float" id="cod_float" />	
+		<input type="hidden" name="per_sel_cidades" id="per_sel_cidades" />	
+		
+		<input type="hidden" name="etapa" id="etapa" />
+		
+		
+	</form>
+	
+</body>
+
+</html>

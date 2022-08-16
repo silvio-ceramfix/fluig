@@ -1,0 +1,453 @@
+<html>
+
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
+
+	<link type="text/css" rel="stylesheet" href="/portal/resources/style-guide/css/fluig-style-guide.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/portal/resources/style-guide/css/fluig-style-guide-filter.min.css"/>
+	
+	<link href="FLUIGADHOC.css" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery.mask.min.js"></script>
+	
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script	type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide-filter.min.js"></script>
+	
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	
+	<script type="text/javascript" src="zoom.js"></script>
+	<script type="text/javascript" src="modalZoom.js"></script>	
+	<script type="text/javascript" src="modalEndEntrega.js"></script>	
+	<script type="text/javascript" src="valida.js"></script>
+	<script type="text/javascript" src="controle.js"></script>
+	<script type="text/javascript" src='jquery.maskMoney.min.js'></script>	
+
+</head>
+
+<body class="fluig-style-guide"  onload="loadBody()" "> 
+  
+	<form id="form" name="form" role="form">
+						    
+	<div class="container-fluid">
+	
+		<div class="fluig-style-guide" id="divPrincipal">
+			<div class="panel panel-info" id="aba_1"  >
+				<div class="panel-heading fs-txt-center">
+					<table width='100%' >
+						<tr>
+							<td width='5%' align=left > <span class="fluigicon fluigicon-user fluigicon-sm" name='btCliente' id='btCliente' onclick="zoomButton( this.id );" ></span> </td>
+							<td width='95%' align=center ><b>Dados da Venda</b></td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-6" id = "razao_social_grp">	
+							<label  for="razao_social">Loja</label>
+							
+							<input	type="zoom"
+									id = "razao_social"
+									name="razao_social"
+									class="foco"
+									valida="Loja"
+									data-zoom="{
+										'displayKey':'nom_cliente',
+										'datasetId':'clientes_logix',
+										'fields':[
+											{
+											   'field':'cod_cliente',
+											   'label':'Codigo',
+											   'standard':'true'
+											},{
+											  'field':'nom_cliente',
+											  'label':'Cliente'
+											}
+										]
+									 }" 
+								/>
+								
+						</div>
+						
+						<div class="col-md-4">
+							<label for="razao_social">CNPJ</label>
+							<input type="tel" mask="000.000.000/0000-00" name="cnpj" id="cnpj" class="form-control" valida="Loja" readonly/>
+							<input type="hidden" name="cod_cliente" id="cod_cliente" class="form-control"/>
+							<input type="hidden" name="cod_class" id="cod_class" class="form-control"/>
+							<input type="hidden" name="ins_estadual" id="ins_estadual" class="form-control"/>
+							<input type="hidden" name="cod_tip_carteira_cli" id="cod_tip_carteira_cli" class="form-control"/>
+							<input type="hidden" name="cod_moeda_cli" id="cod_moeda_cli" class="form-control"/>
+							<input type="hidden" name="cod_tip_cli" id="cod_tip_cli" class="form-control"/>
+							<input type="hidden" name="ies_inf_pedido" id="ies_inf_pedido" class="form-control"/>
+							<input type="hidden" name="qtd_saldo_a_devolver" id="qtd_saldo_a_devolver" class="form-control"/>
+							<input type="hidden" name="qtd_itens" id="qtd_itens" class="form-control"/>
+						</div>
+						<div class="col-md-2">
+							<label  for="data_inclusao">Data</label>
+							<input type="tel" name="data_inclusao" id="data_inclusao" class="form-control" readonly />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">	
+							<label  for="cidade">Cidade</label>
+							<input	type="text" id = "den_cidade" name="den_cidade" class="form-control" readonly />
+						</div>
+						<div class="col-md-2">	
+							<label  for="cidade">UF</label>
+							<input	type="text" id = "uf" name="uf" class="form-control" readonly />
+						</div>
+						<div class="col-md-2">	
+							<label  for="empresa">Telefone</label>
+							<input	type="text" id = "telefone" name="telefone" class="form-control" readonly />
+						</div>
+						<div class="col-md-2">	
+							<label  for="nota_fiscal">Nota Fiscal</label>
+							<input	type="text" id="nota_fiscal" name="nota_fiscal" class="form-control" valida="Nota Fiscal"/>
+						</div>
+					</div>	
+					<div class="row">
+						<div class="col-md-2">	
+							<label  for="cod_repres">Cod.</label>
+							<input	type="text" id = "cod_repres" name="cod_repres" class="form-control" readonly />
+						</div>
+						<div class="col-md-10">	
+							<label  for="cod_repres">Representante</label>
+							<input	type="text" id = "nom_repres" name="nom_repres" class="form-control" readonly />
+						</div>	
+					</div>
+					
+					<div class="row">
+						<div class="col-md-12">	
+						<label  for="vendedor">Vendedor</label>
+						<input	type="text" id = "vendedor" name="vendedor" class="form-control" />
+						</div>
+					</div>					
+					
+				</div>
+			</div>
+
+			<div class="panel panel-info" id="aba_2" style="display:none;"  >
+				<div class="panel-heading fs-txt-center"><b>Dados do Consumidor/Obra</b></div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-8">	
+								<label  for="consumidor">Consumidor</label>
+								<input	type="text" id = "consumidor" name="consumidor" class="form-control" valida="Consumidor"/>
+							</div>
+							<div class="col-md-2">	
+								<label  for="telefone_consumidor1">Telefone 1</label>
+								<input	type="tel" id = "telefone_consumidor1" name="telefone_consumidor1" onkeyup="maskFone(this.id)" class="form-control" valida="Telefone"/>
+							</div>
+							<div class="col-md-2">	
+								<label  for="telefone_consumidor2">Telefone 2</label>
+								<input	type="tel" id = "telefone_consumidor2" name="telefone_consumidor2" onkeyup="maskFone(this.id)" class="form-control" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">	
+								<label  for="endereco_consumidor">Endereço</label>
+								<input	type="text" id = "endereco_consumidor" name="endereco_consumidor" class="form-control" valida="Endereço"/>
+							</div>
+							<div class="col-md-4">	
+								<label  for="cidade_consumidor">Cidade</label>
+								<input	type="text" id="cidade_consumidor" name="cidade_consumidor" class="form-control" valida="Cidade"/>
+							</div>
+							<div class="col-md-2">	
+								<label  for="uf_consumidor">UF</label>
+								<select	id="uf_consumidor" name="uf_consumidor" class="form-control" valida="UF" maxlength="2">
+									<option value=""></option>
+									<option value="ac">Acre</option> 
+									<option value="al">Alagoas</option> 
+									<option value="am">Amazonas</option> 
+									<option value="ap">Amapá</option> 
+									<option value="ba">Bahia</option> 
+									<option value="ce">Ceará</option> 
+									<option value="df">Distrito Federal</option> 
+									<option value="es">EspÃ­rito Santo</option> 
+									<option value="go">Goiás</option> 
+									<option value="ma">Maranhão</option> 
+									<option value="mt">Mato Grosso</option> 
+									<option value="ms">Mato Grosso do Sul</option> 
+									<option value="mg">Minas Gerais</option> 
+									<option value="pa">Pará</option> 
+									<option value="pb">ParaÃ­ba</option> 
+									<option value="pr">Paraná</option> 
+									<option value="pe">Pernambuco</option> 
+									<option value="pi">PiauÃ­</option> 
+									<option value="rj">Rio de Janeiro</option> 
+									<option value="rn">Rio Grande do Norte</option> 
+									<option value="ro">Rondonia</option> 
+									<option value="rs">Rio Grande do Sul</option> 
+									<option value="rr">Roraima</option> 
+									<option value="sc">Santa Catarina</option> 
+									<option value="se">Sergipe</option> 
+									<option value="sp">São Paulo</option> 
+									<option value="to">Tocantins</option> 
+									<option value="ex">Exterior</option>
+								</select>
+							</div>
+						</div>	
+						<div class="row">
+							<div class="col-md-12">
+								<label  for="email">E-mail</label>
+								<input type="email" class="form-control" name="email" id="email" regra="email" pf="S"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-10">	
+								<label  for="profissional_consumidor">Profissional</label>
+								<input	type="text" id="profissional_consumidor" name="profissional_consumidor" class="form-control" />
+							</div>
+							<div class="col-md-2">	
+								<label  for="telefone_prof_consumidor">Telefone</label>
+								<input	type="text" id = "telefone_prof_consumidor" name="telefone_prof_consumidor" class="form-control" />
+							</div>
+						</div>	
+					</div>
+				</div>	
+			</div>
+
+			<!-- style="display:none;" -->
+			<div class="panel panel-info" id="aba_3" style="display:none;" >
+				<div class="panel-heading fs-txt-center"><b>Dados da Assistência Técnica</b></div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-4">	
+								<label  for="tipo_produto">Tipo de Produto</label>
+								<select name="tipo_produto" id="tipo_produto" class="form-control" valida="Tipo de Produto" onchange="alterado_tipo()"> 
+									<option value='0' > </option>
+									<option value='1' > ARGAMASSA </option>
+									<option value='2' > REJUNTAMENTO </option>
+									<option value='3' > REVESTIMENTO </option>
+									<option value='6' > AUTONIVELANTE </option>
+									<option value='F' > CFX - FERRAMENTAS E ACESSORIOS </option>
+								</select>
+								<input type="hidden" name="tipo_alterado" id="tipo_alterado" class="form-control"/>
+								<input type="hidden" name="novo_tipo_produto" id="novo_tipo_produto" class="form-control"/>
+							</div>
+							<div class="col-md-8">
+								<label for="produto">Produto</label>
+								
+							<label  for="den_item_edit">Produto</label>
+							<input	type="zoom"
+									id = "den_item_edit"
+									name="den_item_edit"
+									class="foco"
+									data-zoom="{
+										'displayKey':'den_item',
+										'datasetId':'item',
+										'filterValues':'COD_EMPRESA,10,TEVE_VENDA,S',
+										'fields':[
+											{
+											   'field':'cod_item',
+											   'label':'Codigo',
+											   'standard':'true'
+											},{
+											  'field':'den_item',
+											  'label':'Produto'
+											}
+										]
+									 }" 
+								/>
+							</div>
+						</div>	
+						<div class="row">	
+							<div class="col-md-4">
+								<label for="cor_produto">Cor</label>
+								<input	type="text" id = "cor_produto" name="cor_produto" class="form-control" />
+							</div>
+							<div class="col-md-2">
+								<label for="data_producao">Data de Produção</label>
+								<input	type="text" id = "data_producao" name="data_producao" class="form-control" />
+							</div>
+							<div class="col-md-2">
+								<label for="hora_producao">Hora de Produção</label>
+								<input	type="text" id = "hora_producao" name="hora_producao" class="form-control" />
+							</div>
+							<div class="col-md-2" name="div_forma_pagamento" id="div_forma_pagamento">
+								<label for="forma_pagamento">Forma de Pagamento</label>
+								<select name="forma_pagamento" id="forma_pagamento" class="form-control" onchange=""> 
+									<option value='1' > DINHEIRO </option>
+									<option value='2' > BONIFICAÇÃO </option>
+									<option value='3' > DEVOLUCAO </option>
+									<option value='4' > MELHORIA </option>
+								</select>
+							</div>
+							<div class="col-md-2" name="div_valor_boni" id="div_valor_boni">
+								<label for="valor_bonficacao">Valor Bonificação</label>
+								<input	type="text" id = "valor_bonficacao" name="valor_bonficacao" class="form-control" />
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-4">
+								<label for="lote_produto">Lote</label>
+								<input	type="text" id = "lote_produto" name="lote_produto" class="form-control" />
+							</div>
+							<div class="col-md-4">
+								<label for="maquina_produto">Maquina</label>
+								<input	type="text" id = "maquina_produto" name="maquina_produto" class="form-control" />
+							</div>
+							<div class="col-md-4">
+								<label for="qtd_utilizada_produto">Qtd. Utilizada</label>
+								<input	type="text" id = "qtd_utilizada_produto" name="qtd_utilizada_produto" class="form-control" />
+							</div>
+						</div>
+						<div class="row" name="div_observacoes" id="div_observacoes">
+							<div class="col-md-12">	
+								<label for="observacoes">Descrição da obra e outras observações:</label>
+								<textarea class="form-control" rows="3" id="observacoes" name="observacoes" valida="Observações"></textarea>
+							</div>
+						</div>
+						<div class="row" name="div_resolucao" id="div_resolucao">
+						<div class="col-md-12">	
+							<label for="resolucao">Descrição da Resolução:</label>
+							<textarea class="form-control" rows="3" id="resolucao" name="resolucao" ></textarea>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+						
+			<!-- style="display:none;" -->
+			<div class="panel panel-info" id="aba_4" style="display:none;" >
+				<div class="panel-heading fs-txt-center"><b>Dados da Aplicação</b></div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-4">
+								<label for="ambiente_aplicacao">Ambiente Aplicado</label>
+								<select name="ambiente_aplicacao" id="ambiente_aplicacao" class="form-control"  valida="Ambiente Aplicado" onchange=""> 
+									<option value='1' > INTERNO </option>
+									<option value='2' > EXTERNO </option>
+								</select>
+							</div>
+							<div class="col-md-2">
+								<label for="tempo_aplicacao">Tempo de Aplicação</label>
+								<input	type="text" id = "tempo_aplicacao" name="tempo_aplicacao" class="form-control" />
+							</div>
+							<div class="col-md-2">
+								<label for="area_aplicacao">Área Aplicada (m2)</label>
+								<input	type="text" id = "area_aplicacao" name="area_aplicacao" class="form-control" />
+							</div>
+						</div>
+						<div class="row" name="div_argamassa" id="div_argamassa">
+							<div class="col-md-6">
+								<label for="tipo_peca">Tipo e Absorção da Peça</label>
+								<input	type="text" id = "tipo_peca" name="tipo_peca" class="form-control" />
+							</div>
+							<div class="col-md-6">
+								<label for="tamanho_peca">Tamanho das Peças</label>
+								<input	type="text" id = "tamanho_peca" name="tamanho_peca" class="form-control" />
+							</div>
+						</div>
+						<div class="row" name="div_rejunte" id="div_rejunte">
+							<div class="col-md-4">
+								<label for="espessura_junta">Espessura das Juntas</label>
+								<input	type="text" id = "espessura_junta" name="espessura_junta" class="form-control" />
+							</div>
+						</div>
+						<div class="row" name="div_revestimento" id="div_revestimento">
+							<div class="col-md-12">
+								<label for="outros">Outros Produtos Utilizados na Obra/Sistema de Revestimento</label>
+								<input	type="text" id = "outros" name="outros" class="form-control" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- style="display:none;" -->
+			<div class="panel panel-info" id="aba_5" style="display:none;" >
+				<div class="panel-heading fs-txt-center"><b>Questionário</b></div>
+					<div class="panel-body">
+						<!-- <div class="col-md-12">-->
+						<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+							<table class="table table-condensed table-bordered table-striped" border="1" tablename="perguntas" nodeletebutton=true noaddbutton=true addbuttonclass="wdkbuttonClass">
+								
+									<tr class="tableHeadRow" >	
+										<th width="80%" class="tableColumn"><b>Pergunta</b></th>
+										<th width="20%" class="tableColumn"><b>Opções</b></th>
+									</tr>
+								
+								<tr id="linha" name="linha" >
+									<td><textarea class="form-control" id="pergunta" name="pergunta" readonly></textarea></td>
+									<td ><select name="questao" id="questao" class="form-control" valida="Questão" onchange="" exibe="A"> 
+											<option value='1' > SIM </option>
+											<option value='2' > NÃO </option>
+										 </select>
+								    </td>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- </div> -->
+					</div>
+				</div>
+			</div>
+			
+			<!--  #### navegacao #### -->
+			<div class="vertical-align-parent">
+				<div id="actions_wizard" class="row">
+					<div class="row" >
+						<table width = '100%'>
+							<tr>
+								<td width = '2%' >
+								</td>
+								<td width = '30%' >
+									<div id="divPreviousStopButton" class="col-md-12 fs-txt-left" >
+										<button id="btn_cancel" name="btn_cancel" class="btn btn-danger"  style="display:none;" onclick="lastPage()">Voltar</button>
+									</div>
+								</td>
+								<td width = '30%'>
+									<div id="divPreviousStopButton" class="col-md-12 fs-txt-center">
+										<h3><span id="current_step"></span> de <span id="total_steps"></span></h3>
+									</div>
+								</td>
+								<td width = '30%'>
+									<div id="divNextStopButton" class="col-md-12 fs-txt-right">
+										<button id="btn_confirma" name="btn_confirma" class="btn btn-success" onClick="nextPage()">Avan&ccedil;ar</button>
+									</div>
+								</td>
+								<td width = '2%' >
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<input type="hidden" name="cod_cidade_ent_md" id="cod_cidade_ent_md" />		
+		<input type="hidden" name="bairro_ent_sel_md" id="bairro_ent_sel_md" />
+		<input type="hidden" name="userFluig" id="userFluig" />
+		<input type="hidden" name="userFluigNome" id="userFluigNome" />
+		<input type="hidden" name="tipoCadUser" id="tipoCadUser" />
+		<input type="hidden" name="task" id="task" />	
+		<input type="hidden" name="processo" id="processo" />
+		<input type="hidden" name="tipo_processo" id="tipo_processo" />
+		
+		
+		<input type="hidden" name="dup_item" id="dup_item" />
+		<input type="hidden" name="casas_preco" id="casas_preco" />
+
+		<input type="hidden" name="sit_pedido" id="sit_pedido" />
+		<input type="hidden" name="modo" id="modo" />
+		<input type="hidden" name="consistencias" id="consistencias" />
+
+		<div style="display:none">
+			<div id="div_mot_cancel" >
+				<select id="mot_cancel" name="mot_cancel" class="form-control"  dataset="motivo_cancel" datasetkey="cod_motivo" datasetvalue="den_motivo"  addBlankLine="true" > </select>
+			</div>		
+		</div>
+	</div>	
+	</form>
+</body>
+
+</html>

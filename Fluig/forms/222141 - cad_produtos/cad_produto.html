@@ -1,0 +1,2649 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="util.js" charset="utf-8"></script>
+	<script type="text/javascript" src="zoom.js" charset="utf-8"></script>
+	<script type="text/javascript" src="modalZoom.js" charset="utf-8"></script>
+	<script type="text/javascript" src="controle.js" charset="utf-8"></script>
+	<script type="text/javascript" src="negocio.js" charset="utf-8"></script>
+	<script type="text/javascript" src="dataTableApont.js" charset="utf-8"></script>
+	
+	<script type="text/javascript" src="jquery.maskMoney.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="fileUpload.js" charset="utf-8"></script>
+	
+	
+</head>
+<body onload="loadBody()">
+
+<div class="fluig-style-guide">
+	<form name="form" role="form">
+	<input type="hidden" name="titulo" id="titulo" />
+	<input type="hidden" name="manager" id="manager" />
+	
+	<div class="panel panel-info tipo_solicitacao" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr>
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b><div id="titulo_prod">DESENVOLVIMENTO OU MELHORIA DE PRODUTOS</div></b></td>
+					<td width='10%' align=right ><input type="text" name="num_processo" id="num_processo" readonly style=" border-top-width: 0px; padding-bottom: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px; padding-top: 0px; background-color: #d9edf7;" size="10" /></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">	
+		
+	
+
+			<div class="row">
+				<div class="col-xs-4">
+					<label for="tipo_processo">Tipo Processo</label>
+					<select name="tipo_processo" id="tipo_processo" class="form-control vld-p vld-f " >
+						<option value=""></option>
+						<option value="D">Desenvolvimento de Produto</option>
+						<option value="M">Melhoria de Produto</option>
+						<option value="F">Acess&oacute;rios e Ferramentas</option>
+					</select>
+				</div>
+				
+				<div class="col-xs-8">
+					<label for="den_item" data-toggle="tooltip" data-placement="bottom" title="Produto Solicitado" >Produto</label>
+					<input type="text" name="den_item" id="den_item" class="form-control vld-p vld-f" maxlength="70" size="70" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-info info_preliminar" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr>
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Informa&ccedil;&otilde;es Preliminares</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">		
+			<div class="row">			
+				<div class="col-xs-2">
+					<label for="data_solicitacao" >Data de Solicita&ccedil;&atilde;o</label>
+					<input type="text" name="data_solicitacao" id="data_solicitacao" class="form-control vld-p vld-f" maxlength="10" size="10" readonly />
+				</div>
+				<div class="col-xs-2">
+					<label for="origem">Origem</label>
+					<select name="origem_solic" id="origem_solic" class="form-control vld-p vld-f" >
+						<option value=""></option>
+						<option value="I">Interno</option>
+						<option value="C">Comercial</option>
+					</select>
+				</div>
+				<div class="col-xs-6">
+					<label for="nome_solicitante" >Solicitante</label>
+					<div class="input-group">
+						<input type="text" name="nome_solicitante" id="nome_solicitante" class="form-control vld-p vld-f" maxlength="70" size="70" readonly />
+						<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" id="bt_solicitante" onClick="zoom(this.id)" ></span>
+					</div>
+					<input type="hidden" name="cod_solicitante" id="cod_solicitante" />
+					<input type="hidden" name="cod_emp_solicitante" id="cod_emp_solicitante" />
+				</div>
+				<div class="col-xs-2">
+					<label for="regional_departamento" >Regional/Departamento</label>
+					<input type="text" name="regional_departamento" id="regional_departamento" class="form-control vld-p vld-f" maxlength="70" size="70" readonly />
+					<input type="hidden" name="cod_regional_departamento" id="cod_regional_departamento" />
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="produto_similar" >Produto Similar Concorrente</label>
+					<input type="text" name="produto_similar" id="produto_similar" class="form-control" maxlength="150" size="150" />
+				</div>
+			</div>
+			<div class="row" style="padding: 10px 10px; " >
+			</div>										
+			<div class="row fs-txt-center" style="background-color: #d9edf7; padding: 10px 15px;">
+				<b>Detalhamento do Produto</b>
+			</div>
+			<div class="row" style="padding: 10px 10px; " >
+			</div>
+			<div class="row">
+				<div class="col-xs-4">
+					<label for="preco_estimado" >Sell Out - Pre&ccedil;o no mercado estimado (R$/kg)</label>
+					<input type="text" name="preco_estimado" id="preco_estimado" class="form-control decimal-2 vld-p vld-f" />
+				</div>
+				<div class="col-xs-4">
+					<label for="faturamento_estimado" >Faturamento estimado na sua regi&atilde;o (R$/ano)</label>
+					<input type="text" name="faturamento_estimado" id="faturamento_estimado" class="form-control decimal-2 vld-p vld-f" />
+				</div>
+				<div class="col-xs-4">
+					<label for="volume_estimado" >Volume de vendas estimado na sua regi&atilde;o (Kg/ano)</label>
+					<input type="text" name="volume_estimado" id="volume_estimado" class="form-control decimal-2 vld-p vld-f" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4">
+					<label for="foco_canal">Foco no canal de vendas</label>
+					<select name="foco_canal" id="foco_canal" class="form-control vld-p vld-f" >
+						<option value=""></option>
+						<option value="C">Construtoras </option>
+						<option value="V">Varejo</option>
+					</select>
+				</div>			
+				<div class="col-xs-4">
+					<label for="desc_tipo_embalagem" >Descrever tipo da embalagem</label>
+					<input type="text" name="desc_tipo_embalagem" id="desc_tipo_embalagem" class="form-control vld-p vld-f" maxlength="50" size="50" />
+				</div>
+				<div class="col-xs-4">
+					<label for="desc_tipo_embalagem" >Sugest&atilde;o m&uacute;ltiplo de vendas</label>
+					<input type="text" name="multiplo_vendas" id="multiplo_vendas" class="form-control vld-p vld-f" maxlength="50" size="50" />
+				</div>				
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="comentarios1" >Coment&aacute;rio</label>
+					<textarea class="form-control vld-cmd-p vld-cmd-f" rows="4" id="comentarios1" name="comentarios1" ></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-info adm_vendas_comerc" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr>
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Intelig&ecirc;ncia de Mercado / Comercial</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">		
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="demanda_minima" >Demanda M&iacute;nima Vendas (und/m&ecirc;s) por Regional</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="demanda_minima" nodeletebutton=false noaddbutton=true addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;" >
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="25%" class="tableColumn"><b>Regional</b></th>
+									<th width="25%" class="tableColumn"><b>Demanda Inicial</b></th>
+									<th width="25%" class="tableColumn"><b>Demanda mercado</b></th>
+									<th width="25%" class="tableColumn"><b>Pre&ccedil;o na ponta estimado Sell Out</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="text" class="form-control" name="regional_demanda" id="regional_demanda" readonly />
+										<input type="hidden" name="cod_regional_demanda" id="cod_regional_demanda" />
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-0 vld-p vld-f pf" name="demanda_inicial" id="demanda_inicial" onblur="totalRegional()" />
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-0 vld-p vld-f pf" name="demanda_mercado" id="demanda_mercado" onblur="totalRegional()" />
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-2 vld-p vld-f pf" name="demanda_preco_estimado" id="demanda_preco_estimado" onblur="totalRegional()" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">
+					<label for="mark_up_estimado" data-toggle="tooltip" data-placement="bottom" title="Mark-up de venda m&eacute;dio " >Mark-up m&eacute;dio</label>
+					<input type="text" name="mark_up_estimado" id="mark_up_estimado" class="form-control decimal-2 vld-p vld-f" />
+				</div>
+				<div class="col-xs-1">
+					<label for="cliente_especifico" data-toggle="tooltip" data-placement="bottom" title="Cliente espec&iacute;fico, que possui algum diferencial contratual? " >Cliente espec&iacute;fico</label>
+					<select name="cliente_especifico" id="cliente_especifico" class="form-control vld-p vld-f" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-4">
+					<label for="nom_cliente" >Raz&atilde;o Social</label>
+					<input type="text" name="nom_cliente" id="nom_cliente" field-valida="cliente_especifico" value-valida="S" class="form-control vld-p vld-f" maxlength="76" size="76" />
+					<input type="hidden" name="cod_cliente" id="cod_cliente" />
+				</div>
+				<div class="col-xs-1">
+					<label for="cliente_especifico" data-toggle="tooltip" data-placement="bottom" title="Alguma estimativa de prazo pagamento diferenciado? " >Prazo Espec.</label>
+					<select name="ies_prazo_espec" id="ies_prazo_espec" class="form-control vld-p vld-f" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-2">
+					<label for="prazo_pagamento" data-toggle="tooltip" data-placement="bottom" title=" " >Prazo Pagamento</label>
+					<input type="text" name="prazo_pagamento" id="prazo_pagamento"  field-valida="ies_prazo_espec" value-valida="S" class="form-control vld-p vld-f integer-0" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="demanda_inicial_mes" >Demanda Inicial (und/m&ecirc;s) por unidade</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="demanda_inicial_mes" nodeletebutton=false noaddbutton=true addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="15%" class="tableColumn"><b>Regional</b></th>
+									<th width="15%" class="tableColumn"><b>Unidade</b></th>
+									<th width="10%" class="tableColumn"><b>UF</b></th>
+									<th width="20%" class="tableColumn"><b>Demanda 1&ordm; m&ecirc;s</b></th>
+									<th width="20%" class="tableColumn"><b>Demanda 2&ordm; m&ecirc;s</b></th>
+									<th width="20%" class="tableColumn"><b>Demanda 3&ordm; m&ecirc;s</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="text" class="form-control" name="regional_demanda_mes" id="regional_demanda_mes" readonly />
+										<input type="hidden" name="cod_regional_demanda_mes" id="cod_regional_demanda_mes" />
+									</td>
+									<td>
+										<input type="text" class="form-control" name="unidade_demanda_mes" id="unidade_demanda_mes" readonly />
+										<input type="hidden" name="cod_unidade_demanda_mes" id="cod_unidade_demanda_mes" />
+									</td>
+									<td>
+										<input type="text" class="form-control" name="uf_demanda_mes" id="uf_demanda_mes" readonly />
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-0 vld-p vld-f pf" name="mes_1_demanada" id="mes_1_demanada" onblur="totalDemandaInicial()"/>
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-0 vld-p vld-f pf" name="mes_2_demanada" id="mes_2_demanada" onblur="totalDemandaInicial()"/>
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-0 vld-p vld-f pf" name="mes_3_demanada" id="mes_3_demanada" onblur="totalDemandaInicial()"/>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="demanda_inicial_mes" >Coment&aacute;rios</label>
+					<textarea name="comentario_demanda" id="comentario_demanda" rows="1" class="form-control vld-cmd-p vld-cmd-f"  maxlength="500" size="500" ></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-info assistente_vendas" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr>
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Assistente de vendas / comercial</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">		
+			<div class="row">			
+				<div class="col-xs-12">
+					<label for="peso_unitario_produto">Peso unit&aacute;rio do produto</label>
+					<input type="text" name="peso_unitario_produto" id="peso_unitario_produto" class="form-control vld-p vld-f" maxlength="300" size="300" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="dimensao_unitario_produto">Dimens&atilde;o do produto para defini&ccedil;&atilde;o da embalagem</label>
+					<input type="text" name="dimensao_unitario_produto" id="dimensao_unitario_produto" class="form-control vld-p vld-f" maxlength="300" size="300" />
+				</div>			
+			</div>
+			<div class="row">
+				<div class="col-xs-2">
+					<label for="ies_acessorios_produto">Acess&oacute;rios</label>
+					<select name="ies_acessorios_produto" id="ies_acessorios_produto" class="form-control vld-p vld-f" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-10">
+					<label for="acessorios_produto" >Quais</label>
+					<textarea name="acessorios_produto" id="acessorios_produto" field-valida="ies_acessorios_produto" value-valida="S" rows="1" class="form-control vld-p vld-f"  maxlength="500" size="500" ></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">
+					<label for="ies_proc_montagem_embalagem">Processo de montagem/embalagem?</label>
+					<select name="ies_proc_montagem_embalagem" id="ies_proc_montagem_embalagem" class="form-control vld-p vld-f" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-10">
+					<label for="proc_montagem_embalagem" >Quais</label>
+					<textarea name="proc_montagem_embalagem" id="proc_montagem_embalagem" field-valida="ies_proc_montagem_embalagem" value-valida="S" rows="1" class="form-control vld-p vld-f"  maxlength="500" size="500" ></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="comentario_acessorios" >Coment&aacute;rios</label>
+					<textarea name="comentario_acessorios" id="comentario_acessorios" rows="1" class="form-control vld-cmd-p vld-cmd-f"  maxlength="500" size="500" ></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info custo_prod" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Custos</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="row">
+					<div class="col-xs-2">
+						<label for="doc_formulacao" data-toggle="tooltip" data-placement="bottom" title="Anexar custo meta do projeto" >Custo Meta</label>
+						<div class="input-group">
+							<input type="hidden" name="doc_custo_meta" id="doc_custo_meta" />
+							<input type="text" name="titulo_doc_custo_meta" id="titulo_doc_custo_meta" class="form-control vld-p vld-f" readonly />
+							<span class="input-group-addon  fluigicon fluigicon-file-doc fluigicon-lg" id="bt_custo_meta" onclick="loadFile( this.id )"> </span>
+							<span class="input-group-addon fluigicon fluigicon-eye-open fluigicon-lg" id="bt_custo_meta_open" onclick="openFile( this );"  > </span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="comentario_engenharia" >Coment&aacute;rios</label>
+					<textarea name="comentario_custos" id="comentario_custos" rows="5" class="form-control vld-cmd-p vld-cmd-f"  maxlength="500" size="500" ></textarea>					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info marketing" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr>
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Marketing</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">		
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="conceito_marketing" >Conceito</label>
+					<textarea name="conceito_marketing" id="conceito_marketing" rows="1" class="form-control vld-p vld-f"  maxlength="500" size="500" ></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="sugestao_nome_marketing" >Sugest&otilde;es de nome comercial</label>
+					<input type="text" name="sugestao_nome_marketing" id="sugestao_nome_marketing" class="form-control vld-p vld-f" maxlength="76" size="76" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="embalagem_marketing" >Defini&ccedil;&atilde;o da embalagem de venda</label>
+					<input type="text" name="embalagem_marketing" id="embalagem_marketing" class="form-control vld-p vld-f" maxlength="100" size="100" />
+				</div>
+			</div>	
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="multiplo_marketing" >Defini&ccedil;&atilde;o do m&uacute;ltiplo de vendas</label>
+					<input type="text" name="multiplo_marketing" id="multiplo_marketing" class="form-control vld-p vld-f" maxlength="100" size="100" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="comentario_marketing" >Coment&aacute;rios</label>
+					<textarea name="comentario_marketing" id="comentario_marketing" rows="1" class="form-control vld-cmd-p vld-cmd-f"  maxlength="500" size="500" ></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info eng_prod" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Engenharia de Produto</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-4 produto">
+					<label for="codigo_projeto_engenharia" >C&oacute;digo do projeto (Engenharia)</label>
+					<input type="text" name="codigo_projeto_engenharia" id="codigo_projeto_engenharia" class="form-control decimal-0 vld-p " />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 produto">
+					<label for="demanda_inicial_mes" ><i class="fluigicon fluigicon-plus-sign icon-md" onclick="addMateriaPrima()"></i> Poss&iacute;veis Mat&eacute;rias-primas a serem usadas</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="materia_prima" nodeletebutton=false noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="25%" class="tableColumn"><b>Nome ou C&oacute;digo</b></th>
+									<th width="25%" class="tableColumn"><b>Fabricante</b></th>
+									<th width="30%" class="tableColumn"><b>Fornecedor</b></th>
+									<th width="10%" class="tableColumn"><b>Embalagem de Fornecimento</b></th>
+									<th width="10%" class="tableColumn"><b>Qtd Estimada (kg/m&ecirc;s)</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<div class="input-group">
+											<input type="text" class="form-control vld-p pf" name="den_materia_prima" id="den_materia_prima" onblur="trataDescMp( this.id )" />
+											<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" onClick="zoom( this.children[0].id )"  style="padding-right: 2px; padding-left: 3px;" >
+												<input type="hidden" name="bt_mp" id="bt_mp" />
+											</span>
+											<input type="hidden" name="cod_materia_prima" id="cod_materia_prima" >
+											<input type="hidden" name="den_materia_prima_orig" id="den_materia_prima_orig" >
+										</div>
+									</td>
+									<td>
+										<input type="text" class="form-control vld-p pf" name="fabricante_materia_prima" id="fabricante_materia_prima" />
+									</td>
+									<td>
+										<div class="input-group">
+											<input type="text" class="form-control vld-p pf" name="fornecedor_materia_prima" id="fornecedor_materia_prima" onblur="trataFornecMp( this.id )" />
+											<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" onClick="zoom( this.children[0].id )"  style="padding-right: 2px; padding-left: 3px;" >
+												<input type="hidden" name="bt_fornec" id="bt_fornec" />
+											</span>
+											<input type="hidden" name="cod_fornec_materia_prima" id="cod_fornec_materia_prima" >
+											<input type="hidden" name="fornecedor_materia_prima_orig" id="fornecedor_materia_prima_orig" >
+										</div>
+									</td>
+									<td>
+										<input type="text" class="form-control vld-p pf" name="embalagem_materia_prima" id="embalagem_materia_prima" />
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-0 vld-p pf" name="quantidade_mes_materia_prima" id="quantidade_mes_materia_prima" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<input type="hidden" name="ies_mp_nova" id="ies_mp_nova" >
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-2 produto">
+					<label for="equipamento_producao" data-toggle="tooltip" data-placement="bottom" title="Equipamento de produ&ccedil;&atilde;o" >Equipamento</label>
+					<select name="equipamento_producao" id="equipamento_producao" class="form-control vld-p" >
+						<option value=""></option>
+						<option value="E">Existente</option>
+						<option value="N">Novo</option>
+					</select>
+				</div>
+				<div class="col-xs-10 produto">
+					<label for="equipamento_especificacao" >Especifique</label>
+				<textarea name="equipamento_especificacao" id="equipamento_especificacao" rows="1" field-valida="equipamento_producao" value-valida="N" class="form-control vld-p"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2 produto">
+					<label for="processo_producao" data-toggle="tooltip" data-placement="bottom" title="Processo de produ&ccedil;&atilde;o" >Processo</label>
+					<select name="processo_producao" id="processo_producao" class="form-control vld-p" >
+						<option value=""></option>
+						<option value="E">Existente</option>
+						<option value="N">Novo</option>
+					</select>
+				</div>
+				<div class="col-xs-10 produto">
+					<label for="processo_especificacao" >Especifique</label>
+					<textarea name="processo_especificacao" id="processo_especificacao" rows="1" field-valida="processo_producao" value-valida="N" class="form-control vld-p"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-2 produto">
+					<label for="equipamento_lcq" data-toggle="tooltip" data-placement="bottom" title="Equipamento de LCQ" >Equipamento LCQ</label>
+					<select name="equipamento_lcq" id="equipamento_lcq" class="form-control vld-p" >
+						<option value=""></option>
+						<option value="E">Existente</option>
+						<option value="N">Novo</option>
+					</select>
+				</div>
+				<div class="col-xs-10 produto">
+					<label for="equipamento_lcq_especificacao" >Especifique</label>
+					<textarea name="equipamento_lcq_especificacao" id="equipamento_lcq_especificacao" rows="1" field-valida="equipamento_lcq" value-valida="N" class="form-control vld-p"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-2 produto">
+					<label for="metodologia_lcq" data-toggle="tooltip" data-placement="bottom" title="Metodologia de an&aacute;lise LCQ" >Metodologia LCQ</label>
+					<select name="metodologia_lcq" id="metodologia_lcq" class="form-control vld-p" >
+						<option value=""></option>
+						<option value="E">Existente</option>
+						<option value="N">Novo</option>
+					</select>
+				</div>
+				<div class="col-xs-10 produto">
+					<label for="metodologia_lcq_especificacao" >Especifique</label>
+					<textarea name="metodologia_lcq_especificacao" id="equipamento_lcq_especificacao" rows="1" field-valida="metodologia_lcq" value-valida="N" class="form-control vld-p"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-2 produto">
+					<label for="orgao_federal" data-toggle="tooltip" data-placement="bottom" title="Homologa&ccedil;&atilde;o em org&atilde;o federal" >Org&atilde;o Federal</label>
+					<select name="orgao_federal" id="orgao_federal" class="form-control vld-p" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-10 produto">
+					<label for="metodologia_lcq_especificacao" >Especifique</label>
+					<textarea name="orgao_federal_especificacao" id="orgao_federal_especificacao" rows="1" class="form-control vld-p"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+			
+			
+			<div class="row">
+				<div class="col-xs-2">
+					<div class="row">
+						<div class="col-xs-12">
+							<label for="valida_laboratorio_interno" data-toggle="tooltip" data-placement="bottom" title="Realizado valida&ccedil;&atilde;o em laborat&oacute;rio interno?" >Laborat&oacute;rio interno?</label>
+							<select name="valida_laboratorio_interno" id="valida_laboratorio_interno" class="form-control vld-p vld-f" >
+								<option value=""></option>
+								<option value="S">Sim</option>
+								<option value="N">N&atilde;o</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<label for="valida_laboratorio_externo" data-toggle="tooltip" data-placement="bottom" title="Realizado valida&ccedil;&atilde;o em laborat&oacute;rio externo?" >Laborat&oacute;rio externo?</label>
+							<select name="valida_laboratorio_externo" id="valida_laboratorio_externo" class="form-control vld-p vld-f" >
+								<option value=""></option>
+								<option value="S">Sim</option>
+								<option value="N">N&atilde;o</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<label for="valida_campo" data-toggle="tooltip" data-placement="bottom" title="Realizado valida&ccedil;&atilde;o em campo?" >Campo?</label>
+							<select name="valida_campo" id="valida_campo" class="form-control vld-p vld-f" >
+								<option value=""></option>
+								<option value="S">Sim</option>
+								<option value="N">N&atilde;o</option>
+							</select>
+						</div>							
+					</div>
+				</div>
+				<div class="col-xs-10">
+					<label for="comentario_engenharia" >Coment&aacute;rios</label>
+					<textarea name="comentario_engenharia" id="comentario_engenharia" rows="7" class="form-control vld-cmd-p vld-cmd-f"  maxlength="500" size="500" ></textarea>					
+				</div>
+			</div>
+		</div>
+		<div class="panel-heading fs-txt-center termo">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Termo de Abertura</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body termo" id="termo_base">
+			<div class="row">
+				<div class="col-xs-8">
+					<label for="nome_projeto" >Nome do Projeto</label>
+					<input type="text" name="nome_projeto" id="nome_projeto" class="form-control" maxlength="80" size="80" readonly />
+				</div>
+				<div class="col-xs-4">
+					<label for="nome_projeto" >C&oacute;digo</label>
+					<input type="text" name="cod_projeto" id="cod_projeto" class="form-control" readonly />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-8">
+					<label for="nome_projeto" >Gestor do Projeto</label>
+					<input type="text" name="gestor_projeto" id="gestor_projeto" class="form-control vld-p" maxlength="80" size="80" />
+					<input type="hidden" name="cod_gestor_projeto" id="cod_gestor_projeto" />
+				</div>
+				<div class="col-xs-4">
+					<label for="prazo_estimado" >Prazo estimado</label>
+					<input type="text" name="prazo_estimado" id="prazo_estimado" class="form-control vld-p data-fluig" />
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="nome_projeto" >Objetivo do Projeto</label>
+					<textarea name="obj_projeto" id="obj_projeto" rows="1" class="form-control vld-p" maxlength="300" size="300" ></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="part_externa_empresa" >Participa&ccedil;&atilde;o externa empresa</label>
+					<textarea name="part_externa_empresa" id="part_externa_empresa" rows="1" class="form-control" maxlength="200" size="200" ></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="part_externa_representante" >Participa&ccedil;&atilde;o externa representante</label>
+					<textarea name="part_externa_representante" id="part_externa_representante" rows="1" class="form-control" maxlength="200" size="200" ></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="part_externa_relac_proj" >Participa&ccedil;&atilde;o externa relacionamento com o projeto</label>
+					<textarea name="part_externa_relac_proj" id="part_externa_relac_proj" rows="1" class="form-control" maxlength="300" size="300" ></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="restricoes" >Restri&ccedil;&otilde;es</label>
+					<textarea name="restricoes" id="restricoes" rows="1" class="form-control" maxlength="500" size="500" ></textarea>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">
+					<label for="data_abertura" >Data Abertura</label>
+					<input type="text" name="data_abertura" id="data_abertura" class="form-control data-fluig" readonly />
+				</div>
+				<div class="col-xs-2">
+					<label for="data_fechamento" >Data Fechamento</label>
+					<input type="text" name="data_fechamento" id="data_fechamento" class="form-control data-fluig" readonly />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">
+					<label for="tipo_densidade" >Densidade</label>
+					<select name="tipo_densidade" id="tipo_densidade" class="form-control vld-p" >
+						<option value=""></option>
+						<option value="N">Novo</option>
+						<option value="E">Existente</option>
+						<option value="A">Aproximada</option>
+					</select>
+				</div>
+				<div class="col-xs-2">
+					<label for="cod_item" >Cod. Produto</label>
+					<div class="input-group">
+						<input type="text" name="cod_item_densidade" id="cod_item_densidade"  class="form-control" readonly />
+						<span id = "bt_item_densidade" name="bt_item_densidade" class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm" onclick="zoom(this.id)" ></span>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<label for="den_item" >Produto</label>
+					<input type="text" name="den_item_densidade" id="den_item_densidade"  class="form-control " readonly />
+				</div>
+				<div class="col-xs-2">
+					<label for="densidade_solicitada" >Densidade Solicitada</label>
+					<input type="text" name="densidade_solicitada" id="densidade_solicitada" class="form-control decimal-2 vld-p" />
+				</div>
+				<div class="col-xs-2">
+					<label for="um_densidade" >U.M.</label>
+					<div class="input-group">
+						<input type="text" name="um_densidade" id="um_densidade"  class="form-control vld-p" readonly />
+						<span id = "bt_um_densidade" name="bt_um_densidade" class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm" onclick="zoom(this.id)" ></span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="comentario_controller" >Coment&aacute;rios</label>
+					<textarea name="comentario_termo_abert" id="comentario_termo_abert" rows="1" class="form-control vld-cmd-p vld-cmd-f"  maxlength="500" size="500" ></textarea>					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info compras" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Compras</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="estimativa_volumes" >
+						<i class="fluigicon fluigicon-plus-sign icon-md" onclick="addEstimativaVolumes()"></i>
+						<i class="fluigicon fluigicon-th icon-md produto" onclick="copyMP('estimativa_volumes')" data-toggle="tooltip" data-placement="bottom" title='Insere linhas conforme informa&ccedil;&otilde;es da etapa "Marketing"' ></i>
+						<div class="produto" >Estimativa de volume para novas mat&eacute;rias-primas e para as j&aacute; existentes</div>
+						<div class="ferramenta" >Estimativa de volume de compra.</div>
+					</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="estimativa_volumes" nodeletebutton=false noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="60%" class="tableColumn">
+										<b class="produto">Mat&eacute;ria Prima/Fornecedor</b>
+										<b class="ferramenta">Fornecedor</b>
+									</th>
+									<th width="15%" class="tableColumn ferramenta">
+										<b>Lote M&iacute;nimo de Compra Fracionado</b>
+									</th>
+									<th width="15%" class="tableColumn">
+										<b class="produto">Lote M&iacute;nimo de Compra (kg)</b>
+										<b class="ferramenta">Lote M&iacute;nimo de Compra Fechado</b>
+									</th>
+									<th width="15%" class="tableColumn"><b>Lead Time - Dias Corridos</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="text" class="form-control vld-p vld-f pf" name="materia_prima_fornecedor" id="materia_prima_fornecedor" />
+									</td>
+									<td class="ferramenta">
+										<input type="text" class="form-control  decimal-2 vld-f pf" name="lote_minimo_fracionado" id="lote_minimo_fracionado" />
+									</td>
+									<td>
+										<input type="text" class="form-control  decimal-2 vld-p vld-f pf" name="lote_minimo" id="lote_minimo" />
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-0 vld-p vld-f pf" name="lead_time" id="lead_time" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3">
+					<label for="analise_fornecedor" data-toggle="tooltip" data-placement="bottom" title="An&aacute;lise de novos fornecedores" >An&aacute;lise fornecedores</label>
+					<select name="analise_fornecedor" id="analise_fornecedor" class="form-control vld-p vld-f" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+			</div>
+				
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="estimativa_emb_volumes" >
+						<i class="fluigicon fluigicon-plus-sign icon-md" onclick="addEstimativaEmb()"></i>
+						<i class="fluigicon fluigicon-th icon-md produto" onclick="copyEmb('estimativa_embalagem')" data-toggle="tooltip" data-placement="bottom" title='Insere linhas conforme informa&ccedil;&otilde;es da etapa "Engenharia de Produto"' ></i> 
+						<div >Estimativa de volume para novas embalagens e para as j&aacute; existentes</div>
+					</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="estimativa_embalagem" nodeletebutton=false noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="60%" class="tableColumn">
+										<b >Embalagem/Fornecedor</b>
+									</th>
+									<th width="15%" class="tableColumn">
+										<b class="produto">Lote M&iacute;nimo de Compra</b>
+									</th>
+									<th width="15%" class="tableColumn">
+										<b>Lead Time - Dias Corridos</b>
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="text" class="form-control vld-p vld-f pf" name="fornecedor_embalagem" id="fornecedor_embalagem" />
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-2 vld-f pf" name="lote_minimo_embalagem" id="lote_minimo_embalagem" />
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-0 vld-p vld-f pf" name="lead_time_embalagem" id="lead_time_embalagem" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>					
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="comentario_compras" >Coment&aacute;rios</label>
+					<textarea name="comentario_compras" id="comentario_compras" rows="1" class="form-control vld-cmd-p vld-cmd-f"  maxlength="500" size="500" ></textarea>					
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	<div class="panel panel-info ppcp_projeto" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center class="produto" ><b>Industrial (Processo, Produ&ccedil;&atilde;o, PPCP e Manuten&ccedil;&atilde;o)</b></td>
+					<td width='80%' align=center class="ferramenta" ><b>Projetos</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-10 produto">
+					<label for="observacacao_compras" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacacao_compras" id="observacacao_compras" rows="1" class="form-control"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2 produto">
+					<label for="analise_ped" data-toggle="tooltip" data-placement="bottom" title="Aprova&ccedil;&atilde;o de processo com P&amp;D" >P&amp;D</label>
+					<select name="analise_ped" id="analise_ped" class="form-control vld-p" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-10 produto">
+					<label for="observacacao_ped" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacacao_ped" id="observacacao_ped" rows="1" class="form-control"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2 produto">
+					<label for="analise_producao" data-toggle="tooltip" data-placement="bottom" title="Aprova&ccedil;&atilde;o de Processo com Produ&ccedil;&atilde;o" >Produ&ccedil;&atilde;o</label>
+					<select name="analise_producao" id="analise_producao" class="form-control vld-p" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-10 produto">
+					<label for="observacacao_producao" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacacao_producao" id="observacacao_producao" rows="1" class="form-control"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2 produto">
+					<label for="analise_manutencao" data-toggle="tooltip" data-placement="bottom" title="Aprova&ccedil;&atilde;o de Processo com Manuten&ccedil;&atilde;o" >Manuten&ccedil;&atilde;o</label>
+					<select name="analise_manutencao" id="analise_manutencao" class="form-control vld-p " >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-10 produto">
+					<label for="observacacao_manutencao" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacacao_manutencao" id="observacacao_manutencao" rows="1" class="form-control"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2 produto">
+					<label for="analise_logistica_processo" data-toggle="tooltip" data-placement="bottom" title="Aprova&ccedil;&atilde;o de Processo com Log&iacute;stica/Processos" >Log&iacute;stica/Processos</label>
+					<select name="analise_logistica_processo" id="analise_logistica_processo" class="form-control vld-p" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-10 produto">
+					<label for="observacacao_log_proc" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacacao_log_proc" id="observacacao_log_proc" rows="1" class="form-control"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2 produto">
+					<label for="analise_seg_trabalho_ambiente" data-toggle="tooltip" data-placement="bottom" title="Aprova&ccedil;&atilde;o de Processo com Seguran&ccedil;a no Trabalho e Meio Ambiente" >Seg.Trab. e M.Ambiente</label>
+					<select name="analise_seg_trabalho_ambiente" id="analise_seg_trabalho_ambiente" class="form-control vld-p" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-10 produto">
+					<label for="observacacao_seg_trab_m_amb" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacacao_seg_trab_m_amb" id="observacacao_seg_trab_m_amb" rows="1" class="form-control"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label class="produto" for="capacidade_produtiva" >Capacidade Produtiva por Unidade</label>
+					<label class="ferramenta" for="capacidade_produtiva" >Armazenamento por filial</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="capacidade_produtiva" nodeletebutton=false noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="20%" class="tableColumn"><b>Unidade</b></th>
+									<th width="20%" class="tableColumn produto"><b>Batelada M&iacute;nima</b></th>
+									<th width="20%" class="tableColumn produto"><b>Disponibilidade de Capacidade (PPCP)</b>
+									<th width="20%" class="tableColumn ferramenta"><b>Capacidade de Armazenamento</b>
+									</th>
+									<th width="60%" class="tableColumn"><b>Coment&aacute;rio</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="text" class="form-control" name="unidade_capacidade" id="unidade_capacidade" readonly />
+										<input type="hidden" name="cod_unidade_capacidade" id="cod_unidade_capacidade" />
+									</td>
+									<td class="produto">
+										<input type="text" class="form-control decimal-2" name="batelada_minimo" id="batelada_minimo" />
+									</td>
+									<td>
+										<select name="tem_capacidade" id="tem_capacidade" class="form-control vld-p vld-f pf" >
+											<option value=""></option>
+											<option value="S">Sim</option>
+											<option value="N">N&atilde;o</option>
+										</select>
+									</td>
+									<td>
+										<input type="text" class="form-control" name="observ_capacidade" id="observ_capacidade" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="comentario_ppcp" >Coment&aacute;rios</label>
+					<textarea name="comentario_ppcp" id="comentario_ppcp" rows="1" class="form-control vld-cmd-p vld-cmd-f"  maxlength="500" size="500" ></textarea>					
+				</div>
+			</div>			
+		</div>
+	</div>
+	
+	<div class="panel panel-info ppcp" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>PPCP / Industrial</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-2 ferramenta">
+					<label for="quant_compra" title="Validar quantidade informada de vendas X Quantidade de compra de materiais informado pelo Compras. Est&aacute; de acordo para continuar?" >Vendas x Quantidade</label>
+					<select name="quant_compra" id="quant_compra" class="form-control vld-f" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>	
+				</div>
+				<div class="col-xs-10 ferramenta">
+					<label for="observacacao_tabela" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacacao_quant_compra" id="observacacao_quant_compra" rows="1" class="form-control vld-cmd-p vld-cmd-f"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info controller" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Controller</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="comentario_controller" >Coment&aacute;rios</label>
+					<textarea name="comentario_controller" id="comentario_controller" rows="5" class="form-control vld-cmd-p vld-cmd-f"  maxlength="500" size="500" ></textarea>					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info termo" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Termo de Abertura</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div id="termo_espelho"></div>
+	</div>
+	<div class="panel panel-info marketing_2" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Marketing</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-8">
+					<label for="nome_produto" >Nome comercial completo</label>
+					<input type="text" name="nome_produto" id="nome_produto" class="form-control vld-p vld-f" maxlength="50" size="50" />
+				</div>
+				<div class="col-xs-4">
+					<label for="nome_produto_reduz" >Nome comercial reduzido</label>
+					<input type="text" name="nome_produto_reduz" id="nome_produto_reduz" class="form-control vld-p vld-f" maxlength="18" size="18" />
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-4 produto">
+					<div class="col-xs-12">
+						<label for="cores" ><i class="fluigicon fluigicon-plus-sign icon-md" onclick="addCores()"></i>Cores</label>
+						<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+							<table class="table table-condensed table-bordered table-striped" border="1" tablename="cores" nodeletebutton=false noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+								<thead>
+									<tr class="tableHeadRow" >	
+										<th width="100%" class="tableColumn"><b>Cores</b></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input type="text" class="form-control vld-p vld-f pf" name="cores" id="cores" onkeydown="pressCores()" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-4 produto">
+					<div class="col-xs-12 produto">
+						<label for="acessorios"><i class="fluigicon fluigicon-plus-sign icon-md" onclick="addAcessorios()"></i>Acess&oacute;rios</label>
+						<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+							<table class="table table-condensed table-bordered table-striped" border="1" tablename="acessorios" nodeletebutton=false noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+								<thead>
+									<tr class="tableHeadRow" >	
+										<th width="100%" class="tableColumn"><b>Acess&oacute;rios?</b></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<input type="text" class="form-control vld-p vld-f pf" name="acessorios" id="acessorios" onkeydown="pressAcess()" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>		
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info assistente_vendas" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr>
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Assistente de vendas / comercial</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">		
+			<div class="row">			
+				<div class="col-xs-10 ferramenta">
+					<label for="qtd_cor_produto">Quantidade de cor do produto</label>
+					<input type="text" name="qtd_cor_produto" id="qtd_cor_produto" class="form-control vld-f" maxlength="200" size="200" />
+				</div>
+				<div class="col-xs-2 ferramenta">
+					<label for="doc_fispq_produto" >Manual do Produto</label>
+					<div class="input-group">
+						<input type="hidden" name="manual_produto" id="manual_produto" />
+						<input type="text" name="titulo_manual_produto" id="titulo_manual_produto" class="form-control" readonly />
+						<span class="input-group-addon fluigicon fluigicon-file-doc fluigicon-lg" id="bt_manual_produto" onclick="loadFile( this.id )" ></span>
+						<span class="input-group-addon fluigicon fluigicon-eye-open fluigicon-lg" id="bt_manual_produto_open" onclick="openFile( this );"  ></span>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<div class="panel panel-info eng_prod_2" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Engenharia de produto / P&amp;D</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-2 produto">
+					<label for="cod_projeto" >C&oacute;digo</label>
+					<input type="text" name="cod_projeto_eng" id="cod_projeto_eng" class="form-control" maxlength="15" size="15" readonly />
+				</div>
+				<div class="col-xs-6 produto">
+					<label for="nome_projeto" >Projeto</label>
+					<input type="text" name="nome_projeto_eng" id="nome_projeto_eng" class="form-control" maxlength="76" size="76" readonly />
+				</div>
+				<div class="col-xs-2 produto">
+					<label for="doc_formulacao" data-toggle="tooltip" data-placement="bottom" title="Formula&ccedil;&atilde;o FQ-PD-04" >Formula&ccedil;&atilde;o</label>
+					<div class="input-group">
+						<input type="hidden" name="doc_formulacao" id="doc_formulacao" />
+						<input type="text" name="titulo_doc_formulacao" id="titulo_doc_formulacao" class="form-control vld-p vld-f" readonly />
+						<span class="input-group-addon fluigicon fluigicon-file-doc fluigicon-lg" id="bt_formulacao" onclick="loadFile( this.id )" ></span>
+						<span class="input-group-addon fluigicon fluigicon-eye-open fluigicon-lg" id="bt_formulacao_open" onclick="openFile( this );"  > </span>
+					</div>
+				</div>
+				<div class="col-xs-2 produto">
+					<label for="doc_ficha_tec" data-toggle="tooltip" data-placement="bottom" title="Ficha T&eacute;cnica FQ-PD-05" >Ficha T&eacute;cnica</label>
+					<div class="input-group">
+						<input type="hidden" name="doc_ficha_tec" id="doc_ficha_tec" />
+						<input type="text" name="titulo_doc_ficha_tec" id="titulo_doc_ficha_tec" class="form-control vld-p vld-f" readonly />
+						<span class="input-group-addon fluigicon fluigicon-file-doc fluigicon-lg" id="bt_ficha_tec" onclick="loadFile( this.id )" ></span>
+						<span class="input-group-addon fluigicon fluigicon-eye-open fluigicon-lg" id="bt_ficha_tec_open" onclick="openFile( this );"  > </span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 produto">
+					<label for="especificoes" >Especifica&ccedil;&otilde;es</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="especificoes" nodeletebutton=false noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="30%" class="tableColumn"><b>Documento</b></th>
+									<th width="30%" class="tableColumn"><b>Revis&atilde;o</b></th>
+									<th width="40%" class="tableColumn"><b>Data</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="text" class="form-control vld-p vld-f pf" name="documento_especificao" id="documento_especificao" readonly/>
+									</td>
+									<td>
+										<input type="text" class="form-control vld-p vld-f pf" name="revisao_especificao" id="revisao_especificao" />
+									</td>
+									<td>
+										<input type="text" class="form-control data-fluig vld-p vld-f pf" name="data_especificao" id="data_especificao" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>		
+				</div>
+				
+				<div class="col-xs-4 ">
+				
+					<label for="demanda_inicial_mes" >
+						<i class="fluigicon fluigicon-plus-sign icon-md" onclick="addCorForm()"></i>
+						<i class="fluigicon fluigicon-th icon-md produto" onclick="copyCores('form_cores')" data-toggle="tooltip" data-placement="bottom" title='Insere linhas conforme corres informadas na etapa anterior de "Marketing"' ></i>
+						Formula&ccedil;&atilde;o FQ-PD-04
+					</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="form_cores" nodeletebutton=false noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="50%" class="tableColumn"><b>Cor</b></th>
+									<th width="50%" class="tableColumn" title="Formula&ccedil;&atilde;o"><b>Formula&ccedil;&atilde;o FQ-PD-04</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="text" class="form-control vld-p vld-f pf" name="cor_form" id="cor_form" />
+									</td>
+									<td>
+										<div class="input-group">
+											<input type="hidden" name="doc_form_cor" id="doc_form_cor" />
+											<input type="text" name="titulo_doc_form_cor" id="titulo_doc_form_cor" class="form-control task-p-93 task-f-93 pf" readonly />
+											<span class="input-group-addon fluigicon fluigicon-file-doc fluigicon-lg" onclick="loadFile( this.children[0].id  )"  >
+												<input type="hidden" name="bt_form_cor" id="bt_form_cor">
+											</span>
+											<span class="input-group-addon fluigicon fluigicon-eye-open fluigicon-lg" onclick="openFile( this );"  >
+												<input type="hidden" name="bt_form_cor_open" id="bt_form_cor_open">
+											</span>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-xs-2 produto">
+					<label for="densidade" data-toggle="tooltip" data-placement="bottom" title="Densidade do produto para defini&ccedil;&atilde;o de embalagem (g/cm3)" >Densidade</label>
+					<input type="text" class="form-control decimal-4 vld-p vld-f" name="densidade" id="densidade" />
+				</div>
+				<div class="col-xs-2 produto">
+					<label for="validacao_em_campo" data-toggle="tooltip" data-placement="bottom" title="Relat&oacute;rio de valida&ccedil;&atilde;o em campo" >Valida&ccedil;&atilde;o em campo</label>
+					<select name="validacao_em_campo" id="validacao_em_campo" class="form-control vld-p vld-f" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-2 produto">
+					<label for="doc_fispq_produto" >FISPQ do Produto</label>
+					<div class="input-group">
+						<input type="hidden" name="doc_fispq_produto" id="doc_fispq_produto" />
+						<input type="text" name="titulo_doc_fispq_produto" id="titulo_doc_fispq_produto" class="form-control vld-p vld-f" readonly />
+						<span class="input-group-addon fluigicon fluigicon-file-doc fluigicon-lg" id="bt_fispq_produto" onclick="loadFile( this.id )" ></span>
+						<span class="input-group-addon fluigicon fluigicon-eye-open fluigicon-lg" id="bt_fispq_produto_open" onclick="openFile( this );"  ></span>
+					</div>
+				</div>
+				<div class="col-xs-2 produto">
+					<label for="doc_fispq_premix" >FISPQ do Premix</label>
+					<div class="input-group">
+						<input type="hidden" name="doc_fispq_premix" id="doc_fispq_premix" />
+						<input type="text" name="titulo_doc_fispq_premix" id="titulo_doc_fispq_premix" class="form-control vld-p vld-f" readonly />
+						<span class="input-group-addon fluigicon fluigicon-file-doc fluigicon-lg" id="bt_fispq_premix" onclick="loadFile( this.id )" ></span>
+						<span class="input-group-addon fluigicon fluigicon-eye-open fluigicon-lg" id="bt_fispq_premix_open" onclick="openFile( this );"  ></span>
+					</div>
+				</div>
+				<div class="col-xs-2 produto">
+					<label for="custo_efetivo" data-toggle="tooltip" data-placement="bottom" title="Custo efetivo US$/kg" >Custo efetivo US$/kg</label>
+					<input type="text" class="form-control decimal-4 vld-p vld-f" name="custo_efetivo" id="custo_efetivo" />
+				</div>				
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-2">
+					<label for="cad_man10475" data-toggle="tooltip" data-placement="bottom" title="Feito cadastrado MAN10475" >Cadastro MAN10475</label>
+					<select name="cad_man10475" id="cad_man10475" class="form-control vld-p vld-f" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-10">
+					<label for="observacao_cad_man10475" data-toggle="tooltip" data-placement="bottom" title="Observa&ccedil;&atilde;o" >Observa&ccedil;&atilde;o</label>
+					<input type="text" name="observacao_cad_man10475" id="observacao_cad_man10475" class="form-control" maxlength="200" size="200" />
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+	<div class="panel panel-info marketing_emb" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Marketing</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">	
+			<div class="row">
+				<div class="col-xs-12 ">
+				
+					<label for="demanda_inicial_mes" >
+						<i class="fluigicon fluigicon-plus-sign icon-md" onclick="addEmbPiloto()"></i>
+						<!-- <i class="fluigicon fluigicon-th icon-md produto" onclick="copyEmbPiloto()" data-toggle="tooltip" data-placement="bottom" title='Insere linhas conforme embalagens informadas na etapa de "Compras"' ></i> -->
+						Lote Piloto Embalagens
+					</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="embalagens_piloto" nodeletebutton=false noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="30%" class="tableColumn"><b>Embalagem</b></th>
+									<th width="6%" class="tableColumn" title='Altura em "mm"' ><b>Altura</b></th>
+									<th width="6%" class="tableColumn" title='Largura em "mm"' ><b>Largura</b></th>
+									<th width="6%" class="tableColumn" title='Aba em "mm"' ><b>Aba</b></th>
+									<th width="6%" class="tableColumn" title='Valvula em "mm"' ><b>Valvula</b></th>
+									<th width="6%" class="tableColumn" title='Espessura em "mm"' ><b>Espessura</b></th>
+									<th width="10%" class="tableColumn" title='Peso em "KG"' ><b>Peso</b></th>
+									<th width="10%" class="tableColumn"><b>Ordem Compra</b></th>
+									<th width="10%" class="tableColumn" title='Data Prevista de recebimento"'><b>Data Prev. Receb.</b></th>
+									<th width="10%" class="tableColumn" title='Data Prevista de fim de teste de valida&ccedil;&atilde;o'><b>Data Prev. Valida.</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="text" class="form-control task-p-168 task-f-168 pf" name="embalagem_piloto" id="embalagem_piloto" />
+									</td>
+									<td>
+										<input type="text" class="form-control task-p-168 task-f-168 pf decimal-0" name="altura_emb_piloto" id="altura_emb_piloto" />
+									</td>
+									<td>
+										<input type="text" class="form-control task-p-168 task-f-168 pf decimal-0" name="largura_emb_piloto" id="largura_emb_piloto" />
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-0" name="aba_emb_piloto" id="aba_emb_piloto" />
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-0" name="valvula_emb_piloto" id="valvula_emb_piloto" />
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-0" name="espessura_emb_piloto" id="espessura_emb_piloto" />
+									</td>
+									<td>
+										<input type="text" class="form-control task-p-168 task-f-168 pf decimal-0" name="peso_emb_piloto" id="peso_emb_piloto" />
+									</td>
+									<td>
+										<input type="text" class="form-control task-p-172 task-f-172 pf decimal-0" name="oc_emb_piloto" id="oc_emb_piloto" />
+									</td>
+									<td>
+										<input type="text" class="form-control task-p-172 task-f-172 pf data-fluig" name="dat_prev_oc_emb_piloto" id="dat_prev_oc_emb_piloto" />
+									</td>
+									<td>
+										<input type="text" class="form-control task-p-172 task-f-172 pf data-fluig" name="dat_valid_oc_emb_piloto" id="dat_valid_oc_emb_piloto" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="panel panel-info eng_proc" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Engenharia de Processo / Industrial</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+		
+			<div class="row">
+				<div class="col-xs-4 produto">
+					<label for="linha_producao" data-toggle="tooltip" data-placement="bottom" title="Em qual linha ser&aacute; produzida" >Linha produ&ccedil;&atilde;o</label>
+					<input type="text" name="linha_producao" id="linha_producao" class="form-control vld-p vld-f" maxlength="100" size="100" />
+				</div>
+				<div class="col-xs-8 produto">
+					<label for="observacao_linha_producao" data-toggle="tooltip" data-placement="bottom" title="Observa&ccedil;&atilde;o" >Observa&ccedil;&atilde;o</label>
+					<input type="text" name="observacao_linha_producao" id="observacao_linha_producao" class="form-control" maxlength="200" size="200" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4">
+					<label for="analise_embalagem" data-toggle="tooltip" data-placement="bottom" title="An&aacute;lise das medidas de embalagem parceria com o marketing" >An&aacute;lise das medidas de embalagem</label>
+					<select name="analise_embalagem" id="analise_embalagem" class="form-control vld-p vld-f" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-8">
+					<label for="observacao_analise_embalagem" data-toggle="tooltip" data-placement="bottom" title="Observa&ccedil;&atilde;o" >Observa&ccedil;&atilde;o</label>
+					<input type="text" name="observacao_analise_embalagem" id="observacao_analise_embalagem" class="form-control" maxlength="200" size="200" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 produto">
+					<label for="linha_producao" data-toggle="tooltip" data-placement="bottom" title="Acondicionamento no Palete (Altura/Lastro/Qtde)" >Acondicionamento no Palete (Altura/Lastro/Qtde)</label>
+					<div class="input-group">
+						<div class="col-xs-4 produto" style="padding-left: 0px; padding-right: 0px;" >
+							<input type="text" name="altura_palete" id="altura_palete" class="form-control decimal-0 vld-p vld-f" maxlength="10" size="10" onblur="calcQtdPalet()" />
+						</div>
+						<div class="col-xs-4 produto" style="padding-left: 0px; padding-right: 0px;" >
+							<input type="text" name="lastro_palete" id="lastro_palete" class="form-control decimal-0 vld-p vld-f" maxlength="10" size="10" onblur="calcQtdPalet()" />
+						</div>
+						<div class="col-xs-4 produto" style="padding-left: 0px; padding-right: 0px;" >
+							<input type="text" name="quant_palete" id="quant_palete" class="form-control decimal-0 vld-p vld-f" maxlength="10" size="10" readonly />
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-xs-8 produto">
+					<label for="acond_secundario" data-toggle="tooltip" data-placement="bottom" title="Acondicionamento secund&aacute;rio (Palete/Folha de amarra&ccedil;&atilde;o/Stretch, etc)" >Acondicionamento secund&aacute;rio (Palete/Folha de amarra&ccedil;&atilde;o/Stretch, etc)</label>
+					<input type="text" name="acond_secundario" id="acond_secundario" class="form-control vld-p vld-f" maxlength="300" size="300" />
+				</div>
+			</div>			
+		</div>
+	</div>
+		
+	
+	
+	<div class="panel panel-info custo_prod_2" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Custos</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-6">
+					<label for="tipo_ncm" data-toggle="tooltip" data-placement="bottom" title="NCM" >NCM</label>
+					<div>
+						<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;" >
+							<select name="tipo_ncm" id="tipo_ncm" class="form-control vld-p vld-f" onchange="limpaNcm(); trataCampos()" >
+								<option value=""></option>
+								<option value="N">Novo</option>
+								<option value="E">Existente</option>
+							</select>
+						</div>
+						<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;" >
+							<div class="input-group">
+								<input type="text" name="num_ncm" id="num_ncm" class="form-control vld-p vld-f" maxlength="10" size="10" />
+								<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" id="bt_ncm" onClick="zoom(this.id)" ></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<label for="tipo_cest" data-toggle="tooltip" data-placement="bottom" title="Código CEST" >CEST</label>
+					<div>
+						<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;" >
+							<select name="tipo_cest" id="tipo_cest" class="form-control vld-p vld-f" onchange="limpaCest(); trataCampos()" >
+								<option value=""></option>
+								<option value="N">Novo</option>
+								<option value="E">Existente</option>
+								<option value="A">N/A</option>
+							</select>
+						</div>
+						<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;" >
+							<div class="input-group">
+								<input type="text" name="den_cest" id="den_cest" class="form-control vld-p vld-f" maxlength="10" size="10" />
+								<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" id="bt_cest" onClick="zoom(this.id)" ></span>
+								<input type="hidden" name="num_cest" id="num_cest" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="comentario_custo" >Coment&aacute;rios</label>
+					<textarea name="comentario_custo" id="comentario_custo" rows="1" class="form-control"  maxlength="500" size="500" ></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		
+	<div class="panel panel-info marketing_3" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Marketing</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="tipo_ncm" data-toggle="tooltip" data-placement="bottom" title="Descri&ccedil;&atilde;o da embalagem" >Descri&ccedil;&atilde;o da embalagem</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="25%" class="tableColumn"><b>Especifica&ccedil;&otilde;es</b></th> 
+									<th width="25%" class="tableColumn"><b>Primaria</b></th>
+									<th width="25%" class="tableColumn"><b>Secundaria</b></th>	
+									<th width="25%" class="tableColumn"><b>Transporte</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>  
+									<td>Descri&ccedil;&atilde;o</td> 
+									<td><textarea name="descr_primaria" id="descr_primaria" rows="1" class="form-control vld-p vld-f"  maxlength="50" size="50" ></textarea></td>
+									<td><textarea name="descr_secundaria" id="descr_secundaria" rows="1" class="form-control" field-valida="peso_secundaria" maxlength="50" size="50" ></textarea></td>	
+									<td><textarea name="descr_transporte" id="descr_transporte" rows="1" class="form-control" field-valida="peso_transporte" maxlength="50" size="50" ></textarea></td>
+								</tr>
+								<tr>
+									<td>Denomina&ccedil;&atilde;o Reduzida</td> 
+									<td><textarea name="den_primaria" id="den_primaria" rows="1" class="form-control vld-p vld-f"  maxlength="18" size="18" ></textarea></td>
+									<td><textarea name="den_secundaria" id="den_secundaria" rows="1" class="form-control" field-valida="descr_secundaria" maxlength="18" size="18" ></textarea></td>	
+									<td><textarea name="den_transporte" id="den_transporte" rows="1" class="form-control" field-valida="descr_transporte" maxlength="18" size="18" ></textarea></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-3">
+					<label for="multiplo_venda" data-toggle="tooltip" data-placement="bottom" title="M&uacute;ltiplo de venda" >M&uacute;ltiplo de venda</label>
+					<div>
+						<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;" >
+							<input type="text" name="multiplo_venda" id="multiplo_venda" class="form-control decimal-0 vld-p" maxlength="10" size="10" />
+						</div>
+						<div class="col-xs-4" style="padding-left: 0px; padding-right: 0px;" >
+							<select name="um_multiplo_venda" id="um_multiplo_venda" class="form-control vld-p" >
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-7">
+					<label for="observacao_multiplo" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacao_multiplo" id="observacao_multiplo" rows="1" class="form-control"  maxlength="200" size="200" ></textarea>
+				</div>
+				<div class="col-xs-2 produto">
+					<label for="numero_cores" >Num Cores</label>
+					<input type="text" name="numero_cores" id="numero_cores" rows="1" class="form-control decimal-0 vld-p" maxlength="10" size="10" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 ">
+				
+					<label for="demanda_inicial_mes" >
+						<i class="fluigicon fluigicon-plus-sign icon-md" onclick="addBarras()"></i>
+						<i class="fluigicon fluigicon-th icon-md produto" onclick="copyCores('ean_cores')" data-toggle="tooltip" data-placement="bottom" title='Insere linhas conforme corres informadas na etapa de "Engenharia de produto / P&D"' ></i>
+						C&oacute;digo de barra
+					</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="ean_cores" nodeletebutton=false noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="50%" class="tableColumn"><b>Nome Cadastrado do Produto</b></th>
+									<th width="25%" class="tableColumn"><b>EAN13</b></th>
+									<th width="25%" class="tableColumn"><b>DUN14</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="text" class="form-control vld-p vld-f pf" name="den_item_barras" id="den_item_barras" />
+									</td>
+									<td>
+										<input type="text" class="form-control integer-0 vld-p vld-f pf ean13" name="aen13_cor" id="aen13_cor" maxlength="13" size="13" />
+									</td>
+									<td>
+										<input type="text" class="form-control integer-0 vld-p vld-f pf dun14" name="dun14_cor" id="dun14_cor"  maxlength="14" size="14" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-2">
+					<label for="tem_acessorio" data-toggle="tooltip" data-placement="bottom" title="Acess&oacute;rio" >Acess&oacute;rio</label>
+					<select name="tem_acessorio" id="tem_acessorio" class="form-control vld-p vld-f" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-10 produto">
+					<label for="observacacao_tem_acessorio" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacacao_tem_acessorio" id="observacacao_tem_acessorio" field-valida="tem_acessorio" value-valida="S" rows="1" class="form-control vld-p vld-f "  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info custo_prod_3" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Custos</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-4 produto">
+					<label for="aen_premix" data-toggle="tooltip" data-placement="bottom" title="AEN Premix" >AEN Premix</label>
+					<div>
+						<div class="col-xs-5 produto" style="padding-left: 0px; padding-right: 0px;" >
+							<div class="input-group">
+								<input type="text" name="aen_premix" id="aen_premix" class="form-control task-p-72 aen-premix" maxlength="8" size="8" readonly />
+								<span class="input-group-addon fluigicon fluigicon-eraser fluigicon-sm" onclick="$('.aen-premix').val('')"></span>
+								<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" id="bt_aen_premix" onClick="zoom(this.id)" ></span>
+							</div>
+						</div>
+						<div class="col-xs-7" style="padding-left: 0px; padding-right: 0px;" >
+							<input type="text" name="den_aen_premix" id="den_aen_premix" class="form-control aen-premix" readonly />
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-4 produto">
+					<label for="aen_semiacabado" data-toggle="tooltip" data-placement="bottom" title="AEN Semiacabado" >AEN Semiacabado</label>
+					<div>
+						<div class="col-xs-5 produto" style="padding-left: 0px; padding-right: 0px;" >
+							<div class="input-group">
+								<input type="text" name="aen_semiacabado" id="aen_semiacabado" class="form-control task-p-72 aen-semiacabado" maxlength="8" size="8" readonly />
+								<span class="input-group-addon fluigicon fluigicon-eraser fluigicon-sm" onclick="$('.aen-semiacabado').val('')"></span>
+								<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" id="bt_semiacabado" onClick="zoom(this.id)" ></span>
+							</div>
+						</div>
+						<div class="col-xs-7 produto" style="padding-left: 0px; padding-right: 0px;" >
+							<input type="text" name="den_aen_semiacabado" id="den_aen_semiacabado" class="form-control aen-semiacabado" readonly />
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-4">
+					<label for="aen_acabado" data-toggle="tooltip" data-placement="bottom" title="AEN Acabado" >AEN Acabado</label>
+					<div>
+						<div class="col-xs-5" style="padding-left: 0px; padding-right: 0px;" >
+							<div class="input-group">
+								<input type="text" name="aen_acabado" id="aen_acabado" class="form-control task-p-72 task-f-72 aen-acabado" maxlength="8" size="8" readonly />
+								<span class="input-group-addon fluigicon fluigicon-eraser fluigicon-sm" onclick="$('.aen-acabado').val('')"></span>
+								<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" id="bt_acabado" onClick="zoom(this.id)" ></span>
+							</div>
+						</div>
+						<div class="col-xs-7" style="padding-left: 0px; padding-right: 0px;" >
+							<input type="text" name="den_aen_acabado" id="den_aen_acabado" class="form-control aen-acabado" readonly />
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-4 produto">
+					<label for="aen_emb_primaria" data-toggle="tooltip" data-placement="bottom" title="AEN Embalagem Prim&aacute;ria" >AEN Embalagem Prim&aacute;ria</label>
+					<div>
+						<div class="col-xs-5 produto" style="padding-left: 0px; padding-right: 0px;" >
+							<div class="input-group">
+								<input type="text" name="aen_emb_primaria" id="aen_emb_primaria" class="form-control task-p-72 aen-emb-primaria" maxlength="8" size="8" readonly />
+								<span class="input-group-addon fluigicon fluigicon-eraser fluigicon-sm" onclick="$('.aen-emb-primaria').val('')"></span>
+								<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" id="bt_emb_primaria" onClick="zoom(this.id)" ></span>
+							</div>
+						</div>
+						<div class="col-xs-7 produto" style="padding-left: 0px; padding-right: 0px;" >
+							<input type="text" name="den_aen_emb_primaria" id="den_aen_emb_primaria" class="form-control aen-emb-primaria"  readonly />
+						</div>
+					</div>
+				</div>
+				
+
+				<div class="col-xs-4 produto">
+					<label for="aen_emb_secundaria" data-toggle="tooltip" data-placement="bottom" title="AEN Embalagem: Secund&aacute;ria" >AEN Embalagem Secund&aacute;ria</label>
+					<div>					
+						<div class="col-xs-5 produto" style="padding-left: 0px; padding-right: 0px;" >
+							<div class="input-group">
+								<input type="text" name="aen_emb_secundaria" id="aen_emb_secundaria" class="form-control task-p-72 aen-emb-secundaria" field-valida="descr_secundaria" value-valida="!" maxlength="8" size="8" readonly />
+								<span class="input-group-addon fluigicon fluigicon-eraser fluigicon-sm" onclick="$('.aen-emb-secundaria').val('')"></span>
+								<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" id="bt_emb_secundaria" onClick="zoom(this.id)" ></span>
+							</div>
+						</div>
+						<div class="col-xs-7 produto" style="padding-left: 0px; padding-right: 0px;" >
+							<input type="text" name="den_aen_emb_secundaria" id="den_aen_emb_secundaria" class="form-control aen-emb-secundaria" readonly />
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-4 produto">
+					<label for="aen_emb_transporte" data-toggle="tooltip" data-placement="bottom" title="AEN Embalagem Transporte" >AEN Embalagem Transporte</label>
+					<div>
+						<div class="col-xs-5 produto" style="padding-left: 0px; padding-right: 0px;" >
+							<div class="input-group">
+								<input type="text" name="aen_emb_transporte" id="aen_emb_transporte" class="form-control task-p-72 aen-emb-transporte" field-valida="descr_transporte" value-valida="!" maxlength="8" size="8" readonly />
+								<span class="input-group-addon fluigicon fluigicon-eraser fluigicon-sm" onclick="$('.aen-emb-transporte').val('')"></span>
+								<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" id="bt_emb_transporte" onClick="zoom(this.id)" ></span>
+							</div>
+						</div>
+						<div class="col-xs-7 produto" style="padding-left: 0px; padding-right: 0px;" >
+							<input type="text" name="den_aen_emb_transporte" id="den_aen_emb_transporte" class="form-control aen-emb-transporte" readonly />
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="sugestao_aen_comercial" data-toggle="tooltip" data-placement="bottom" title="Sugestao AEN Comercial" >Sugestao AEN Comercial</label>
+					<textarea name="sugestao_aen_comercial" id="sugestao_aen_comercial" rows="1" class="form-control"  maxlength="200" size="200" ></textarea>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	  
+	<div class="panel panel-info ppcp_2" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center >
+						<b>PPCP / Industrial</b>
+					</td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="demanda_inicial_mes" >
+						<i class="fluigicon fluigicon-th icon-md" onclick="copyEAN('codigos_ppcp')" data-toggle="tooltip" data-placement="bottom" title='Insere linhas conforme corres informadas na etapa de "Engenharia de produto / P&D"' ></i>
+						Cadastros C&oacute;digos
+					</label>
+					<table class="table table-condensed table-bordered table-striped" border="1" tablename="codigos_ppcp" nodeletebutton=false noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+						<thead>
+							<tr class="tableHeadRow" >	
+								<th width="100%" class="tableColumn"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td >	
+									<div class="row">
+										<div class="col-xs-12">
+											<label for="">Produto</label>
+											<input type="text" class="form-control" name="produto_ppcp" id="produto_ppcp" readonly />
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-xs-2">
+											<label for="">Interno</label>
+											<div class="input-group">
+												<input type="text" class="form-control vld-p vld-f pf" name="cod_interno" id="cod_interno" onblur="zoom( 'bt_cod_interno', this.id )" />
+												<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" onClick="zoom( this.children[0].id )"  style="padding-right: 2px; padding-left: 3px;" >
+													<input type="hidden" name="bt_cod_interno" id="bt_cod_interno" />
+												</span>
+											</div>
+										</div>
+										<div class="col-xs-2 produto">
+											<label for="">Fantasma</label>
+											<div class="input-group">
+												<input type="text" class="form-control vld-p pf" name="cod_fantasma" id="cod_fantasma" onblur="zoom( 'bt_cod_fantasma', this.id )" />
+												<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" onClick="zoom( this.children[0].id )"  style="padding-right: 2px; padding-left: 3px;" >
+													<input type="hidden" name="bt_cod_fantasma" id="bt_cod_fantasma" />
+												</span>
+											</div>
+										</div>
+										<div class="col-xs-2 produto">
+											<label for="">Premix</label>
+											<div class="input-group">
+												<input type="text" class="form-control vld-p pf" name="cod_premix" id="cod_premix" onblur="zoom( 'bt_cod_premix', this.id )" />
+												<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" onClick="zoom( this.children[0].id )"  style="padding-right: 2px; padding-left: 3px;" >
+													<input type="hidden" name="bt_cod_premix" id="bt_cod_premix" />
+												</span>
+											</div>
+										</div>
+										<div class="col-xs-2">
+											<label for="">Etapa</label>
+											<div class="input-group">
+												<input type="text" class="form-control vld-p vld-f pf" name="cod_etapa" id="cod_etapa" onblur="zoom( 'bt_cod_etapa', this.id )" />
+												<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" onClick="zoom( this.children[0].id )"  style="padding-right: 2px; padding-left: 3px;" >
+													<input type="hidden" name="bt_cod_etapa" id="bt_cod_etapa" />
+												</span>
+											</div>
+										</div>
+										<div class="col-xs-2">
+											<label for="">SKU PLT</label>
+												<div class="input-group">
+												<input type="text" class="form-control vld-p vld-f pf" name="cod_sku_plt" id="cod_sku_plt" onblur="zoom( 'bt_cod_sku_plt', this.id )" />
+												<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" onClick="zoom( this.children[0].id )"  style="padding-right: 2px; padding-left: 3px;" >
+													<input type="hidden" name="bt_cod_sku_plt" id="bt_cod_sku_plt" />
+												</span>
+											</div>
+										</div>
+										<div class="col-xs-2">
+											<label for="">SKU IND</label>
+												<div class="input-group">
+												<input type="text" class="form-control vld-p vld-f pf" name="cod_sku_ind" id="cod_sku_ind" onblur="zoom( 'bt_cod_sku_ind', this.id )" />
+												<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" onClick="zoom( this.children[0].id )"  style="padding-right: 2px; padding-left: 3px;" >
+													<input type="hidden" name="bt_cod_sku_ind" id="bt_cod_sku_ind" />
+												</span>
+											</div>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="demanda_inicial_mes" >Embalagens</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="25%" class="tableColumn"><b>Especifica&ccedil;&otilde;es</b></th> 
+									<th width="25%" class="tableColumn"><b>Primaria</b></th>
+									<th width="25%" class="tableColumn"><b>Secundaria</b></th>	
+									<th width="25%" class="tableColumn"><b>Transporte</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>				
+									<td>Embalagem</td> 
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<div class="input-group">
+											<input type="text" class="form-control vld-p" name="cod_emb_primaria" id="cod_emb_primaria" onblur="zoom( 'bt_cod_emb_primaria', this.id )" />
+											<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" onClick="zoom( this.children[0].id )"  style="padding-right: 2px; padding-left: 3px;" >
+												<input type="hidden" name="bt_cod_emb_primaria" id="bt_cod_emb_primaria" />
+											</span>
+										</div>
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<div class="input-group">
+											<input type="text" class="form-control" field-valida="descr_secundaria" name="cod_emb_secundaria" id="cod_emb_secundaria" onblur="zoom( 'bt_cod_emb_secundaria', this.id )" />
+											<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" onClick="zoom( this.children[0].id )"  style="padding-right: 2px; padding-left: 3px;" >
+												<input type="hidden" name="bt_cod_emb_secundaria" id="bt_cod_emb_secundaria" />
+											</span>
+										</div>
+									</td>	
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<div class="input-group">
+											<input type="text" class="form-control" field-valida="descr_transporte" name="cod_emb_transporte" id="cod_emb_transporte" onblur="zoom( 'bt_cod_emb_transporte', this.id )" />
+											<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" onClick="zoom( this.children[0].id )"  style="padding-right: 2px; padding-left: 3px;" >
+												<input type="hidden" name="bt_cod_emb_transporte" id="bt_cod_emb_transporte" />
+											</span>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>			
+		</div>
+	</div>
+	
+	<div class="panel panel-info contabilidade" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Contabilidade</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-6">
+					<label for="demanda_inicial_mes" >Cadastros Filiais</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="cad_contabil" nodeletebutton=true noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="14%" class="tableColumn"><b>Empresa</b></th>
+									<th width="14%" class="tableColumn"><b>Cadastro</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="text" class="form-control" name="empresa_contab" id="empresa_contab" readonly />
+										<input type="hidden" name="cod_empresa_contab" id="cod_empresa_contab" />
+									</td>
+									<td>
+										<select name="ies_contab" id="ies_contab" class="form-control vld-p vld-f pf pf" >
+											<option value=""></option>
+											<option value="S">Sim</option>
+											<option value="N">N&atilde;o</option>
+										</select>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info eng_proc_2" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Engenharia de Processo / Industrial</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		
+		<div class="panel-body">
+			<div class="row ferramenta">
+				<div class="col-xs-4 ferramenta">
+					<label for="linha_producao" data-toggle="tooltip" data-placement="bottom" title="Acondicionamento no Palete (Altura/Lastro/Qtde)" >Acondicionamento no Palete (Altura/Lastro/Qtde)</label>
+					<div class="input-group">
+						<div class="col-xs-4 ferramenta" style="padding-left: 0px; padding-right: 0px;" >
+							<input type="text" name="altura_palete_fer" id="altura_palete_fer" class="form-control decimal-0 vld-f" maxlength="10" size="10" onblur="calcQtdPaletFer()" />
+						</div>
+						<div class="col-xs-4 ferramenta" style="padding-left: 0px; padding-right: 0px;" >
+							<input type="text" name="lastro_palete_fer" id="lastro_palete_fer" class="form-control decimal-0 vld-f" maxlength="10" size="10" onblur="calcQtdPaletFer()" />
+						</div>
+						<div class="col-xs-4 ferramenta" style="padding-left: 0px; padding-right: 0px;" >
+							<input type="text" name="quant_palete_fer" id="quant_palete_fer" class="form-control decimal-0 vld-f" maxlength="10" size="10" readonly />
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-8 ferramenta">
+					<label for="acond_secundario_fer" data-toggle="tooltip" data-placement="bottom" title="Acondicionamento secund&aacute;rio (Palete/Folha de amarra&ccedil;&atilde;o/Stretch, etc):" >Acondicionamento secund&aacute;rio</label>
+					<textarea name="acond_secundario_fer" id="acond_secundario_fer" rows="1" class="form-control vld-f"  maxlength="300" size="300" ></textarea>
+				</div>
+			</div>
+			<div class="row ">
+				<div class="col-xs-2">
+					<label for="cad_eng_proc" data-toggle="tooltip" data-placement="bottom" title="Cadastro das especifica&ccedil;&otilde;es no LOGIX" >Cadastro LOGIX</label>
+					<select name="cad_eng_proc" id="cad_eng_proc" class="form-control vld-p vld-f" >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>
+				</div>
+				<div class="col-xs-10">
+					<label for="observacao_cad_eng_proc" data-toggle="tooltip" data-placement="bottom" title="Observa&ccedil;&atilde;o" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacao_cad_eng_proc" id="observacao_cad_eng_proc" rows="1" class="form-control"  maxlength="200" size="200" ></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info projeto" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Projetos</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row produto">
+				<div class="col-xs-12 produto">
+					<label for="demanda_inicial_mes" >Armazenamento por filial</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="armazenagem" nodeletebutton=true noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="15%" class="tableColumn"><b>Regional</b></th>
+									<th width="15%" class="tableColumn"><b>Unidade</b></th>
+									<th width="10%" class="tableColumn"><b>Recebimento Mat&eacute;ria Prima</b></th>
+									<th width="10%" class="tableColumn"><b>Armazenamento Mat&eacute;ria Prima</b></th>
+									<th width="50%" class="tableColumn"><b>Coment&aacute;rios</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr> 
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<input type="text" class="form-control" name="arm_reginal" id="arm_reginal" readonly />
+										<input type="hidden" name="cod_arm_reginal" id="cod_arm_reginal" />
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<input type="text" class="form-control" name="arm_unidade" id="arm_unidade" readonly />
+										<input type="hidden" name="cod_arm_unidade" id="cod_arm_unidade" />
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<select name="arm_receb_mp" id="arm_receb_mp" class="form-control vld-p pf" >
+											<option value=""></option>
+											<option value="S">Sim</option>
+											<option value="N">N&atilde;o</option>
+										</select>
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >	
+										<select name="arm_mp" id="arm_mp" class="form-control vld-p pf" >
+											<option value=""></option>
+											<option value="S">Sim</option>
+											<option value="N">N&atilde;o</option>
+										</select>							
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<textarea name="arm_observacao" id="arm_observacao" rows="1" class="form-control"  maxlength="100" size="100" ></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-info frete" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Log&iacute;stica</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="demanda_inicial_mes" >Valores m&eacute;dios Frete na regional (R$/Ton)</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="frete" nodeletebutton=true noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="15%" class="tableColumn"><b>Unidade</b></th>
+									<th width="10%" class="tableColumn"><b>UF</b></th>
+									<th width="10%" class="tableColumn"><b>M&iacute;nimo</b></th>
+									<th width="10%" class="tableColumn"><b>M&aacute;ximo</b></th>
+									<th width="10%" class="tableColumn"><b>M&eacute;dia Global</b></th>
+									<th width="45%" class="tableColumn"><b>Coment&aacute;rios</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<input type="text" class="form-control" name="frt_unidade" id="frt_unidade" readonly />
+										<input type="hidden" name="cod_frt_unidade" id="cod_frt_unidade" />
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<input type="text" class="form-control" name="frt_uf" id="frt_uf" readonly />
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<input type="text" class="form-control decimal-2 vld-p vld-f pf" name="frt_minimo" id="frt_minimo" onblur="calcMedioFrt( this.id )" />
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >	
+										<input type="text" class="form-control decimal-2 vld-p vld-f pf" name="frt_maximo" id="frt_maximo" onblur="calcMedioFrt( this.id )" />						
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<input type="text" class="form-control vld-p vld-f pf" name="frt_media" id="frt_media" readonly />
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<textarea name="frt_observacao" id="frt_observacao" rows="1" class="form-control"  maxlength="100" size="100" ></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-info comissoes_verbas geren_venda" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Comissões / Verbas</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+			
+				<div class="col-xs-6">
+					<label for="demanda_inicial_mes" >
+						<i class="fluigicon fluigicon-plus-sign icon-md" onclick="addComissao()"></i>
+						Comissões
+					</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="comissoes" nodeletebutton=false noaddbutton=true  deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="33%" class="tableColumn"><b>Unidade</b></th>
+									<th width="33%" class="tableColumn"><b>Regional</b></th>
+									<th width="33%" class="tableColumn"><b>Comiss&atilde;o</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<div class="input-group">
+											<input type="text" class="form-control" name="unidade_comissao" id="unidade_comissao" readonly />
+											<span class="input-group-addon fluigicon fluigicon-zoom-in fluigicon-lg" onclick="zoom( this.children[0].id )" >
+												<input type="hidden" name="cod_unidade_comissao" id="cod_unidade_comissao" />
+											</span>
+										</div>
+									</td>
+									<td>
+										<div class="input-group">
+											<input type="text" class="form-control" name="regional_comissao" id="regional_comissao" readonly />
+											<span class="input-group-addon fluigicon fluigicon-zoom-in fluigicon-lg" onclick="zoom( this.children[0].id )" >
+												<input type="hidden" name="cod_regional_comissao" id="cod_regional_comissao" />
+											</span>
+										</div>
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-2" name="comissao_demanada" id="comissao_demanada" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="col-xs-6">
+					<label for="demanda_inicial_mes" >
+						<i class="fluigicon fluigicon-plus-sign icon-md" onclick="addVerba()"></i>
+						Clientes
+					</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="verbas" nodeletebutton=false noaddbutton=true  deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="70%" class="tableColumn"><b>Cliente</b></th>
+									<th width="30%" class="tableColumn"><b>Verba</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<div class="input-group">
+											<input type="text" class="form-control" name="den_cliente_verba" id="den_cliente_verba" readonly />
+											<span class="input-group-addon fluigicon fluigicon-zoom-in fluigicon-lg" onclick="zoom( this.children[0].id )" >
+												<input type="hidden" name="cod_cliente_verba" id="cod_cliente_verba" />
+											</span>
+										</div>
+									</td>
+									<td>
+										<input type="text" class="form-control decimal-2" name="cliente_verba" id="cliente_verba" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-info custo_4 geren_venda" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Custos / GNV</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="demanda_inicial_mes" >
+						<i class="fluigicon fluigicon-plus-sign icon-md" onclick="addCusto()"></i>
+						Custos, Rentabilidade e Pre&ccedil;o de Venda FQ-PD-03 (Adm)
+					</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="documentos_custos" nodeletebutton=false noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="10%" class="tableColumn"><b>Empresa</b></th>
+									<th width="10%" class="tableColumn"><b>UF</b></th>
+									<th width="15%" class="tableColumn"><b>Documento</b></th>
+									<th width="10%" class="tableColumn"><b>Percentual Aceito</b></th>
+									<th width="10%" class="tableColumn"><b>Valor Aceito</b></th>
+									<th width="10%" class="tableColumn"><b>Aprova&ccedil;&atilde;o</b></th>
+									<th width="35%" class="tableColumn"><b>Coment&aacute;rios</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<input type="text" class="form-control" name="cst_empresa" id="cst_empresa"  />
+										<input type="hidden" name="cod_cst_empresa" id="cod_cst_empresa" />
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<input type="text" class="form-control" name="cst_uf" id="cst_uf"  />
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<div class="input-group">
+											<input type="hidden" name="doc_custos" id="doc_custos" class="form-control task-p-93 task-f-93 pf" readonly />
+											<input type="text" name="titulo_doc_custos" id="titulo_doc_custos" class="form-control task-p-93 task-f-93 pf" readonly />
+											<span class="input-group-addon fluigicon fluigicon-file-doc fluigicon-lg" onclick="loadFile( this.children[0].id  )" style="display: none;" >
+												<input type="hidden" name="bt_custos" id="bt_custos">
+											</span>
+											<span class="input-group-addon fluigicon fluigicon-eye-open fluigicon-lg" onclick="openFile( this );"  >
+												<input type="hidden" name="bt_custos_open" id="bt_custos_open">
+											</span>
+										</div>
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<input type="text" class="form-control decimal-2 task-p-95 task-f-95 pf" name="cst_perc_aceito" id="cst_perc_aceito" />
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >	
+										<input type="text" class="form-control decimal-2 task-p-95 task-f-95 pf" name="cst_valor_aceito" id="cst_valor_aceito" />						
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<select name="cst_aprovacao" id="cst_aprovacao" class="form-control task-p-95 task-f-95 pf" >
+											<option value=""></option>
+											<option value="A">Aprovado</option>
+											<option value="R">Reprovado</option>
+										</select>
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<textarea name="cst_observacao" id="cst_observacao" rows="1" class="form-control"  maxlength="100" size="100" ></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="comentario_custo" >Coment&aacute;rios</label>
+					<textarea name="comentario_cst" id="comentario_cst" rows="1" class="form-control"  maxlength="500" size="500" ></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info controller_2" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Controller</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="demanda_inicial_mes" >Custos, Rentabilidade e Pre&ccedil;o de Venda FQ-PD-03 (Controladoria)</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="documentos_cont" nodeletebutton=true noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="10%" class="tableColumn"><b>Empresa</b></th>
+									<th width="10%" class="tableColumn"><b>UF</b></th>
+									<th width="15%" class="tableColumn"><b>Documento</b></th>
+									<th width="10%" class="tableColumn"><b>Aprova&ccedil;&atilde;o</b></th>
+									<th width="45%" class="tableColumn"><b>Coment&aacute;rios</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<input type="text" class="form-control" name="cont_empresa" id="cont_empresa" readonly />
+										<input type="hidden" name="cod_cont_empresa" id="cod_cont_empresa" />
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<input type="text" class="form-control" name="cont_uf" id="cont_uf" readonly />
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<div class="input-group">
+											<input type="hidden" name="doc_custos_cont" id="doc_custos_cont"  />
+											<input type="text" name="titulo_doc_custos_cont" id="titulo_doc_custos_cont" class="form-control" readonly />
+											<span class="input-group-addon fluigicon fluigicon-eye-open fluigicon-lg" onclick="openFile( this );"  >
+												<input type="hidden" name="bt_custos_cont_open" id="bt_custos_cont_open">
+											</span>
+										</div>
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<select name="cont_aprovacao" id="cont_aprovacao" class="form-control vld-p vld-f pf" >
+											<option value=""></option>
+											<option value="A">Aprovado</option>
+											<option value="R">Reprovado</option>
+										</select>
+									</td>
+									<td style="padding-left: 0px; padding-right: 0px;" >
+										<textarea name="cont_observacao" id="cont_observacao" rows="1" class="form-control"  maxlength="100" size="100" ></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="comentario_custo" >Coment&aacute;rios aprova&ccedil;&atilde;o</label>
+					<textarea name="comentario_controller_aprov" id="comentario_controller_aprov" rows="1" class="form-control"  maxlength="500" size="500" ></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info marketing_4" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Marketing</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-2">
+					<label for="art_ftp" >Arte FTP</label>
+					<select name="art_ftp" id="art_ftp" class="form-control vld-p vld-f " >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>	
+				</div>
+				<div class="col-xs-2">
+					<label for="art_ftp" >Medidas LE-MK-01</label>
+					<select name="medidas" id="medidas" class="form-control vld-p vld-f " >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>	
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="comentario_marketing_4" >Coment&aacute;rios aprova&ccedil;&atilde;o</label>
+					<textarea name="comentario_marketing_4" id="comentario_marketing_4" rows="1" class="form-control"  maxlength="500" size="500" ></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info ppcp_3" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>PPCP / Industrial</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-12 ">
+				
+					<label for="demanda_inicial_mes" >
+						<i class="fluigicon fluigicon-plus-sign icon-md" onclick="addCompra()"></i>
+						<i class="fluigicon fluigicon-th icon-md produto" onclick="copyMP('produto_compra')" data-toggle="tooltip" data-placement="bottom" title='Insere linhas conforme embalagens informadas na etapa de "Compras"' ></i>
+						Programa&ccedil;&atilde;o de Compras
+					</label>
+					<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+						<table class="table table-condensed table-bordered table-striped" border="1" tablename="produto_compra" nodeletebutton=false noaddbutton=true deleteicon="trash.png" addbuttonclass="wdkbuttonClass" style="margin-bottom: 0px;">
+							<thead>
+								<tr class="tableHeadRow" >	
+									<th width="30%" class="tableColumn"><b>Produto</b></th>
+									<th width="5%" class="tableColumn"><b>Terc.</b></th>
+									<th width="10%" class="tableColumn"><b>Ordem Compra</b></th>
+									<th width="10%" class="tableColumn"><b>Pedido Compra</b></th>
+									<th width="10%" class="tableColumn" title='Data Prevista de recebimento"'><b>Data Prev. Receb.</b></th>
+									<th width="10%" class="tableColumn" title='Data Prevista de recebimento"'><b>Data Conf. Receb.</b></th>
+									<th width="35%" class="tableColumn"><b>Observa&ccedil;&atilde;o</b></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr> 
+									<td>
+										<input type="text" class="form-control task-p-105 task-f-105 pf solic-compra" name="item_compra" id="item_compra" />
+									</td>
+									<td>
+										<select class="form-control task-p-105 task-f-105 pf solic-compra" name="item_terc_compra" id="item_terc_compra" >
+											<option value=""></option>
+											<option value="S">Sim</option>
+											<option value="N">N&atilde;o</option>
+										</select>
+									</td>
+									<td> 
+										<input type="text" class="form-control task-p-105 task-f-105 pf decimal-0 solic-compra" name="oc_item_compra" id="oc_item_compra" />
+									</td>
+									<td>
+										<input type="text" class="form-control task-p-160 task-f-160 pf decimal-0 prev-entrega" name="ped_item_compra" id="ped_item_compra" />
+									</td>
+									<td>
+										<input type="text" class="form-control task-p-160 task-f-160 pf data-fluig prev-entrega" name="dat_prev_item_compra" id="dat_prev_item_compra" onblur="setMaiorData('dat_prev_item_compra')" />
+									</td>
+									<td>
+										<input type="text" class="form-control task-p-176 task-f-176 pf data-fluig conf-entrega" name="dat_conf_item_compra" id="dat_conf_item_compra" onblur="setMaiorData('dat_conf_item_compra')" />
+									</td>
+									<td>
+									<textarea name="observacacao_item_compra" id="observacacao_item_compra" rows="1" class="form-control"  maxlength="300" size="300" ></textarea>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" name="max_dat_prev_item_compra" id="max_dat_prev_item_compra" />
+		<input type="hidden" name="max_dat_conf_item_compra" id="max_dat_conf_item_compra" />
+	</div>
+	
+	<div class="panel panel-info marketing_5" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Marketing</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div> 
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-2">
+					<label for="data_lancamento" data-toggle="tooltip" data-placement="bottom" title="Data prevista lan&ccedil;amento produto" >Data lan&ccedil;amento</label>
+					<input type="text" class="form-control data-fluig vld-p vld-f " name="data_lancamento" id="data_lancamento" />
+				</div>
+				<div class="col-xs-10">
+					<label for="observacacao_lancamento" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacacao_lancamento" id="observacacao_lancamento" rows="1" class="form-control"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info comercial_2" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Lider Adm de Vendas / Comercial</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-2">
+					<label for="tabela_preco" >Tabela de pre&ccedil;o</label>
+					<select name="tabela_preco" id="tabela_preco" class="form-control vld-p vld-f " >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>	
+				</div>
+				<div class="col-xs-10">
+					<label for="observacacao_tabela" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacacao_tabela" id="observacacao_tabela" rows="1" class="form-control"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info eng_prod_3" >
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Engenharia de Produto</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-2"> 
+					<label for="atu_ficha_tecnica" data-toggle="tooltip" data-placement="bottom" title="Atualiza&ccedil;&atilde;o da ficha t&eacute;cnica na pasta da ISO com mockup" >Atu. da ficha t&eacute;cnica</label>
+					<select name="atu_ficha_tecnica" id="atu_ficha_tecnica" class="form-control vld-p vld-f " >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>	
+				</div>
+				<div class="col-xs-10">
+					<label for="observacacao_ficha_tecnica" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacacao_ficha_tecnica" id="observacacao_ficha_tecnica" rows="1" class="form-control"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-info marketing_6">
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Marketing</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-2"> 
+					<label for="mock_up_site" data-toggle="tooltip" data-placement="bottom" title="Mock up no site " >Mock up no site </label>
+					<select name="mock_up_site" id="mock_up_site" class="form-control vld-p vld-f " >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>	
+				</div>
+				<div class="col-xs-10">
+					<label for="observacacao_mock_up_site" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacacao_mock_up_site" id="observacacao_mock_up_site" rows="1" class="form-control"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2"> 
+					<label for="ficha_tec_site" data-toggle="tooltip" data-placement="bottom" title="Ficha T&eacute;cnica no site" >Ficha T&eacute;cnica no site</label>
+					<select name="ficha_tec_site" id="ficha_tec_site" class="form-control vld-p vld-f " >
+						<option value=""></option>
+						<option value="S">Sim</option>
+						<option value="N">N&atilde;o</option>
+					</select>	
+				</div>
+				<div class="col-xs-10">
+					<label for="observacacao_ficha_tec_site" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacacao_ficha_tec_site" id="observacacao_ficha_tec_site" rows="1" class="form-control"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info marketing_7">
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr> 
+					<td width='10%' align=left ></td>
+					<td width='80%' align=center ><b>Marketing</b></td>
+					<td width='10%' align=right ></td>
+				</tr>
+			</table>		
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-xs-12">
+					<label for="observacacao_cancelamento" >Observa&ccedil;&atilde;o</label>
+					<textarea name="observacacao_cancelamento" id="observacacao_cancelamento" rows="3" class="form-control"  maxlength="300" size="300" ></textarea>					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div align="center">
+		<div class="btn-group btn-group-sm" role="toolbar">
+		    <div class="btn-group btn-group-sm">
+			    <button type="button" class="btn btn-default abas aba_01" onclick="controlaAba( '01' );" data-toggle="tooltip" data-placement="top" title="" >01</button>
+			    <button type="button" class="btn btn-default abas aba_02" onclick="controlaAba( '02' );" data-toggle="tooltip" data-placement="top" title="" >02</button>
+			    <button type="button" class="btn btn-default abas aba_03" onclick="controlaAba( '03' );" data-toggle="tooltip" data-placement="top" title="" >03</button>
+			    <button type="button" class="btn btn-default abas aba_04" onclick="controlaAba( '04' );" data-toggle="tooltip" data-placement="top" title="" >04</button>
+			    <button type="button" class="btn btn-default abas aba_05" onclick="controlaAba( '05' );" data-toggle="tooltip" data-placement="top" title="" >05</button>
+			    <button type="button" class="btn btn-default abas aba_06" onclick="controlaAba( '06' );" data-toggle="tooltip" data-placement="top" title="" >06</button>
+			    <button type="button" class="btn btn-default abas aba_07" onclick="controlaAba( '07' );" data-toggle="tooltip" data-placement="top" title="" >07</button>
+			    <button type="button" class="btn btn-default abas aba_08" onclick="controlaAba( '08' );" data-toggle="tooltip" data-placement="top" title="" >08</button>
+			    <button type="button" class="btn btn-default abas aba_09" onclick="controlaAba( '09' );" data-toggle="tooltip" data-placement="top" title="" >09</button>
+			    <button type="button" class="btn btn-default abas aba_10" onclick="controlaAba( '10' );" data-toggle="tooltip" data-placement="top" title="" >10</button>
+			    <button type="button" class="btn btn-default abas aba_11" onclick="controlaAba( '11' );" data-toggle="tooltip" data-placement="top" title="" >11</button>
+			    <button type="button" class="btn btn-default abas aba_12" onclick="controlaAba( '12' );" data-toggle="tooltip" data-placement="top" title="" >12</button>
+			    <button type="button" class="btn btn-default abas aba_13" onclick="controlaAba( '13' );" data-toggle="tooltip" data-placement="top" title="" >13</button>
+			    <button type="button" class="btn btn-default abas aba_14" onclick="controlaAba( '14' );" data-toggle="tooltip" data-placement="top" title="" >14</button>
+			    <button type="button" class="btn btn-default abas aba_15" onclick="controlaAba( '15' );" data-toggle="tooltip" data-placement="top" title="" >15</button>
+			    <button type="button" class="btn btn-default abas aba_16" onclick="controlaAba( '16' );" data-toggle="tooltip" data-placement="top" title="" >16</button>
+			    <button type="button" class="btn btn-default abas aba_17" onclick="controlaAba( '17' );" data-toggle="tooltip" data-placement="top" title="" >17</button>
+			    <button type="button" class="btn btn-default abas aba_18" onclick="controlaAba( '18' );" data-toggle="tooltip" data-placement="top" title="" >18</button>
+			    <button type="button" class="btn btn-default abas aba_19" onclick="controlaAba( '19' );" data-toggle="tooltip" data-placement="top" title="" >19</button>
+			    <button type="button" class="btn btn-default abas aba_20" onclick="controlaAba( '20' );" data-toggle="tooltip" data-placement="top" title="" >20</button>
+			    <button type="button" class="btn btn-default abas aba_21" onclick="controlaAba( '21' );" data-toggle="tooltip" data-placement="top" title="" >21</button>
+			    <button type="button" class="btn btn-default abas aba_22" onclick="controlaAba( '22' );" data-toggle="tooltip" data-placement="top" title="" >22</button>
+			    <button type="button" class="btn btn-default abas aba_23" onclick="controlaAba( '23' );" data-toggle="tooltip" data-placement="top" title="" >23</button>
+			    <button type="button" class="btn btn-default abas aba_24" onclick="controlaAba( '24' );" data-toggle="tooltip" data-placement="top" title="" >24</button>
+			    <button type="button" class="btn btn-default abas aba_25" onclick="controlaAba( '25' );" data-toggle="tooltip" data-placement="top" title="" >25</button>
+			    <button type="button" class="btn btn-default abas aba_26" onclick="controlaAba( '26' );" data-toggle="tooltip" data-placement="top" title="" >26</button>
+			    <button type="button" class="btn btn-default abas aba_27" onclick="controlaAba( '27' );" data-toggle="tooltip" data-placement="top" title="" >27</button>
+			    <button type="button" class="btn btn-default abas aba_28" onclick="controlaAba( '28' );" data-toggle="tooltip" data-placement="top" title="" >28</button>
+			    <button type="button" class="btn btn-default abas aba_29" onclick="controlaAba( '29' );" data-toggle="tooltip" data-placement="top" title="" >29</button>
+			    <button type="button" class="btn btn-default abas aba_30" onclick="controlaAba( '30' );" data-toggle="tooltip" data-placement="top" title="" >30</button>
+			    <button type="button" class="btn btn-default abas aba_31" onclick="controlaAba( '31' );" data-toggle="tooltip" data-placement="top" title="" >31</button>
+			    
+			    <button type="button" class="btn btn-primary " onclick="apontaHoras();">Apontar Horas</button>
+			    
+			</div>
+		</div>
+	<!-- 	<div class="row atv_analista apontamento">
+			<div class="col-md-2">
+				<label for="exampleTag">&nbsp;</label>
+				<button type="button" class="btn btn-primary form-control" onclick="apontaHoras();">Apontar Horas</button>
+			</div> -->
+	<!-- 	<div class="col-md-1 start">
+				<label for="exampleTag">&nbsp;</label>
+				<button type="button" class="btn btn-success form-control" onclick="startApontamento();">
+					<span class="fluigicon fluigicon-pointer-right icon-sm"></span>
+				</button>
+			</div>
+			<div class="col-md-1 end">
+				<label for="exampleTag">&nbsp;</label>
+				<button type="button" class="btn btn-danger form-control" onclick="endApontamento();">
+					<span class="fluigicon fluigicon-pause icon-sm"></span>
+				</button>
+			</div> -->
+	<!--  </div>
+	</div>-->
+	
+	<input type="hidden" name="user_fluig" id="user_fluig" />
+	<input type="hidden" name="nome_user_fluig" id="nome_user_fluig" />
+	
+	<input type="hidden" name="task" id="task" />
+	<input type="hidden" name="processo" id="processo" />
+	<input type="hidden" name="WKUser" id="WKUser" />
+	
+	<input type="hidden" name="num_pasta_produto" id="num_pasta_produto" />
+	<input type="file" name="load_file" id="load_file" title="" style="display: none;" onchange="selectFile(this.files)" />
+	
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+	.table-striped>tbody>tr:nth-child(odd)>td, 
+	.table-striped>tbody>tr:nth-child(odd)>th {
+			background-color: #F5F5DC; // Choose your own color here
+	}   
+	
+	div.pd_her.col-sm-1{
+    	padding-left: 7px;
+    	padding-right: 2px;
+		margin-bottom: 0px;
+    }
+	
+	div.pd_her.col-sm-2{
+    	padding-left: 7px;
+    	padding-right: 2px;
+		margin-bottom: 0px;
+    }
+	
+	div.pd_her.col-sm-3{
+    	padding-left: 7px;
+    	padding-right: 2px;
+		margin-bottom: 0px;
+    }
+	
+	div.pd_her.col-sm-4{
+    	padding-left: 7px;
+    	padding-right: 2px;
+		margin-bottom: 0px;
+    }
+	
+	div.pd_her.col-sm-5{
+    	padding-left: 7px;
+    	padding-right: 2px;
+		margin-bottom: 0px;
+    }
+	
+	div.pd_her.col-sm-6{
+    	padding-left: 7px;
+    	padding-right: 2px;
+		margin-bottom: 0px;
+    }
+	
+	div.pd_her.col-sm-7{
+    	padding-left: 7px;
+    	padding-right: 2px;
+		margin-bottom: 0px;
+    }
+	
+	div.pd_her.col-sm-8{
+    	padding-left: 7px;
+    	padding-right: 2px;
+		margin-bottom: 0px;
+    }
+	
+	div.pd_her.col-sm-8{
+    	padding-left: 7px;
+    	padding-right: 2px;
+		margin-bottom: 0px;
+    }
+	
+	div.pd_her.col-sm-10{
+    	padding-left: 7px;
+    	padding-right: 2px;
+		margin-bottom: 0px;
+    }	
+	
+	div.pd_her.col-sm-11{
+    	padding-left: 7px;
+    	padding-right: 2px;
+		margin-bottom: 0px;
+    }
+	
+	div.pd_her.col-sm-12{
+    	padding-left: 7px;
+    	padding-right: 2px;
+		margin-bottom: 0px;
+    }
+
+	div.row_table.row{
+		margin-left: 0px;
+    	margin-right: 0px;
+		margin-bottom: 0px;
+    }	

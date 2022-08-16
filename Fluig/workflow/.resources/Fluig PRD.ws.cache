@@ -2,6 +2,3406 @@
 <java version="1.8.0_333" class="java.beans.XMLDecoder">
  <object class="java.util.HashMap">
   <void method="put">
+   <string>volume</string>
+   <array class="java.lang.String" length="1">
+    <void index="0">
+     <string>Default</string>
+    </void>
+   </array>
+  </void>
+  <void method="put">
+   <string>camposFormulario, documentoId = 222141</string>
+   <array class="java.lang.String" length="314">
+    <void index="0">
+     <string>peso_unitario_produto</string>
+    </void>
+    <void index="1">
+     <string>numero_cores</string>
+    </void>
+    <void index="2">
+     <string>tem_acessorio</string>
+    </void>
+    <void index="3">
+     <string>bt_cod_sku_ind</string>
+    </void>
+    <void index="4">
+     <string>arm_unidade</string>
+    </void>
+    <void index="5">
+     <string>cod_regional_demanda_mes</string>
+    </void>
+    <void index="6">
+     <string>titulo</string>
+    </void>
+    <void index="7">
+     <string>cad_man10475</string>
+    </void>
+    <void index="8">
+     <string>aen_emb_primaria</string>
+    </void>
+    <void index="9">
+     <string>den_item_densidade</string>
+    </void>
+    <void index="10">
+     <string>frt_uf</string>
+    </void>
+    <void index="11">
+     <string>processo_producao</string>
+    </void>
+    <void index="12">
+     <string>user_fluig</string>
+    </void>
+    <void index="13">
+     <string>observacacao_mock_up_site</string>
+    </void>
+    <void index="14">
+     <string>um_multiplo_venda</string>
+    </void>
+    <void index="15">
+     <string>cod_cont_empresa</string>
+    </void>
+    <void index="16">
+     <string>comentario_compras</string>
+    </void>
+    <void index="17">
+     <string>processo</string>
+    </void>
+    <void index="18">
+     <string>manager</string>
+    </void>
+    <void index="19">
+     <string>observacao_cad_eng_proc</string>
+    </void>
+    <void index="20">
+     <string>bt_fornec</string>
+    </void>
+    <void index="21">
+     <string>doc_custos_cont</string>
+    </void>
+    <void index="22">
+     <string>prazo_estimado</string>
+    </void>
+    <void index="23">
+     <string>max_dat_prev_item_compra</string>
+    </void>
+    <void index="24">
+     <string>lote_minimo</string>
+    </void>
+    <void index="25">
+     <string>bt_custos</string>
+    </void>
+    <void index="26">
+     <string>tipo_processo</string>
+    </void>
+    <void index="27">
+     <string>cores</string>
+    </void>
+    <void index="28">
+     <string>tipo_ncm</string>
+    </void>
+    <void index="29">
+     <string>den_aen_acabado</string>
+    </void>
+    <void index="30">
+     <string>comentario_marketing_4</string>
+    </void>
+    <void index="31">
+     <string>um_densidade</string>
+    </void>
+    <void index="32">
+     <string>bt_cod_sku_plt</string>
+    </void>
+    <void index="33">
+     <string>cod_emb_secundaria</string>
+    </void>
+    <void index="34">
+     <string>cod_fornec_materia_prima</string>
+    </void>
+    <void index="35">
+     <string>cod_cliente_verba</string>
+    </void>
+    <void index="36">
+     <string>preco_estimado</string>
+    </void>
+    <void index="37">
+     <string>acessorios</string>
+    </void>
+    <void index="38">
+     <string>den_aen_emb_transporte</string>
+    </void>
+    <void index="39">
+     <string>doc_ficha_tec</string>
+    </void>
+    <void index="40">
+     <string>den_primaria</string>
+    </void>
+    <void index="41">
+     <string>valida_laboratorio_externo</string>
+    </void>
+    <void index="42">
+     <string>densidade</string>
+    </void>
+    <void index="43">
+     <string>regional_demanda</string>
+    </void>
+    <void index="44">
+     <string>atu_ficha_tecnica</string>
+    </void>
+    <void index="45">
+     <string>altura_palete</string>
+    </void>
+    <void index="46">
+     <string>volume_estimado</string>
+    </void>
+    <void index="47">
+     <string>cont_uf</string>
+    </void>
+    <void index="48">
+     <string>embalagem_marketing</string>
+    </void>
+    <void index="49">
+     <string>nome_solicitante</string>
+    </void>
+    <void index="50">
+     <string>cod_unidade_capacidade</string>
+    </void>
+    <void index="51">
+     <string>cod_sku_plt</string>
+    </void>
+    <void index="52">
+     <string>WKUser</string>
+    </void>
+    <void index="53">
+     <string>oc_emb_piloto</string>
+    </void>
+    <void index="54">
+     <string>lote_minimo_embalagem</string>
+    </void>
+    <void index="55">
+     <string>comentario_termo_abert</string>
+    </void>
+    <void index="56">
+     <string>den_materia_prima_orig</string>
+    </void>
+    <void index="57">
+     <string>tipo_densidade</string>
+    </void>
+    <void index="58">
+     <string>observacacao_tabela</string>
+    </void>
+    <void index="59">
+     <string>equipamento_especificacao</string>
+    </void>
+    <void index="60">
+     <string>analise_logistica_processo</string>
+    </void>
+    <void index="61">
+     <string>observacacao_seg_trab_m_amb</string>
+    </void>
+    <void index="62">
+     <string>ies_contab</string>
+    </void>
+    <void index="63">
+     <string>frt_observacao</string>
+    </void>
+    <void index="64">
+     <string>tabela_preco</string>
+    </void>
+    <void index="65">
+     <string>doc_custos</string>
+    </void>
+    <void index="66">
+     <string>orgao_federal</string>
+    </void>
+    <void index="67">
+     <string>nome_projeto_eng</string>
+    </void>
+    <void index="68">
+     <string>analise_producao</string>
+    </void>
+    <void index="69">
+     <string>mes_1_demanada</string>
+    </void>
+    <void index="70">
+     <string>cod_sku_ind</string>
+    </void>
+    <void index="71">
+     <string>part_externa_empresa</string>
+    </void>
+    <void index="72">
+     <string>valida_laboratorio_interno</string>
+    </void>
+    <void index="73">
+     <string>titulo_doc_formulacao</string>
+    </void>
+    <void index="74">
+     <string>den_cliente_verba</string>
+    </void>
+    <void index="75">
+     <string>num_pasta_produto</string>
+    </void>
+    <void index="76">
+     <string>den_materia_prima</string>
+    </void>
+    <void index="77">
+     <string>cod_projeto_eng</string>
+    </void>
+    <void index="78">
+     <string>comentario_acessorios</string>
+    </void>
+    <void index="79">
+     <string>observacacao_manutencao</string>
+    </void>
+    <void index="80">
+     <string>data_solicitacao</string>
+    </void>
+    <void index="81">
+     <string>doc_custo_meta</string>
+    </void>
+    <void index="82">
+     <string>arm_receb_mp</string>
+    </void>
+    <void index="83">
+     <string>proc_montagem_embalagem</string>
+    </void>
+    <void index="84">
+     <string>ies_prazo_espec</string>
+    </void>
+    <void index="85">
+     <string>data_abertura</string>
+    </void>
+    <void index="86">
+     <string>den_cest</string>
+    </void>
+    <void index="87">
+     <string>aen_premix</string>
+    </void>
+    <void index="88">
+     <string>altura_palete_fer</string>
+    </void>
+    <void index="89">
+     <string>cst_empresa</string>
+    </void>
+    <void index="90">
+     <string>titulo_doc_custos_cont</string>
+    </void>
+    <void index="91">
+     <string>aen_acabado</string>
+    </void>
+    <void index="92">
+     <string>bt_custos_open</string>
+    </void>
+    <void index="93">
+     <string>equipamento_lcq_especificacao</string>
+    </void>
+    <void index="94">
+     <string>quant_palete</string>
+    </void>
+    <void index="95">
+     <string>dat_conf_item_compra</string>
+    </void>
+    <void index="96">
+     <string>embalagem_piloto</string>
+    </void>
+    <void index="97">
+     <string>mes_3_demanada</string>
+    </void>
+    <void index="98">
+     <string>bt_custos_cont_open</string>
+    </void>
+    <void index="99">
+     <string>processo_especificacao</string>
+    </void>
+    <void index="100">
+     <string>den_secundaria</string>
+    </void>
+    <void index="101">
+     <string>medidas</string>
+    </void>
+    <void index="102">
+     <string>cst_aprovacao</string>
+    </void>
+    <void index="103">
+     <string>embalagem_materia_prima</string>
+    </void>
+    <void index="104">
+     <string>ped_item_compra</string>
+    </void>
+    <void index="105">
+     <string>unidade_capacidade</string>
+    </void>
+    <void index="106">
+     <string>cont_aprovacao</string>
+    </void>
+    <void index="107">
+     <string>cod_frt_unidade</string>
+    </void>
+    <void index="108">
+     <string>cod_solicitante</string>
+    </void>
+    <void index="109">
+     <string>cod_projeto</string>
+    </void>
+    <void index="110">
+     <string>ies_mp_nova</string>
+    </void>
+    <void index="111">
+     <string>nome_user_fluig</string>
+    </void>
+    <void index="112">
+     <string>observacacao_log_proc</string>
+    </void>
+    <void index="113">
+     <string>nom_cliente</string>
+    </void>
+    <void index="114">
+     <string>arm_mp</string>
+    </void>
+    <void index="115">
+     <string>frt_media</string>
+    </void>
+    <void index="116">
+     <string>regional_departamento</string>
+    </void>
+    <void index="117">
+     <string>descr_secundaria</string>
+    </void>
+    <void index="118">
+     <string>den_item_barras</string>
+    </void>
+    <void index="119">
+     <string>equipamento_lcq</string>
+    </void>
+    <void index="120">
+     <string>observacacao_tem_acessorio</string>
+    </void>
+    <void index="121">
+     <string>cod_unidade_demanda_mes</string>
+    </void>
+    <void index="122">
+     <string>cod_unidade_comissao</string>
+    </void>
+    <void index="123">
+     <string>regional_demanda_mes</string>
+    </void>
+    <void index="124">
+     <string>equipamento_producao</string>
+    </void>
+    <void index="125">
+     <string>cliente_verba</string>
+    </void>
+    <void index="126">
+     <string>bt_item_densidade</string>
+    </void>
+    <void index="127">
+     <string>dat_prev_oc_emb_piloto</string>
+    </void>
+    <void index="128">
+     <string>frt_maximo</string>
+    </void>
+    <void index="129">
+     <string>cod_cliente</string>
+    </void>
+    <void index="130">
+     <string>dat_prev_item_compra</string>
+    </void>
+    <void index="131">
+     <string>cod_regional_comissao</string>
+    </void>
+    <void index="132">
+     <string>comentario_marketing</string>
+    </void>
+    <void index="133">
+     <string>den_aen_emb_secundaria</string>
+    </void>
+    <void index="134">
+     <string>lote_minimo_fracionado</string>
+    </void>
+    <void index="135">
+     <string>oc_item_compra</string>
+    </void>
+    <void index="136">
+     <string>foco_canal</string>
+    </void>
+    <void index="137">
+     <string>observacacao_lancamento</string>
+    </void>
+    <void index="138">
+     <string>bt_cod_fantasma</string>
+    </void>
+    <void index="139">
+     <string>mark_up_estimado</string>
+    </void>
+    <void index="140">
+     <string>cod_arm_reginal</string>
+    </void>
+    <void index="141">
+     <string>cod_emp_solicitante</string>
+    </void>
+    <void index="142">
+     <string>cst_valor_aceito</string>
+    </void>
+    <void index="143">
+     <string>dimensao_unitario_produto</string>
+    </void>
+    <void index="144">
+     <string>densidade_solicitada</string>
+    </void>
+    <void index="145">
+     <string>comentario_ppcp</string>
+    </void>
+    <void index="146">
+     <string>metodologia_lcq</string>
+    </void>
+    <void index="147">
+     <string>bt_um_densidade</string>
+    </void>
+    <void index="148">
+     <string>aen_semiacabado</string>
+    </void>
+    <void index="149">
+     <string>cod_empresa_contab</string>
+    </void>
+    <void index="150">
+     <string>sugestao_nome_marketing</string>
+    </void>
+    <void index="151">
+     <string>aen_emb_secundaria</string>
+    </void>
+    <void index="152">
+     <string>observacacao_item_compra</string>
+    </void>
+    <void index="153">
+     <string>den_transporte</string>
+    </void>
+    <void index="154">
+     <string>comentario_controller</string>
+    </void>
+    <void index="155">
+     <string>cod_arm_unidade</string>
+    </void>
+    <void index="156">
+     <string>cod_fantasma</string>
+    </void>
+    <void index="157">
+     <string>bt_cod_etapa</string>
+    </void>
+    <void index="158">
+     <string>descr_transporte</string>
+    </void>
+    <void index="159">
+     <string>bt_form_cor_open</string>
+    </void>
+    <void index="160">
+     <string>analise_ped</string>
+    </void>
+    <void index="161">
+     <string>num_cest</string>
+    </void>
+    <void index="162">
+     <string>observacacao_producao</string>
+    </void>
+    <void index="163">
+     <string>demanda_preco_estimado</string>
+    </void>
+    <void index="164">
+     <string>cod_emb_transporte</string>
+    </void>
+    <void index="165">
+     <string>analise_embalagem</string>
+    </void>
+    <void index="166">
+     <string>data_lancamento</string>
+    </void>
+    <void index="167">
+     <string>titulo_doc_fispq_produto</string>
+    </void>
+    <void index="168">
+     <string>arm_observacao</string>
+    </void>
+    <void index="169">
+     <string>cod_regional_demanda</string>
+    </void>
+    <void index="170">
+     <string>regional_comissao</string>
+    </void>
+    <void index="171">
+     <string>prazo_pagamento</string>
+    </void>
+    <void index="172">
+     <string>analise_manutencao</string>
+    </void>
+    <void index="173">
+     <string>cad_eng_proc</string>
+    </void>
+    <void index="174">
+     <string>custo_efetivo</string>
+    </void>
+    <void index="175">
+     <string>cod_emb_primaria</string>
+    </void>
+    <void index="176">
+     <string>observacao_analise_embalagem</string>
+    </void>
+    <void index="177">
+     <string>multiplo_vendas</string>
+    </void>
+    <void index="178">
+     <string>observacacao_compras</string>
+    </void>
+    <void index="179">
+     <string>max_dat_conf_item_compra</string>
+    </void>
+    <void index="180">
+     <string>largura_emb_piloto</string>
+    </void>
+    <void index="181">
+     <string>analise_fornecedor</string>
+    </void>
+    <void index="182">
+     <string>dun14_cor</string>
+    </void>
+    <void index="183">
+     <string>cod_cst_empresa</string>
+    </void>
+    <void index="184">
+     <string>observacacao_ped</string>
+    </void>
+    <void index="185">
+     <string>manual_produto</string>
+    </void>
+    <void index="186">
+     <string>ies_acessorios_produto</string>
+    </void>
+    <void index="187">
+     <string>cst_observacao</string>
+    </void>
+    <void index="188">
+     <string>produto_similar</string>
+    </void>
+    <void index="189">
+     <string>ies_proc_montagem_embalagem</string>
+    </void>
+    <void index="190">
+     <string>den_aen_semiacabado</string>
+    </void>
+    <void index="191">
+     <string>lead_time_embalagem</string>
+    </void>
+    <void index="192">
+     <string>orgao_federal_especificacao</string>
+    </void>
+    <void index="193">
+     <string>titulo_doc_custo_meta</string>
+    </void>
+    <void index="194">
+     <string>ficha_tec_site</string>
+    </void>
+    <void index="195">
+     <string>comentario_demanda</string>
+    </void>
+    <void index="196">
+     <string>unidade_comissao</string>
+    </void>
+    <void index="197">
+     <string>bt_form_cor</string>
+    </void>
+    <void index="198">
+     <string>comentario_custo</string>
+    </void>
+    <void index="199">
+     <string>observacacao_ficha_tec_site</string>
+    </void>
+    <void index="200">
+     <string>metodologia_lcq_especificacao</string>
+    </void>
+    <void index="201">
+     <string>cod_item_densidade</string>
+    </void>
+    <void index="202">
+     <string>uf_demanda_mes</string>
+    </void>
+    <void index="203">
+     <string>part_externa_representante</string>
+    </void>
+    <void index="204">
+     <string>doc_fispq_produto</string>
+    </void>
+    <void index="205">
+     <string>fornecedor_materia_prima</string>
+    </void>
+    <void index="206">
+     <string>num_processo</string>
+    </void>
+    <void index="207">
+     <string>fabricante_materia_prima</string>
+    </void>
+    <void index="208">
+     <string>documento_especificao</string>
+    </void>
+    <void index="209">
+     <string>gestor_projeto</string>
+    </void>
+    <void index="210">
+     <string>cliente_especifico</string>
+    </void>
+    <void index="211">
+     <string>revisao_especificao</string>
+    </void>
+    <void index="212">
+     <string>doc_formulacao</string>
+    </void>
+    <void index="213">
+     <string>observ_capacidade</string>
+    </void>
+    <void index="214">
+     <string>comissao_demanada</string>
+    </void>
+    <void index="215">
+     <string>den_aen_emb_primaria</string>
+    </void>
+    <void index="216">
+     <string>titulo_doc_fispq_premix</string>
+    </void>
+    <void index="217">
+     <string>titulo_doc_form_cor</string>
+    </void>
+    <void index="218">
+     <string>altura_emb_piloto</string>
+    </void>
+    <void index="219">
+     <string>descr_primaria</string>
+    </void>
+    <void index="220">
+     <string>titulo_doc_custos</string>
+    </void>
+    <void index="221">
+     <string>bt_cod_premix</string>
+    </void>
+    <void index="222">
+     <string>titulo_manual_produto</string>
+    </void>
+    <void index="223">
+     <string>observacacao_cancelamento</string>
+    </void>
+    <void index="224">
+     <string>aba_emb_piloto</string>
+    </void>
+    <void index="225">
+     <string>comentario_engenharia</string>
+    </void>
+    <void index="226">
+     <string>validacao_em_campo</string>
+    </void>
+    <void index="227">
+     <string>lead_time</string>
+    </void>
+    <void index="228">
+     <string>materia_prima_fornecedor</string>
+    </void>
+    <void index="229">
+     <string>cod_interno</string>
+    </void>
+    <void index="230">
+     <string>aen_emb_transporte</string>
+    </void>
+    <void index="231">
+     <string>tipo_cest</string>
+    </void>
+    <void index="232">
+     <string>produto_ppcp</string>
+    </void>
+    <void index="233">
+     <string>restricoes</string>
+    </void>
+    <void index="234">
+     <string>linha_producao</string>
+    </void>
+    <void index="235">
+     <string>lastro_palete</string>
+    </void>
+    <void index="236">
+     <string>frt_minimo</string>
+    </void>
+    <void index="237">
+     <string>cst_perc_aceito</string>
+    </void>
+    <void index="238">
+     <string>dat_valid_oc_emb_piloto</string>
+    </void>
+    <void index="239">
+     <string>acond_secundario</string>
+    </void>
+    <void index="240">
+     <string>comentario_custos</string>
+    </void>
+    <void index="241">
+     <string>sugestao_aen_comercial</string>
+    </void>
+    <void index="242">
+     <string>qtd_cor_produto</string>
+    </void>
+    <void index="243">
+     <string>conceito_marketing</string>
+    </void>
+    <void index="244">
+     <string>comentario_cst</string>
+    </void>
+    <void index="245">
+     <string>task</string>
+    </void>
+    <void index="246">
+     <string>data_fechamento</string>
+    </void>
+    <void index="247">
+     <string>comentario_controller_aprov</string>
+    </void>
+    <void index="248">
+     <string>bt_mp</string>
+    </void>
+    <void index="249">
+     <string>cor_form</string>
+    </void>
+    <void index="250">
+     <string>den_aen_premix</string>
+    </void>
+    <void index="251">
+     <string>cod_regional_departamento</string>
+    </void>
+    <void index="252">
+     <string>analise_seg_trabalho_ambiente</string>
+    </void>
+    <void index="253">
+     <string>observacacao_quant_compra</string>
+    </void>
+    <void index="254">
+     <string>cont_empresa</string>
+    </void>
+    <void index="255">
+     <string>item_terc_compra</string>
+    </void>
+    <void index="256">
+     <string>load_file</string>
+    </void>
+    <void index="257">
+     <string>multiplo_venda</string>
+    </void>
+    <void index="258">
+     <string>cod_etapa</string>
+    </void>
+    <void index="259">
+     <string>demanda_mercado</string>
+    </void>
+    <void index="260">
+     <string>doc_form_cor</string>
+    </void>
+    <void index="261">
+     <string>obj_projeto</string>
+    </void>
+    <void index="262">
+     <string>acond_secundario_fer</string>
+    </void>
+    <void index="263">
+     <string>espessura_emb_piloto</string>
+    </void>
+    <void index="264">
+     <string>cst_uf</string>
+    </void>
+    <void index="265">
+     <string>observacao_multiplo</string>
+    </void>
+    <void index="266">
+     <string>part_externa_relac_proj</string>
+    </void>
+    <void index="267">
+     <string>batelada_minimo</string>
+    </void>
+    <void index="268">
+     <string>bt_cod_emb_transporte</string>
+    </void>
+    <void index="269">
+     <string>observacacao_ficha_tecnica</string>
+    </void>
+    <void index="270">
+     <string>valvula_emb_piloto</string>
+    </void>
+    <void index="271">
+     <string>codigo_projeto_engenharia</string>
+    </void>
+    <void index="272">
+     <string>mock_up_site</string>
+    </void>
+    <void index="273">
+     <string>desc_tipo_embalagem</string>
+    </void>
+    <void index="274">
+     <string>demanda_inicial</string>
+    </void>
+    <void index="275">
+     <string>lastro_palete_fer</string>
+    </void>
+    <void index="276">
+     <string>origem_solic</string>
+    </void>
+    <void index="277">
+     <string>bt_cod_interno</string>
+    </void>
+    <void index="278">
+     <string>quant_compra</string>
+    </void>
+    <void index="279">
+     <string>nome_projeto</string>
+    </void>
+    <void index="280">
+     <string>cod_materia_prima</string>
+    </void>
+    <void index="281">
+     <string>acessorios_produto</string>
+    </void>
+    <void index="282">
+     <string>fornecedor_materia_prima_orig</string>
+    </void>
+    <void index="283">
+     <string>titulo_doc_ficha_tec</string>
+    </void>
+    <void index="284">
+     <string>cod_premix</string>
+    </void>
+    <void index="285">
+     <string>den_item</string>
+    </void>
+    <void index="286">
+     <string>observacao_cad_man10475</string>
+    </void>
+    <void index="287">
+     <string>comentarios1</string>
+    </void>
+    <void index="288">
+     <string>multiplo_marketing</string>
+    </void>
+    <void index="289">
+     <string>nome_produto</string>
+    </void>
+    <void index="290">
+     <string>quantidade_mes_materia_prima</string>
+    </void>
+    <void index="291">
+     <string>cod_gestor_projeto</string>
+    </void>
+    <void index="292">
+     <string>observacao_linha_producao</string>
+    </void>
+    <void index="293">
+     <string>tem_capacidade</string>
+    </void>
+    <void index="294">
+     <string>fornecedor_embalagem</string>
+    </void>
+    <void index="295">
+     <string>valida_campo</string>
+    </void>
+    <void index="296">
+     <string>art_ftp</string>
+    </void>
+    <void index="297">
+     <string>bt_cod_emb_secundaria</string>
+    </void>
+    <void index="298">
+     <string>arm_reginal</string>
+    </void>
+    <void index="299">
+     <string>faturamento_estimado</string>
+    </void>
+    <void index="300">
+     <string>empresa_contab</string>
+    </void>
+    <void index="301">
+     <string>item_compra</string>
+    </void>
+    <void index="302">
+     <string>peso_emb_piloto</string>
+    </void>
+    <void index="303">
+     <string>unidade_demanda_mes</string>
+    </void>
+    <void index="304">
+     <string>doc_fispq_premix</string>
+    </void>
+    <void index="305">
+     <string>bt_cod_emb_primaria</string>
+    </void>
+    <void index="306">
+     <string>num_ncm</string>
+    </void>
+    <void index="307">
+     <string>cont_observacao</string>
+    </void>
+    <void index="308">
+     <string>nome_produto_reduz</string>
+    </void>
+    <void index="309">
+     <string>quant_palete_fer</string>
+    </void>
+    <void index="310">
+     <string>aen13_cor</string>
+    </void>
+    <void index="311">
+     <string>data_especificao</string>
+    </void>
+    <void index="312">
+     <string>mes_2_demanada</string>
+    </void>
+    <void index="313">
+     <string>frt_unidade</string>
+    </void>
+   </array>
+  </void>
+  <void method="put">
+   <string>camposFormulario, documentoId = 52</string>
+   <array class="java.lang.String" length="329">
+    <void index="0">
+     <string>den_item_reduz</string>
+    </void>
+    <void index="1">
+     <string>val_ipi_edit</string>
+    </void>
+    <void index="2">
+     <string>val_acordo_edit</string>
+    </void>
+    <void index="3">
+     <string>ies_bairro_ent_manual</string>
+    </void>
+    <void index="4">
+     <string>custo_material_secundario</string>
+    </void>
+    <void index="5">
+     <string>ies_desc_item_reg</string>
+    </void>
+    <void index="6">
+     <string>obs_item_4_edit</string>
+    </void>
+    <void index="7">
+     <string>linha</string>
+    </void>
+    <void index="8">
+     <string>den_item_edit</string>
+    </void>
+    <void index="9">
+     <string>tipo_entrega</string>
+    </void>
+    <void index="10">
+     <string>ies_pct_lob_nac</string>
+    </void>
+    <void index="11">
+     <string>data_entrega</string>
+    </void>
+    <void index="12">
+     <string>num_precisao</string>
+    </void>
+    <void index="13">
+     <string>reginal_user</string>
+    </void>
+    <void index="14">
+     <string>bairro_ent_sel_md</string>
+    </void>
+    <void index="15">
+     <string>processo</string>
+    </void>
+    <void index="16">
+     <string>tipo_pergunta</string>
+    </void>
+    <void index="17">
+     <string>cep_ent</string>
+    </void>
+    <void index="18">
+     <string>ies_tip_fornec</string>
+    </void>
+    <void index="19">
+     <string>perc_pis</string>
+    </void>
+    <void index="20">
+     <string>val_royaltie_edit</string>
+    </void>
+    <void index="21">
+     <string>texto_nf_5</string>
+    </void>
+    <void index="22">
+     <string>texto_nf_4</string>
+    </void>
+    <void index="23">
+     <string>val_lob_ton_total</string>
+    </void>
+    <void index="24">
+     <string>ies_emite_dupl_cond</string>
+    </void>
+    <void index="25">
+     <string>val_comis_adic_total</string>
+    </void>
+    <void index="26">
+     <string>userFluig</string>
+    </void>
+    <void index="27">
+     <string>texto_nf_1</string>
+    </void>
+    <void index="28">
+     <string>texto_nf_3</string>
+    </void>
+    <void index="29">
+     <string>texto_nf_2</string>
+    </void>
+    <void index="30">
+     <string>tipo_frete_logix</string>
+    </void>
+    <void index="31">
+     <string>pct_desc_adic_edit</string>
+    </void>
+    <void index="32">
+     <string>tipo_cliente_hd</string>
+    </void>
+    <void index="33">
+     <string>cod_pergunta</string>
+    </void>
+    <void index="34">
+     <string>pct_desc_adic</string>
+    </void>
+    <void index="35">
+     <string>perc_verba</string>
+    </void>
+    <void index="36">
+     <string>valor_unit_liq_edit</string>
+    </void>
+    <void index="37">
+     <string>perc_finac_total</string>
+    </void>
+    <void index="38">
+     <string>dup_item</string>
+    </void>
+    <void index="39">
+     <string>valor_unit_edit</string>
+    </void>
+    <void index="40">
+     <string>perc_rol_edit</string>
+    </void>
+    <void index="41">
+     <string>val_rol_total</string>
+    </void>
+    <void index="42">
+     <string>inf_obs</string>
+    </void>
+    <void index="43">
+     <string>per_sel_cidades</string>
+    </void>
+    <void index="44">
+     <string>casas_preco</string>
+    </void>
+    <void index="45">
+     <string>cubagem</string>
+    </void>
+    <void index="46">
+     <string>cubagem_edit</string>
+    </void>
+    <void index="47">
+     <string>perc_frete_total</string>
+    </void>
+    <void index="48">
+     <string>val_lob</string>
+    </void>
+    <void index="49">
+     <string>linha_edit</string>
+    </void>
+    <void index="50">
+     <string>razao_social</string>
+    </void>
+    <void index="51">
+     <string>perc_trans</string>
+    </void>
+    <void index="52">
+     <string>btEndereco</string>
+    </void>
+    <void index="53">
+     <string>perc_cofins</string>
+    </void>
+    <void index="54">
+     <string>perc_st</string>
+    </void>
+    <void index="55">
+     <string>custo</string>
+    </void>
+    <void index="56">
+     <string>perc_pis_edit</string>
+    </void>
+    <void index="57">
+     <string>val_st</string>
+    </void>
+    <void index="58">
+     <string>pedido_cli_edit</string>
+    </void>
+    <void index="59">
+     <string>quantidade</string>
+    </void>
+    <void index="60">
+     <string>perc_mix_ger_nac</string>
+    </void>
+    <void index="61">
+     <string>cod_tip_carteira_edit</string>
+    </void>
+    <void index="62">
+     <string>peso_total_geral</string>
+    </void>
+    <void index="63">
+     <string>ies_finalidade</string>
+    </void>
+    <void index="64">
+     <string>perc_lob_geral_total</string>
+    </void>
+    <void index="65">
+     <string>valor_unit_lista</string>
+    </void>
+    <void index="66">
+     <string>perc_comis_total</string>
+    </void>
+    <void index="67">
+     <string>ies_end_entrega</string>
+    </void>
+    <void index="68">
+     <string>valor_unit_moeda_edit</string>
+    </void>
+    <void index="69">
+     <string>perc_trans_edit</string>
+    </void>
+    <void index="70">
+     <string>bt_repres</string>
+    </void>
+    <void index="71">
+     <string>compl_nf</string>
+    </void>
+    <void index="72">
+     <string>perc_st_total</string>
+    </void>
+    <void index="73">
+     <string>perc_acordo_total</string>
+    </void>
+    <void index="74">
+     <string>transportadora</string>
+    </void>
+    <void index="75">
+     <string>cod_repres</string>
+    </void>
+    <void index="76">
+     <string>cod_item_edit</string>
+    </void>
+    <void index="77">
+     <string>cod_lin_recei</string>
+    </void>
+    <void index="78">
+     <string>cod_motivo</string>
+    </void>
+    <void index="79">
+     <string>perc_verba_total</string>
+    </void>
+    <void index="80">
+     <string>pct_desc_financ</string>
+    </void>
+    <void index="81">
+     <string>val_cofins</string>
+    </void>
+    <void index="82">
+     <string>sequencia</string>
+    </void>
+    <void index="83">
+     <string>perc_pis_total</string>
+    </void>
+    <void index="84">
+     <string>perc_comis</string>
+    </void>
+    <void index="85">
+     <string>data_prevista</string>
+    </void>
+    <void index="86">
+     <string>cotacao</string>
+    </void>
+    <void index="87">
+     <string>pedido_cli_item</string>
+    </void>
+    <void index="88">
+     <string>perc_st_edit</string>
+    </void>
+    <void index="89">
+     <string>cod_tip_cli</string>
+    </void>
+    <void index="90">
+     <string>cod_cla_uso_edit</string>
+    </void>
+    <void index="91">
+     <string>ies_alt_list_reg</string>
+    </void>
+    <void index="92">
+     <string>emailOrc</string>
+    </void>
+    <void index="93">
+     <string>val_lob_total_edit</string>
+    </void>
+    <void index="94">
+     <string>ies_desc_item_nac</string>
+    </void>
+    <void index="95">
+     <string>cod_lin_prod</string>
+    </void>
+    <void index="96">
+     <string>val_lob_geral_total</string>
+    </void>
+    <void index="97">
+     <string>bairro_ent_sel</string>
+    </void>
+    <void index="98">
+     <string>perc_custo</string>
+    </void>
+    <void index="99">
+     <string>cod_tip_carteira_cli</string>
+    </void>
+    <void index="100">
+     <string>sit_pedido</string>
+    </void>
+    <void index="101">
+     <string>mot_cancel</string>
+    </void>
+    <void index="102">
+     <string>um</string>
+    </void>
+    <void index="103">
+     <string>val_pis_edit</string>
+    </void>
+    <void index="104">
+     <string>ies_isento_ie</string>
+    </void>
+    <void index="105">
+     <string>perc_comis_adic_total</string>
+    </void>
+    <void index="106">
+     <string>custo_embalagem_logistica</string>
+    </void>
+    <void index="107">
+     <string>val_cofins_edit</string>
+    </void>
+    <void index="108">
+     <string>perc_rol_total</string>
+    </void>
+    <void index="109">
+     <string>empresa_hd</string>
+    </void>
+    <void index="110">
+     <string>peso_edit</string>
+    </void>
+    <void index="111">
+     <string>userFluigNome</string>
+    </void>
+    <void index="112">
+     <string>perc_royaltie_edit</string>
+    </void>
+    <void index="113">
+     <string>custo_total</string>
+    </void>
+    <void index="114">
+     <string>valor_minimo</string>
+    </void>
+    <void index="115">
+     <string>custo_servico_terceiro</string>
+    </void>
+    <void index="116">
+     <string>val_cofins_total</string>
+    </void>
+    <void index="117">
+     <string>vlr_frete_total</string>
+    </void>
+    <void index="118">
+     <string>valor_bruto</string>
+    </void>
+    <void index="119">
+     <string>val_verba_total</string>
+    </void>
+    <void index="120">
+     <string>perc_ipi</string>
+    </void>
+    <void index="121">
+     <string>val_verba</string>
+    </void>
+    <void index="122">
+     <string>custo_embalagem</string>
+    </void>
+    <void index="123">
+     <string>valor_unit</string>
+    </void>
+    <void index="124">
+     <string>perc_comis_adic_edit</string>
+    </void>
+    <void index="125">
+     <string>qtd_pad_edit</string>
+    </void>
+    <void index="126">
+     <string>tipo_desconto</string>
+    </void>
+    <void index="127">
+     <string>perc_cofins_edit</string>
+    </void>
+    <void index="128">
+     <string>custo_materia_prima</string>
+    </void>
+    <void index="129">
+     <string>perc_lob_ger_nac</string>
+    </void>
+    <void index="130">
+     <string>ies_mix</string>
+    </void>
+    <void index="131">
+     <string>val_rob_total</string>
+    </void>
+    <void index="132">
+     <string>fretetotal</string>
+    </void>
+    <void index="133">
+     <string>val_acordo_total</string>
+    </void>
+    <void index="134">
+     <string>val_rol_edit</string>
+    </void>
+    <void index="135">
+     <string>cod_cliente</string>
+    </void>
+    <void index="136">
+     <string>cod_pais_ent</string>
+    </void>
+    <void index="137">
+     <string>ins_estadual</string>
+    </void>
+    <void index="138">
+     <string>custo_material_revenda</string>
+    </void>
+    <void index="139">
+     <string>tipoCadUser</string>
+    </void>
+    <void index="140">
+     <string>tipo_logradouro_ent</string>
+    </void>
+    <void index="141">
+     <string>seq_pedido_cli_edit</string>
+    </void>
+    <void index="142">
+     <string>cod_grupo_item_edit</string>
+    </void>
+    <void index="143">
+     <string>acordo_comercial</string>
+    </void>
+    <void index="144">
+     <string>perc_icms</string>
+    </void>
+    <void index="145">
+     <string>cod_class</string>
+    </void>
+    <void index="146">
+     <string>val_comis_adic</string>
+    </void>
+    <void index="147">
+     <string>pais_ent</string>
+    </void>
+    <void index="148">
+     <string>moeda</string>
+    </void>
+    <void index="149">
+     <string>cod_lin_prod_edit</string>
+    </void>
+    <void index="150">
+     <string>custo_edit</string>
+    </void>
+    <void index="151">
+     <string>data_entrega_edit</string>
+    </void>
+    <void index="152">
+     <string>texto_pedido_2</string>
+    </void>
+    <void index="153">
+     <string>texto_pedido_1</string>
+    </void>
+    <void index="154">
+     <string>linha_frete</string>
+    </void>
+    <void index="155">
+     <string>pct_desc_adicional</string>
+    </void>
+    <void index="156">
+     <string>val_comis</string>
+    </void>
+    <void index="157">
+     <string>val_royaltie</string>
+    </void>
+    <void index="158">
+     <string>cod_cla_uso</string>
+    </void>
+    <void index="159">
+     <string>cod_tip_carteira</string>
+    </void>
+    <void index="160">
+     <string>ies_emite_dupl</string>
+    </void>
+    <void index="161">
+     <string>val_verba_edit</string>
+    </void>
+    <void index="162">
+     <string>val_finac_edit</string>
+    </void>
+    <void index="163">
+     <string>cod_trans</string>
+    </void>
+    <void index="164">
+     <string>custo_trans</string>
+    </void>
+    <void index="165">
+     <string>perc_comis_edit</string>
+    </void>
+    <void index="166">
+     <string>val_lob_edit</string>
+    </void>
+    <void index="167">
+     <string>perc_rol</string>
+    </void>
+    <void index="168">
+     <string>cliente_cadastrado</string>
+    </void>
+    <void index="169">
+     <string>cli_exc_mix</string>
+    </void>
+    <void index="170">
+     <string>perc_acordo</string>
+    </void>
+    <void index="171">
+     <string>cod_seg_merc_edit</string>
+    </void>
+    <void index="172">
+     <string>endereco_ent</string>
+    </void>
+    <void index="173">
+     <string>obs_item_5_edit</string>
+    </void>
+    <void index="174">
+     <string>seq_end</string>
+    </void>
+    <void index="175">
+     <string>bairro_ent</string>
+    </void>
+    <void index="176">
+     <string>valor_total_edit</string>
+    </void>
+    <void index="177">
+     <string>den_item</string>
+    </void>
+    <void index="178">
+     <string>pedido_cliente</string>
+    </void>
+    <void index="179">
+     <string>custo_agregado</string>
+    </void>
+    <void index="180">
+     <string>val_finac_total</string>
+    </void>
+    <void index="181">
+     <string>perc_acordo_edit</string>
+    </void>
+    <void index="182">
+     <string>motivo_cancelamento</string>
+    </void>
+    <void index="183">
+     <string>opcao</string>
+    </void>
+    <void index="184">
+     <string>obs_item_3_edit</string>
+    </void>
+    <void index="185">
+     <string>obs_ger_reg</string>
+    </void>
+    <void index="186">
+     <string>tipo_cadastro</string>
+    </void>
+    <void index="187">
+     <string>perc_custo_total</string>
+    </void>
+    <void index="188">
+     <string>obs_ctr</string>
+    </void>
+    <void index="189">
+     <string>val_royaltie_total</string>
+    </void>
+    <void index="190">
+     <string>val_comis_adic_edit</string>
+    </void>
+    <void index="191">
+     <string>val_lob_ton_edit</string>
+    </void>
+    <void index="192">
+     <string>ies_inf_pedido</string>
+    </void>
+    <void index="193">
+     <string>val_ipi</string>
+    </void>
+    <void index="194">
+     <string>estado_ent</string>
+    </void>
+    <void index="195">
+     <string>custo_trans_edit</string>
+    </void>
+    <void index="196">
+     <string>numero_ent</string>
+    </void>
+    <void index="197">
+     <string>tipo_frete</string>
+    </void>
+    <void index="198">
+     <string>total_desc</string>
+    </void>
+    <void index="199">
+     <string>val_pis_total</string>
+    </void>
+    <void index="200">
+     <string>perc_adic_tipo_venda</string>
+    </void>
+    <void index="201">
+     <string>ies_orcamento</string>
+    </void>
+    <void index="202">
+     <string>perc_comis_adic</string>
+    </void>
+    <void index="203">
+     <string>den_item_reduz_edit</string>
+    </void>
+    <void index="204">
+     <string>perc_lob_ctr</string>
+    </void>
+    <void index="205">
+     <string>informado</string>
+    </void>
+    <void index="206">
+     <string>cod_moeda_cli</string>
+    </void>
+    <void index="207">
+     <string>cod_cidade_ent</string>
+    </void>
+    <void index="208">
+     <string>custo_cimento</string>
+    </void>
+    <void index="209">
+     <string>ies_mix_geral_nac</string>
+    </void>
+    <void index="210">
+     <string>simulacao</string>
+    </void>
+    <void index="211">
+     <string>custo_aditivo</string>
+    </void>
+    <void index="212">
+     <string>val_st_edit</string>
+    </void>
+    <void index="213">
+     <string>razao_social_zoom</string>
+    </void>
+    <void index="214">
+     <string>sequencia_edit</string>
+    </void>
+    <void index="215">
+     <string>obs_item_1_edit</string>
+    </void>
+    <void index="216">
+     <string>perc_icms_total</string>
+    </void>
+    <void index="217">
+     <string>val_ipi_total</string>
+    </void>
+    <void index="218">
+     <string>ies_mix_edit</string>
+    </void>
+    <void index="219">
+     <string>ies_desc_medio_nac</string>
+    </void>
+    <void index="220">
+     <string>qtd_orig</string>
+    </void>
+    <void index="221">
+     <string>cod_lin_recei_edit</string>
+    </void>
+    <void index="222">
+     <string>valor_unit_liq</string>
+    </void>
+    <void index="223">
+     <string>cnpj_ent</string>
+    </void>
+    <void index="224">
+     <string>data_coleta</string>
+    </void>
+    <void index="225">
+     <string>tipo_cadastro_hd</string>
+    </void>
+    <void index="226">
+     <string>val_lob_perc_edit</string>
+    </void>
+    <void index="227">
+     <string>val_st_total</string>
+    </void>
+    <void index="228">
+     <string>ped_cliente</string>
+    </void>
+    <void index="229">
+     <string>perc_desc_ger_reg</string>
+    </void>
+    <void index="230">
+     <string>bt_margem</string>
+    </void>
+    <void index="231">
+     <string>perc_cofins_total</string>
+    </void>
+    <void index="232">
+     <string>val_acordo</string>
+    </void>
+    <void index="233">
+     <string>den_pergunta</string>
+    </void>
+    <void index="234">
+     <string>mix_geral</string>
+    </void>
+    <void index="235">
+     <string>cond_pagamento</string>
+    </void>
+    <void index="236">
+     <string>valor_total</string>
+    </void>
+    <void index="237">
+     <string>cod_um</string>
+    </void>
+    <void index="238">
+     <string>valor_unit_lista_edit</string>
+    </void>
+    <void index="239">
+     <string>verba_rapel</string>
+    </void>
+    <void index="240">
+     <string>perc_custo_edit</string>
+    </void>
+    <void index="241">
+     <string>cidade_ent</string>
+    </void>
+    <void index="242">
+     <string>nat_operacao</string>
+    </void>
+    <void index="243">
+     <string>consistencias</string>
+    </void>
+    <void index="244">
+     <string>val_icms_edit</string>
+    </void>
+    <void index="245">
+     <string>val_lob_ton</string>
+    </void>
+    <void index="246">
+     <string>valor_total_geral</string>
+    </void>
+    <void index="247">
+     <string>qtd_item_desc_sup</string>
+    </void>
+    <void index="248">
+     <string>empresa</string>
+    </void>
+    <void index="249">
+     <string>task</string>
+    </void>
+    <void index="250">
+     <string>cei</string>
+    </void>
+    <void index="251">
+     <string>cubagem_total_geral</string>
+    </void>
+    <void index="252">
+     <string>btCopyEndereco</string>
+    </void>
+    <void index="253">
+     <string>ie_ent</string>
+    </void>
+    <void index="254">
+     <string>custo_trans_total</string>
+    </void>
+    <void index="255">
+     <string>obs_ger_nac</string>
+    </void>
+    <void index="256">
+     <string>ies_pct_lob_reg</string>
+    </void>
+    <void index="257">
+     <string>isento_ie_ent</string>
+    </void>
+    <void index="258">
+     <string>desc_maximo</string>
+    </void>
+    <void index="259">
+     <string>cod_item_zoom_edit</string>
+    </void>
+    <void index="260">
+     <string>orcamento_alterado</string>
+    </void>
+    <void index="261">
+     <string>aprovacao_cre</string>
+    </void>
+    <void index="262">
+     <string>perc_trans_total</string>
+    </void>
+    <void index="263">
+     <string>cod_cidade</string>
+    </void>
+    <void index="264">
+     <string>lista_preco_hd</string>
+    </void>
+    <void index="265">
+     <string>data_entrega_calc</string>
+    </void>
+    <void index="266">
+     <string>seq_pedido_cli_item</string>
+    </void>
+    <void index="267">
+     <string>perc_finac</string>
+    </void>
+    <void index="268">
+     <string>perc_verba_edit</string>
+    </void>
+    <void index="269">
+     <string>qtd_pad</string>
+    </void>
+    <void index="270">
+     <string>cidade</string>
+    </void>
+    <void index="271">
+     <string>desconto_edit</string>
+    </void>
+    <void index="272">
+     <string>val_pis</string>
+    </void>
+    <void index="273">
+     <string>perc_ipi_total</string>
+    </void>
+    <void index="274">
+     <string>val_icms</string>
+    </void>
+    <void index="275">
+     <string>val_finac</string>
+    </void>
+    <void index="276">
+     <string>val_comis_total</string>
+    </void>
+    <void index="277">
+     <string>peso</string>
+    </void>
+    <void index="278">
+     <string>tipo_venda</string>
+    </void>
+    <void index="279">
+     <string>raz_social</string>
+    </void>
+    <void index="280">
+     <string>data_emissao</string>
+    </void>
+    <void index="281">
+     <string>val_lob_perc</string>
+    </void>
+    <void index="282">
+     <string>ies_mix_geral_reg</string>
+    </void>
+    <void index="283">
+     <string>valor_unit_moeda</string>
+    </void>
+    <void index="284">
+     <string>val_lob_total</string>
+    </void>
+    <void index="285">
+     <string>cod_cidade_ent_md</string>
+    </void>
+    <void index="286">
+     <string>perc_finac_edit</string>
+    </void>
+    <void index="287">
+     <string>ies_desc_medio_reg</string>
+    </void>
+    <void index="288">
+     <string>acao</string>
+    </void>
+    <void index="289">
+     <string>val_icms_total</string>
+    </void>
+    <void index="290">
+     <string>data_validade</string>
+    </void>
+    <void index="291">
+     <string>lista_preco</string>
+    </void>
+    <void index="292">
+     <string>perc_mix_ger_reg</string>
+    </void>
+    <void index="293">
+     <string>ped_representante</string>
+    </void>
+    <void index="294">
+     <string>desc_medio</string>
+    </void>
+    <void index="295">
+     <string>cod_grupo_item</string>
+    </void>
+    <void index="296">
+     <string>perc_ipi_edit</string>
+    </void>
+    <void index="297">
+     <string>perc_desc_ger_nac</string>
+    </void>
+    <void index="298">
+     <string>desconto</string>
+    </void>
+    <void index="299">
+     <string>metrica</string>
+    </void>
+    <void index="300">
+     <string>eh_contribuinte</string>
+    </void>
+    <void index="301">
+     <string>val_comis_edit</string>
+    </void>
+    <void index="302">
+     <string>um_edit</string>
+    </void>
+    <void index="303">
+     <string>ies_pct_lob_ctr</string>
+    </void>
+    <void index="304">
+     <string>cod_item</string>
+    </void>
+    <void index="305">
+     <string>obs_item_1</string>
+    </void>
+    <void index="306">
+     <string>editar</string>
+    </void>
+    <void index="307">
+     <string>quantidade_edit</string>
+    </void>
+    <void index="308">
+     <string>obs_item_2_edit</string>
+    </void>
+    <void index="309">
+     <string>perc_icms_edit</string>
+    </void>
+    <void index="310">
+     <string>obs_item_3</string>
+    </void>
+    <void index="311">
+     <string>cnpj_trans</string>
+    </void>
+    <void index="312">
+     <string>obs_item_2</string>
+    </void>
+    <void index="313">
+     <string>obs_item_5</string>
+    </void>
+    <void index="314">
+     <string>cod_motivo_edit</string>
+    </void>
+    <void index="315">
+     <string>obs_item_4</string>
+    </void>
+    <void index="316">
+     <string>modo</string>
+    </void>
+    <void index="317">
+     <string>perc_royaltie</string>
+    </void>
+    <void index="318">
+     <string>custo_transferecia</string>
+    </void>
+    <void index="319">
+     <string>tipo_cliente</string>
+    </void>
+    <void index="320">
+     <string>valor_total_real</string>
+    </void>
+    <void index="321">
+     <string>verba_cross_dock</string>
+    </void>
+    <void index="322">
+     <string>uso_consumo</string>
+    </void>
+    <void index="323">
+     <string>perc_royaltie_total</string>
+    </void>
+    <void index="324">
+     <string>val_rol</string>
+    </void>
+    <void index="325">
+     <string>sem_numero_ent</string>
+    </void>
+    <void index="326">
+     <string>verba_marketing</string>
+    </void>
+    <void index="327">
+     <string>cod_seg_merc</string>
+    </void>
+    <void index="328">
+     <string>cnpj</string>
+    </void>
+   </array>
+  </void>
+  <void method="put">
+   <string>camposFormulario, documentoId = 351715</string>
+   <array class="java.lang.String" length="146">
+    <void index="0">
+     <string>seq_item_cotacao_pai</string>
+    </void>
+    <void index="1">
+     <string>integra_col</string>
+    </void>
+    <void index="2">
+     <string>bt_fornecedor</string>
+    </void>
+    <void index="3">
+     <string>linha_item</string>
+    </void>
+    <void index="4">
+     <string>aen_compl</string>
+    </void>
+    <void index="5">
+     <string>aen</string>
+    </void>
+    <void index="6">
+     <string>bt_doc</string>
+    </void>
+    <void index="7">
+     <string>cnd_pgto</string>
+    </void>
+    <void index="8">
+     <string>bt_doc_item</string>
+    </void>
+    <void index="9">
+     <string>bt_uf</string>
+    </void>
+    <void index="10">
+     <string>ies_conta_item</string>
+    </void>
+    <void index="11">
+     <string>texto_solic</string>
+    </void>
+    <void index="12">
+     <string>total_geral</string>
+    </void>
+    <void index="13">
+     <string>cod_tipo_desp</string>
+    </void>
+    <void index="14">
+     <string>file_name</string>
+    </void>
+    <void index="15">
+     <string>seq_item</string>
+    </void>
+    <void index="16">
+     <string>bt_cnd_pgto</string>
+    </void>
+    <void index="17">
+     <string>bt_comprador</string>
+    </void>
+    <void index="18">
+     <string>observacao</string>
+    </void>
+    <void index="19">
+     <string>dat_entrega_item</string>
+    </void>
+    <void index="20">
+     <string>nom_comprador</string>
+    </void>
+    <void index="21">
+     <string>num_solic</string>
+    </void>
+    <void index="22">
+     <string>cod_item</string>
+    </void>
+    <void index="23">
+     <string>cod_operacao</string>
+    </void>
+    <void index="24">
+     <string>aprova_financeiro</string>
+    </void>
+    <void index="25">
+     <string>compl_doc_origem</string>
+    </void>
+    <void index="26">
+     <string>aprov_perc_tolerancia</string>
+    </void>
+    <void index="27">
+     <string>total_geral_est</string>
+    </void>
+    <void index="28">
+     <string>num_conta_item</string>
+    </void>
+    <void index="29">
+     <string>cod_empresa</string>
+    </void>
+    <void index="30">
+     <string>num_oc</string>
+    </void>
+    <void index="31">
+     <string>conta</string>
+    </void>
+    <void index="32">
+     <string>cod_unid_med</string>
+    </void>
+    <void index="33">
+     <string>cod_fornec_cotacao</string>
+    </void>
+    <void index="34">
+     <string>doc_origem</string>
+    </void>
+    <void index="35">
+     <string>bt_item</string>
+    </void>
+    <void index="36">
+     <string>texto_ped_cotacao</string>
+    </void>
+    <void index="37">
+     <string>bt_TD</string>
+    </void>
+    <void index="38">
+     <string>cod_unid_func</string>
+    </void>
+    <void index="39">
+     <string>num_conta</string>
+    </void>
+    <void index="40">
+     <string>cod_fornecedor</string>
+    </void>
+    <void index="41">
+     <string>ies_simples_cotacao</string>
+    </void>
+    <void index="42">
+     <string>mat_aprov_1</string>
+    </void>
+    <void index="43">
+     <string>obs_fornecedor</string>
+    </void>
+    <void index="44">
+     <string>integrou</string>
+    </void>
+    <void index="45">
+     <string>user_atual</string>
+    </void>
+    <void index="46">
+     <string>cod_item_busca</string>
+    </void>
+    <void index="47">
+     <string>cod_papel</string>
+    </void>
+    <void index="48">
+     <string>tipo</string>
+    </void>
+    <void index="49">
+     <string>mat_aprov_2</string>
+    </void>
+    <void index="50">
+     <string>mat_aprov_3</string>
+    </void>
+    <void index="51">
+     <string>saldo_os_rat</string>
+    </void>
+    <void index="52">
+     <string>projeto_item</string>
+    </void>
+    <void index="53">
+     <string>cod_fornecedor_sugerido</string>
+    </void>
+    <void index="54">
+     <string>cidade_fornecedor</string>
+    </void>
+    <void index="55">
+     <string>bt_vencimento</string>
+    </void>
+    <void index="56">
+     <string>den_unid_func</string>
+    </void>
+    <void index="57">
+     <string>cod_grp_desp</string>
+    </void>
+    <void index="58">
+     <string>bt_UM</string>
+    </void>
+    <void index="59">
+     <string>qtd_solic</string>
+    </void>
+    <void index="60">
+     <string>obs_fornec</string>
+    </void>
+    <void index="61">
+     <string>matricula_aprovador</string>
+    </void>
+    <void index="62">
+     <string>saldo_os</string>
+    </void>
+    <void index="63">
+     <string>observ_cotacao</string>
+    </void>
+    <void index="64">
+     <string>cod_comprador_item</string>
+    </void>
+    <void index="65">
+     <string>integracao_pendente</string>
+    </void>
+    <void index="66">
+     <string>seq_item_pai_vencimento</string>
+    </void>
+    <void index="67">
+     <string>bt_doc_anexo</string>
+    </void>
+    <void index="68">
+     <string>regularizacao</string>
+    </void>
+    <void index="69">
+     <string>data_abertura</string>
+    </void>
+    <void index="70">
+     <string>email_fornecedor</string>
+    </void>
+    <void index="71">
+     <string>preco_unit</string>
+    </void>
+    <void index="72">
+     <string>empresa</string>
+    </void>
+    <void index="73">
+     <string>des_cnd_pgto</string>
+    </void>
+    <void index="74">
+     <string>doc_origem_item</string>
+    </void>
+    <void index="75">
+     <string>titulo_doc_anexo</string>
+    </void>
+    <void index="76">
+     <string>den_item_reduz</string>
+    </void>
+    <void index="77">
+     <string>task</string>
+    </void>
+    <void index="78">
+     <string>qtd_entrega_item</string>
+    </void>
+    <void index="79">
+     <string>designado</string>
+    </void>
+    <void index="80">
+     <string>grupo_estoque</string>
+    </void>
+    <void index="81">
+     <string>cod_item_op</string>
+    </void>
+    <void index="82">
+     <string>matricula_solicitante</string>
+    </void>
+    <void index="83">
+     <string>integra</string>
+    </void>
+    <void index="84">
+     <string>den_conta</string>
+    </void>
+    <void index="85">
+     <string>den_item</string>
+    </void>
+    <void index="86">
+     <string>perc_reateio</string>
+    </void>
+    <void index="87">
+     <string>data_entrega</string>
+    </void>
+    <void index="88">
+     <string>tem_os_negativa</string>
+    </void>
+    <void index="89">
+     <string>den_tipo_solic</string>
+    </void>
+    <void index="90">
+     <string>mail_atual</string>
+    </void>
+    <void index="91">
+     <string>den_cc</string>
+    </void>
+    <void index="92">
+     <string>tem_aprov_1</string>
+    </void>
+    <void index="93">
+     <string>doc_anexo</string>
+    </void>
+    <void index="94">
+     <string>tem_aprov_3</string>
+    </void>
+    <void index="95">
+     <string>load_file</string>
+    </void>
+    <void index="96">
+     <string>tem_aprov_2</string>
+    </void>
+    <void index="97">
+     <string>tipo_c</string>
+    </void>
+    <void index="98">
+     <string>bt_tipo</string>
+    </void>
+    <void index="99">
+     <string>perc_conc</string>
+    </void>
+    <void index="100">
+     <string>den_fornec_cotacao</string>
+    </void>
+    <void index="101">
+     <string>tmp_lead_time</string>
+    </void>
+    <void index="102">
+     <string>bt_doc_anexo_open</string>
+    </void>
+    <void index="103">
+     <string>texto_completo</string>
+    </void>
+    <void index="104">
+     <string>bt_GD</string>
+    </void>
+    <void index="105">
+     <string>bt_pc</string>
+    </void>
+    <void index="106">
+     <string>mat_aprov</string>
+    </void>
+    <void index="107">
+     <string>bt_op</string>
+    </void>
+    <void index="108">
+     <string>bt_calc</string>
+    </void>
+    <void index="109">
+     <string>bt_aen</string>
+    </void>
+    <void index="110">
+     <string>cod_aen</string>
+    </void>
+    <void index="111">
+     <string>numero_nf</string>
+    </void>
+    <void index="112">
+     <string>bt_cc</string>
+    </void>
+    <void index="113">
+     <string>data_vencimento</string>
+    </void>
+    <void index="114">
+     <string>nom_fornecedor</string>
+    </void>
+    <void index="115">
+     <string>raz_social</string>
+    </void>
+    <void index="116">
+     <string>aprov_tec</string>
+    </void>
+    <void index="117">
+     <string>cotacao</string>
+    </void>
+    <void index="118">
+     <string>cod_comprador</string>
+    </void>
+    <void index="119">
+     <string>data_emissao</string>
+    </void>
+    <void index="120">
+     <string>familia</string>
+    </void>
+    <void index="121">
+     <string>nom_comprador_item</string>
+    </void>
+    <void index="122">
+     <string>preco_est</string>
+    </void>
+    <void index="123">
+     <string>maior_que_tolerancia</string>
+    </void>
+    <void index="124">
+     <string>pool_papel</string>
+    </void>
+    <void index="125">
+     <string>data_hora_insp</string>
+    </void>
+    <void index="126">
+     <string>preco_est_ori</string>
+    </void>
+    <void index="127">
+     <string>perc_tolerancia</string>
+    </void>
+    <void index="128">
+     <string>den_grp_desp</string>
+    </void>
+    <void index="129">
+     <string>aplicacao</string>
+    </void>
+    <void index="130">
+     <string>bt_UltPreco</string>
+    </void>
+    <void index="131">
+     <string>preco_total</string>
+    </void>
+    <void index="132">
+     <string>cod_cc</string>
+    </void>
+    <void index="133">
+     <string>obs_interna</string>
+    </void>
+    <void index="134">
+     <string>seq_item_pai</string>
+    </void>
+    <void index="135">
+     <string>aprov_unic</string>
+    </void>
+    <void index="136">
+     <string>dat_vencimento_item</string>
+    </void>
+    <void index="137">
+     <string>ctr_estoque</string>
+    </void>
+    <void index="138">
+     <string>papel</string>
+    </void>
+    <void index="139">
+     <string>motivo</string>
+    </void>
+    <void index="140">
+     <string>num_pasta_anexo</string>
+    </void>
+    <void index="141">
+     <string>tipo_pagamento</string>
+    </void>
+    <void index="142">
+     <string>tipo_doc_origem</string>
+    </void>
+    <void index="143">
+     <string>den_item_op</string>
+    </void>
+    <void index="144">
+     <string>num_pedido_sup</string>
+    </void>
+    <void index="145">
+     <string>den_tipo_desp</string>
+    </void>
+   </array>
+  </void>
+  <void method="put">
+   <string>mecanismoGrupo</string>
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Gerentes Nacionais</string>
+      </void>
+      <void property="groupId">
+       <string>Gerentes Nacionais</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Administrativo de Vendas</string>
+      </void>
+      <void property="groupId">
+       <string>Adm de Vendas</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Representantes</string>
+      </void>
+      <void property="groupId">
+       <string>Representantes</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Marketing</string>
+      </void>
+      <void property="groupId">
+       <string>Marketing</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Financeiro</string>
+      </void>
+      <void property="groupId">
+       <string>Financeiro</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Representantes Regional PR</string>
+      </void>
+      <void property="groupId">
+       <string>representantes-regional-pr</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Qualidade</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_Qualidade</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Qualidade</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_Qualidade</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Regional de Vendas MRE</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_regional-de-vendas-mre</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Regional de Vendas MRE</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_regional-de-vendas-mre</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Regional de Vendas RS</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_regional-de-vendas-rs</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Regional de Vendas RS</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_regional-de-vendas-rs</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Regional de Vendas SC</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_regional-de-vendas-sc</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Regional de Vendas SC</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_regional-de-vendas-sc</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Regional de Vendas SP</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_regional-de-vendas-sp</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Regional de Vendas SP</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_regional-de-vendas-sp</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>representantes sc</string>
+      </void>
+      <void property="groupId">
+       <string>representante-regional-sc</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Gerentes Regionais</string>
+      </void>
+      <void property="groupId">
+       <string>Gerentes Regionais</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Marketing</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_Marketing</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Marketing</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_Marketing</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Administrador Fluig</string>
+      </void>
+      <void property="groupId">
+       <string>admin</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Regional de Vendas PR</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_regional-de-vendas-pr</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Regional de Vendas PR</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_regional-de-vendas-pr</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Usuários da Agenda</string>
+      </void>
+      <void property="groupId">
+       <string>agenda</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Representante Regional RS</string>
+      </void>
+      <void property="groupId">
+       <string>representante - regional - rs</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Administrativo de Vendas</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_administrativo-de-vendas</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Administrativo de Vendas</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_administrativo-de-vendas</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Regional de Vendas CO ( Centro Oeste )</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_regional-de-vendas-co</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Regional de Vendas CO ( Centro Oeste )</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_regional-de-vendas-co</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Compras</string>
+      </void>
+      <void property="groupId">
+       <string>compras</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Recursos Humanos</string>
+      </void>
+      <void property="groupId">
+       <string>RH</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Filial Alto Paraná</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_filial-alto-parana</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Filial Alto Paraná</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_filial-alto-parana</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Filial Campo Grande</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_filial-campo-grande</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Filial Campo Grande</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_filial-campo-grande</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Corporativo</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_Corporativo</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Corporativo</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_Corporativo</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group CIPA</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_CIPA</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group CIPA</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_CIPA</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group SeConecte - Agita Ceramfix</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_seconecte---agita-ceramfix</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group SeConecte - Agita Ceramfix</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_seconecte---agita-ceramfix</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>consulta_compra</string>
+      </void>
+      <void property="groupId">
+       <string>consulta_compra</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Filial Serra</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_filial-serra</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Filial Serra</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_filial-serra</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Unidade Paraguay</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_unidade-paraguay</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Unidade Paraguay</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_unidade-paraguay</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>CRC</string>
+      </void>
+      <void property="groupId">
+       <string>crc</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Qualidade</string>
+      </void>
+      <void property="groupId">
+       <string>qualidade</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>juridico</string>
+      </void>
+      <void property="groupId">
+       <string>juridico</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Consulta de Processos de Produto</string>
+      </void>
+      <void property="groupId">
+       <string>consulta_proc_produtos</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Ceramfix</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_Ceramfix</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Ceramfix</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_Ceramfix</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Usuário permissão alteração grade aprovação</string>
+      </void>
+      <void property="groupId">
+       <string>compras_aprov_grad</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Carona Solidária</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_carona-solidaria</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Carona Solidária</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_carona-solidaria</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Filial Osório</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_filial-osorio</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Filial Osório</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_filial-osorio</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Filial Abadiânia</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_filial-abadi-nia</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Filial Abadiânia</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_filial-abadi-nia</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Filial Confins</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_filial-confins</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Filial Confins</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_filial-confins</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Industrial</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_Industrial</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Industrial</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_Industrial</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Solicitantes de Compras</string>
+      </void>
+      <void property="groupId">
+       <string>SOL</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Aprovadores de Compras</string>
+      </void>
+      <void property="groupId">
+       <string>APR</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Usuários da Intranet</string>
+      </void>
+      <void property="groupId">
+       <string>intranet</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Minha Muamba</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_minha-muamba</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Minha Muamba</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_minha-muamba</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Filial Rio Claro</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_filial-rio-claro</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Filial Rio Claro</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_filial-rio-claro</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group Filial Chapecó</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_filial-chapeco</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group Filial Chapecó</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_filial-chapeco</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Moderator group TI</string>
+      </void>
+      <void property="groupId">
+       <string>MODERATOR_TI</string>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="com.totvs.tds.ecm.foundation.ws.GroupDto">
+      <void property="groupDescription">
+       <string>Member group TI</string>
+      </void>
+      <void property="groupId">
+       <string>MEMBER_TI</string>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void method="put">
+   <string>expediente</string>
+   <array class="java.lang.String" length="2">
+    <void index="0">
+     <string>Default</string>
+    </void>
+    <void index="1">
+     <string>Geral</string>
+    </void>
+   </array>
+  </void>
+  <void method="put">
+   <string>camposFormulario, documentoId = 719760</string>
+   <array class="java.lang.String" length="83">
+    <void index="0">
+     <string>tableNewSigner</string>
+    </void>
+    <void index="1">
+     <string>data_parecer</string>
+    </void>
+    <void index="2">
+     <string>cod_parte</string>
+    </void>
+    <void index="3">
+     <string>task</string>
+    </void>
+    <void index="4">
+     <string>titulo</string>
+    </void>
+    <void index="5">
+     <string>tableFixoSigner</string>
+    </void>
+    <void index="6">
+     <string>tabTipoAssinaturaFixo</string>
+    </void>
+    <void index="7">
+     <string>tipo_documento</string>
+    </void>
+    <void index="8">
+     <string>ies_tipo_direto</string>
+    </void>
+    <void index="9">
+     <string>tabCpfComum</string>
+    </void>
+    <void index="10">
+     <string>tabNameFixo</string>
+    </void>
+    <void index="11">
+     <string>clausula_contratante</string>
+    </void>
+    <void index="12">
+     <string>indice</string>
+    </void>
+    <void index="13">
+     <string>assinante</string>
+    </void>
+    <void index="14">
+     <string>advogado_parecer</string>
+    </void>
+    <void index="15">
+     <string>linha</string>
+    </void>
+    <void index="16">
+     <string>tabEmailNew</string>
+    </void>
+    <void index="17">
+     <string>tableExSigners</string>
+    </void>
+    <void index="18">
+     <string>data_assinatura_original</string>
+    </void>
+    <void index="19">
+     <string>id_doc</string>
+    </void>
+    <void index="20">
+     <string>tipo_solicitacao</string>
+    </void>
+    <void index="21">
+     <string>status_contrato</string>
+    </void>
+    <void index="22">
+     <string>cod_tipo_documento</string>
+    </void>
+    <void index="23">
+     <string>data_hora_doc</string>
+    </void>
+    <void index="24">
+     <string>contrato_original</string>
+    </void>
+    <void index="25">
+     <string>doc_original</string>
+    </void>
+    <void index="26">
+     <string>tabCpf</string>
+    </void>
+    <void index="27">
+     <string>tabEmailFixo</string>
+    </void>
+    <void index="28">
+     <string>data_hist</string>
+    </void>
+    <void index="29">
+     <string>parecer</string>
+    </void>
+    <void index="30">
+     <string>clausula_contratada</string>
+    </void>
+    <void index="31">
+     <string>folderID</string>
+    </void>
+    <void index="32">
+     <string>assinatura_externa</string>
+    </void>
+    <void index="33">
+     <string>tabTipoAssinatura</string>
+    </void>
+    <void index="34">
+     <string>cod_empresa</string>
+    </void>
+    <void index="35">
+     <string>indeterminado</string>
+    </void>
+    <void index="36">
+     <string>dex</string>
+    </void>
+    <void index="37">
+     <string>cod_resp_advogado</string>
+    </void>
+    <void index="38">
+     <string>data_assinatura</string>
+    </void>
+    <void index="39">
+     <string>den_tipo_documento</string>
+    </void>
+    <void index="40">
+     <string>tabTipoAssinaturaNew</string>
+    </void>
+    <void index="41">
+     <string>tabTitulo</string>
+    </void>
+    <void index="42">
+     <string>email_advogado</string>
+    </void>
+    <void index="43">
+     <string>data_vencimento</string>
+    </void>
+    <void index="44">
+     <string>tabName</string>
+    </void>
+    <void index="45">
+     <string>tabEtapaFixo</string>
+    </void>
+    <void index="46">
+     <string>nom_parte</string>
+    </void>
+    <void index="47">
+     <string>historico</string>
+    </void>
+    <void index="48">
+     <string>lstTipoDocumento</string>
+    </void>
+    <void index="49">
+     <string>data_reajuste</string>
+    </void>
+    <void index="50">
+     <string>numSolic</string>
+    </void>
+    <void index="51">
+     <string>comentarios</string>
+    </void>
+    <void index="52">
+     <string>cod_advogado</string>
+    </void>
+    <void index="53">
+     <string>parecer_hist</string>
+    </void>
+    <void index="54">
+     <string>ies_simples_public</string>
+    </void>
+    <void index="55">
+     <string>tabTituloNew</string>
+    </void>
+    <void index="56">
+     <string>tabNameNew</string>
+    </void>
+    <void index="57">
+     <string>arrSigners</string>
+    </void>
+    <void index="58">
+     <string>advogado_hist</string>
+    </void>
+    <void index="59">
+     <string>ies_doc_analise</string>
+    </void>
+    <void index="60">
+     <string>Params</string>
+    </void>
+    <void index="61">
+     <string>den_advogado</string>
+    </void>
+    <void index="62">
+     <string>tabEtapa</string>
+    </void>
+    <void index="63">
+     <string>integrar</string>
+    </void>
+    <void index="64">
+     <string>proc_original</string>
+    </void>
+    <void index="65">
+     <string>tableDocumentos</string>
+    </void>
+    <void index="66">
+     <string>tabEmailComum</string>
+    </void>
+    <void index="67">
+     <string>versao_doc</string>
+    </void>
+    <void index="68">
+     <string>tabTituloFixo</string>
+    </void>
+    <void index="69">
+     <string>prazo_rescicao</string>
+    </void>
+    <void index="70">
+     <string>tabCpfFixo</string>
+    </void>
+    <void index="71">
+     <string>tabEmail</string>
+    </void>
+    <void index="72">
+     <string>ies_reajuste</string>
+    </void>
+    <void index="73">
+     <string>matricula</string>
+    </void>
+    <void index="74">
+     <string>tabCpfNew</string>
+    </void>
+    <void index="75">
+     <string>situacao</string>
+    </void>
+    <void index="76">
+     <string>envia_doc</string>
+    </void>
+    <void index="77">
+     <string>solicitante</string>
+    </void>
+    <void index="78">
+     <string>etapa</string>
+    </void>
+    <void index="79">
+     <string>descricao_doc</string>
+    </void>
+    <void index="80">
+     <string>tabEtapaNew</string>
+    </void>
+    <void index="81">
+     <string>cnpj_parte</string>
+    </void>
+    <void index="82">
+     <string>den_empresa</string>
+    </void>
+   </array>
+  </void>
+  <void method="put">
    <string>mecanismoPapel</string>
    <object class="java.util.ArrayList">
     <void method="add">
@@ -811,6 +4211,655 @@
      </object>
     </void>
    </object>
+  </void>
+  <void method="put">
+   <string>camposFormulario, documentoId = 493429</string>
+   <array class="java.lang.String" length="55">
+    <void index="0">
+     <string>data_abertura</string>
+    </void>
+    <void index="1">
+     <string>num_precisao_aval_solicitacao</string>
+    </void>
+    <void index="2">
+     <string>den_funcao_funcionario</string>
+    </void>
+    <void index="3">
+     <string>centro_custo_funcionario</string>
+    </void>
+    <void index="4">
+     <string>table_necessidades</string>
+    </void>
+    <void index="5">
+     <string>task</string>
+    </void>
+    <void index="6">
+     <string>confirma</string>
+    </void>
+    <void index="7">
+     <string>tipo_pergunta_aval_solicitacao</string>
+    </void>
+    <void index="8">
+     <string>cod_um_aval_solicitacao</string>
+    </void>
+    <void index="9">
+     <string>data_inicio</string>
+    </void>
+    <void index="10">
+     <string>papel_responsavel_atual</string>
+    </void>
+    <void index="11">
+     <string>matricula_funcionario</string>
+    </void>
+    <void index="12">
+     <string>possui_item</string>
+    </void>
+    <void index="13">
+     <string>descricao_item</string>
+    </void>
+    <void index="14">
+     <string>cpf_funcionario</string>
+    </void>
+    <void index="15">
+     <string>tipo_item</string>
+    </void>
+    <void index="16">
+     <string>observacao_item</string>
+    </void>
+    <void index="17">
+     <string>cod_funcao_funcionario</string>
+    </void>
+    <void index="18">
+     <string>den_tipo_solicitacao</string>
+    </void>
+    <void index="19">
+     <string>descricao_acao_salarial</string>
+    </void>
+    <void index="20">
+     <string>cod_cc_funcionario_orig</string>
+    </void>
+    <void index="21">
+     <string>novo_salario</string>
+    </void>
+    <void index="22">
+     <string>cod_filial_funcionario_orig</string>
+    </void>
+    <void index="23">
+     <string>observacao_compl</string>
+    </void>
+    <void index="24">
+     <string>informado_aval_solicitacao</string>
+    </void>
+    <void index="25">
+     <string>cod_funcao_funcionario_orig</string>
+    </void>
+    <void index="26">
+     <string>data_inicio_prevista</string>
+    </void>
+    <void index="27">
+     <string>tipoSolicitacao</string>
+    </void>
+    <void index="28">
+     <string>cod_tipo_solicitacao</string>
+    </void>
+    <void index="29">
+     <string>cod_cc_funcionario</string>
+    </void>
+    <void index="30">
+     <string>obriga_os</string>
+    </void>
+    <void index="31">
+     <string>opcao_aval_solicitacao</string>
+    </void>
+    <void index="32">
+     <string>obriga_usuario_base</string>
+    </void>
+    <void index="33">
+     <string>multipla_aval_solicitacao</string>
+    </void>
+    <void index="34">
+     <string>necessita_comunicado</string>
+    </void>
+    <void index="35">
+     <string>cod_pergunta_aval_solicitacao</string>
+    </void>
+    <void index="36">
+     <string>atualiza_desc_cargo</string>
+    </void>
+    <void index="37">
+     <string>den_filial_funcionario</string>
+    </void>
+    <void index="38">
+     <string>num_os</string>
+    </void>
+    <void index="39">
+     <string>den_pergunta_aval_solicitacao</string>
+    </void>
+    <void index="40">
+     <string>centro_custo_funcionario_orig</string>
+    </void>
+    <void index="41">
+     <string>user_atual</string>
+    </void>
+    <void index="42">
+     <string>mat_solicitante</string>
+    </void>
+    <void index="43">
+     <string>cod_filial_funcionario</string>
+    </void>
+    <void index="44">
+     <string>rg_funcionario</string>
+    </void>
+    <void index="45">
+     <string>metrica_aval_solicitacao</string>
+    </void>
+    <void index="46">
+     <string>nome_funcionario_subs</string>
+    </void>
+    <void index="47">
+     <string>texto_auxiliar</string>
+    </void>
+    <void index="48">
+     <string>avaliacao_solicitacao</string>
+    </void>
+    <void index="49">
+     <string>den_filial_funcionario_orig</string>
+    </void>
+    <void index="50">
+     <string>necessita_item</string>
+    </void>
+    <void index="51">
+     <string>solicitante</string>
+    </void>
+    <void index="52">
+     <string>nome_funcionario</string>
+    </void>
+    <void index="53">
+     <string>den_funcao_funcionario_orig</string>
+    </void>
+    <void index="54">
+     <string>papel_responsavel_item</string>
+    </void>
+   </array>
+  </void>
+  <void method="put">
+   <string>mecanismo</string>
+   <array class="[Ljava.lang.Object;" length="16">
+    <void index="0">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Responsavel da Unidade</string>
+      </void>
+      <void index="1">
+       <string>resp_unidade</string>
+      </void>
+     </array>
+    </void>
+    <void index="1">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Associação</string>
+      </void>
+      <void index="1">
+       <string>Associado</string>
+      </void>
+     </array>
+    </void>
+    <void index="2">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Campo de Formulário</string>
+      </void>
+      <void index="1">
+       <string>Campo Formulário</string>
+      </void>
+     </array>
+    </void>
+    <void index="3">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Executor de Atividade</string>
+      </void>
+      <void index="1">
+       <string>Executor Atividade</string>
+      </void>
+     </array>
+    </void>
+    <void index="4">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Grupo</string>
+      </void>
+      <void index="1">
+       <string>Grupo</string>
+      </void>
+     </array>
+    </void>
+    <void index="5">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Grupos do Colaborador</string>
+      </void>
+      <void index="1">
+       <string>Grupos Colaborador</string>
+      </void>
+     </array>
+    </void>
+    <void index="6">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Papel</string>
+      </void>
+      <void index="1">
+       <string>Papel</string>
+      </void>
+     </array>
+    </void>
+    <void index="7">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição para um Grupo</string>
+      </void>
+      <void index="1">
+       <string>Pool Grupo</string>
+      </void>
+     </array>
+    </void>
+    <void index="8">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição para um Papel</string>
+      </void>
+      <void index="1">
+       <string>Pool Papel</string>
+      </void>
+     </array>
+    </void>
+    <void index="9">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Atribuição por Usuário</string>
+      </void>
+      <void index="1">
+       <string>Usuário</string>
+      </void>
+     </array>
+    </void>
+    <void index="10">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Representante do Cliente</string>
+      </void>
+      <void index="1">
+       <string>representate_do_cliente</string>
+      </void>
+     </array>
+    </void>
+    <void index="11">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Responsável pelo Marketing</string>
+      </void>
+      <void index="1">
+       <string>resp_marketing</string>
+      </void>
+     </array>
+    </void>
+    <void index="12">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Gerente Nacional de Vendas</string>
+      </void>
+      <void index="1">
+       <string>resp_nacional</string>
+      </void>
+     </array>
+    </void>
+    <void index="13">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>Gerente Regional de Vendas</string>
+      </void>
+      <void index="1">
+       <string>resp_regional_repres</string>
+      </void>
+     </array>
+    </void>
+    <void index="14">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>resp_solic_compra</string>
+      </void>
+      <void index="1">
+       <string>resp_solic_compra</string>
+      </void>
+     </array>
+    </void>
+    <void index="15">
+     <array class="java.lang.Object" length="2">
+      <void index="0">
+       <string>resp_supervisor_repres</string>
+      </void>
+      <void index="1">
+       <string>resp_supervisor_repres</string>
+      </void>
+     </array>
+    </void>
+   </array>
+  </void>
+  <void method="put">
+   <string>camposFormulario, documentoId = 452674</string>
+   <array class="java.lang.String" length="103">
+    <void index="0">
+     <string>den_motivo</string>
+    </void>
+    <void index="1">
+     <string>id_area</string>
+    </void>
+    <void index="2">
+     <string>eficaz</string>
+    </void>
+    <void index="3">
+     <string>gestores_causa</string>
+    </void>
+    <void index="4">
+     <string>doc_acao</string>
+    </void>
+    <void index="5">
+     <string>den_item_hist</string>
+    </void>
+    <void index="6">
+     <string>complemento_dados</string>
+    </void>
+    <void index="7">
+     <string>analise_eficacia</string>
+    </void>
+    <void index="8">
+     <string>user_hist</string>
+    </void>
+    <void index="9">
+     <string>num_rnc_pai</string>
+    </void>
+    <void index="10">
+     <string>aprova_acao</string>
+    </void>
+    <void index="11">
+     <string>responsaveis_causa</string>
+    </void>
+    <void index="12">
+     <string>num_rnc</string>
+    </void>
+    <void index="13">
+     <string>cod_origem</string>
+    </void>
+    <void index="14">
+     <string>meio_ambiente</string>
+    </void>
+    <void index="15">
+     <string>id_area_acao_orig</string>
+    </void>
+    <void index="16">
+     <string>data_prazo</string>
+    </void>
+    <void index="17">
+     <string>nova_rnc</string>
+    </void>
+    <void index="18">
+     <string>cod_usuario_verificacao</string>
+    </void>
+    <void index="19">
+     <string>responsaveis_acao</string>
+    </void>
+    <void index="20">
+     <string>processo_origem</string>
+    </void>
+    <void index="21">
+     <string>cod_responsavel_acao_orig</string>
+    </void>
+    <void index="22">
+     <string>cod_responsavel_rnc</string>
+    </void>
+    <void index="23">
+     <string>nome_solicitante</string>
+    </void>
+    <void index="24">
+     <string>desc_hist</string>
+    </void>
+    <void index="25">
+     <string>data_nf</string>
+    </void>
+    <void index="26">
+     <string>prazo_acao</string>
+    </void>
+    <void index="27">
+     <string>id_area_rnc</string>
+    </void>
+    <void index="28">
+     <string>user_atual</string>
+    </void>
+    <void index="29">
+     <string>btFup</string>
+    </void>
+    <void index="30">
+     <string>cod_responsavel_causa</string>
+    </void>
+    <void index="31">
+     <string>gestor_area_causa</string>
+    </void>
+    <void index="32">
+     <string>seq_causa</string>
+    </void>
+    <void index="33">
+     <string>btDelAcao</string>
+    </void>
+    <void index="34">
+     <string>status_acao_imed</string>
+    </void>
+    <void index="35">
+     <string>num_doc_origem</string>
+    </void>
+    <void index="36">
+     <string>cod_user_hist</string>
+    </void>
+    <void index="37">
+     <string>tem_acao_pend</string>
+    </void>
+    <void index="38">
+     <string>area_rcn</string>
+    </void>
+    <void index="39">
+     <string>btDelCausa</string>
+    </void>
+    <void index="40">
+     <string>pool_area_acao</string>
+    </void>
+    <void index="41">
+     <string>cod_item_hist</string>
+    </void>
+    <void index="42">
+     <string>gestor_area_acao</string>
+    </void>
+    <void index="43">
+     <string>btDelAcaoImed</string>
+    </void>
+    <void index="44">
+     <string>id_area_acao</string>
+    </void>
+    <void index="45">
+     <string>bt_item_cab</string>
+    </void>
+    <void index="46">
+     <string>cod_resp_qualidade</string>
+    </void>
+    <void index="47">
+     <string>data_abert</string>
+    </void>
+    <void index="48">
+     <string>den_item_cab</string>
+    </void>
+    <void index="49">
+     <string>gestor_area</string>
+    </void>
+    <void index="50">
+     <string>hist</string>
+    </void>
+    <void index="51">
+     <string>item_hist</string>
+    </void>
+    <void index="52">
+     <string>empresa</string>
+    </void>
+    <void index="53">
+     <string>task</string>
+    </void>
+    <void index="54">
+     <string>den_origem</string>
+    </void>
+    <void index="55">
+     <string>analise_dados</string>
+    </void>
+    <void index="56">
+     <string>cod_responsavel_acao</string>
+    </void>
+    <void index="57">
+     <string>cod_item_cab</string>
+    </void>
+    <void index="58">
+     <string>den_area_acao</string>
+    </void>
+    <void index="59">
+     <string>motivo_raiz</string>
+    </void>
+    <void index="60">
+     <string>den_resp_acao_imed</string>
+    </void>
+    <void index="61">
+     <string>prazo_acao_imed_geral</string>
+    </void>
+    <void index="62">
+     <string>resumo_causa</string>
+    </void>
+    <void index="63">
+     <string>num_nf</string>
+    </void>
+    <void index="64">
+     <string>cod_solicitante</string>
+    </void>
+    <void index="65">
+     <string>maquina</string>
+    </void>
+    <void index="66">
+     <string>conclusao_acao</string>
+    </void>
+    <void index="67">
+     <string>nom_cliente</string>
+    </void>
+    <void index="68">
+     <string>mao_de_obra</string>
+    </void>
+    <void index="69">
+     <string>cod_item</string>
+    </void>
+    <void index="70">
+     <string>detalhe</string>
+    </void>
+    <void index="71">
+     <string>den_area_causa</string>
+    </void>
+    <void index="72">
+     <string>cod_cliente</string>
+    </void>
+    <void index="73">
+     <string>id_causa</string>
+    </void>
+    <void index="74">
+     <string>bt_cliente</string>
+    </void>
+    <void index="75">
+     <string>origem_solic</string>
+    </void>
+    <void index="76">
+     <string>cnpj_cliente</string>
+    </void>
+    <void index="77">
+     <string>metodo</string>
+    </void>
+    <void index="78">
+     <string>bt_resp_acao_imed</string>
+    </void>
+    <void index="79">
+     <string>observacao_verificacao</string>
+    </void>
+    <void index="80">
+     <string>cod_emp_solicitante</string>
+    </void>
+    <void index="81">
+     <string>medicao</string>
+    </void>
+    <void index="82">
+     <string>problema</string>
+    </void>
+    <void index="83">
+     <string>proc_rec_cli</string>
+    </void>
+    <void index="84">
+     <string>den_Item</string>
+    </void>
+    <void index="85">
+     <string>acao_alterada</string>
+    </void>
+    <void index="86">
+     <string>id_detalhe</string>
+    </void>
+    <void index="87">
+     <string>seq_acao</string>
+    </void>
+    <void index="88">
+     <string>pool_area</string>
+    </void>
+    <void index="89">
+     <string>acao_imediata</string>
+    </void>
+    <void index="90">
+     <string>pool_area_causa</string>
+    </void>
+    <void index="91">
+     <string>data_verificacao</string>
+    </void>
+    <void index="92">
+     <string>data_hist</string>
+    </void>
+    <void index="93">
+     <string>bt_user_verificacao</string>
+    </void>
+    <void index="94">
+     <string>materia_prima</string>
+    </void>
+    <void index="95">
+     <string>causa</string>
+    </void>
+    <void index="96">
+     <string>gestores_acao</string>
+    </void>
+    <void index="97">
+     <string>prazo_acao_imed</string>
+    </void>
+    <void index="98">
+     <string>sequencia</string>
+    </void>
+    <void index="99">
+     <string>cod_resp_acao_imed</string>
+    </void>
+    <void index="100">
+     <string>acao</string>
+    </void>
+    <void index="101">
+     <string>den_empresa</string>
+    </void>
+    <void index="102">
+     <string>usuario_verificacao</string>
+    </void>
+   </array>
   </void>
  </object>
 </java>

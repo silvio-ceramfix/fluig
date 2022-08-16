@@ -1,0 +1,407 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="zoom.js"></script>
+	<script type="text/javascript" src="controle.js"></script>
+	<script type="text/javascript" src="modalZoom.js"></script>	
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="fileUpload.js" charset="utf-8"></script>
+</head>
+<body onload="loadBody()">
+<div class="fluig-style-guide">
+<form name="form" role="form">
+	<div class="panel panel-success tipo_documento">
+					<div class="panel-heading fs-txt-center">
+						<table width='100%'>
+							<tr>
+								<td width='10%' align=left></td>
+								<td width='80%' align=center><b>Analise e Assinatura Eletrônica de Documentos</b></td>
+								<td width='10%' align=right></td>
+							</tr>
+						</table>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-12">
+								<label class="control-label" for="tipos_documentos">Tipo de Documento</label>
+								<div class="input-group">
+									<input type="text" class="form-control" name="den_tipo_documento" id="den_tipo_documento" value="" valida='Tipo de Documento' readonly />
+									<span class="input-group-btn">
+											<button class="btn btn-default fluigicon fluigicon-card-index fluigicon-xs" type="button"  name='bt_tipo_documento' onclick="zoom(this.name)" ></button>
+									</span>
+									<input type="hidden" name="cod_tipo_documento" id="cod_tipo_documento" value="" />
+									<input type="hidden" name="folderID" id="folderID" value=""  />
+								</div>
+							</div>	
+						
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<label class='control-label' for="comentarios">Comentários</label>
+								<textarea class="form-control" rows="3" id="comentarios" name="comentarios" pattern="[a-zA-Z0-9]+" ></textarea>
+							</div>	
+						</div>
+						<div class="row">
+							<div class="col-md-2">
+								<label for="documento" data-toggle="tooltip" data-placement="bottom" title="Anexar Documento" >Clique no botão abaixo para selecionar o documento:</label>
+								<button type="button" class="btn btn-primary" onclick="window.parent.document.getElementById('ecm-navigation-inputFile-clone').click()">Selecione o documento</button>																																																											
+							</div>
+						</div>
+				</div>
+		</div>
+		
+	
+	<div class="panel panel-success assinantes">
+					<div class="panel-heading fs-txt-center">
+						<table width='100%'>
+							<tr>
+								<td width='10%' align=left></td>
+								<td width='80%' align=center><b>Assinantes</b></td>
+								<td width='10%' align=right></td>
+							</tr>
+						</table>
+					</div>
+					<div class="panel panel-primary ">
+
+							
+							<div class="panel-body">
+								<div class="row">
+								<label>Pesquisar Assinantes já cadastrados:</label>
+									<div class="col-md-12">	
+									
+										<div class="col-md-2">
+											<label>Etapa</label>
+											<input type="number" id="etapa" name="etapa" class="form-control" min="1" max="5"/>												
+										</div>									
+																			
+										<div class="col-md-6">
+											<label>Assinante</label>
+											<input type="zoom" id="assinante" name="assinante"
+												data-zoom="{
+															'displayKey':'nome',
+															'datasetId':'ds_vertsign_assinantes',
+															'maximumSelectionLength':'1',																													
+															'fields':[
+															{
+																'field':'nome',
+																'label':'Nome',
+																'standard':'true'
+															},
+															{
+																'field':'cEmail',
+																'label':'E-mail'																
+															},
+															{
+																'field':'cCpf',
+																'label':'CPF'																
+															},
+															{
+																'field':'tipoAssinatura',
+																'label': 'Tipo Assinatura',
+																'visible':'false'
+															},
+															{
+																'field':'email',
+																'label':'E-mail',
+																'visible':'false'																
+															},
+															{
+																'field':'cpf',
+																'label':'CPF',
+																'visible':'false'															
+															},
+															{
+																'field':'titulo',
+																'label':'Titulo',
+																'visible':'false'															
+															}
+															]}"/>	
+										</div>					
+									</div>								
+								</div>
+								
+								<div class="row">
+									<div class="panel panel-info fs-xl-margin-top">
+										
+											<h3 class="panel-title">
+											</i> Lista de assinantes
+											</h3>
+										
+										<div class="panel-body">
+											<div class="divTabela">
+											<table class="table" tablename="tableExSigners" id="tableExSigners" name="tableExSigners" nodeletebutton="true" noaddbutton="true">
+												<thead>
+													<tr>
+														<th width="30%" class="tableColumn">Nome</th>
+														<th width="30%" class="tableColumn">E-mail</th>
+														<th width="15%" class="tableColumn">CPF</th>
+														<th width="10%" class="tableColumn">Tipo Assinatura</th>
+														<th width="10%" class="tableColumn">Titulo</th>
+														<th width="5%" class="tableColumn">Etapa</th>
+														<th> </th>
+													</tr>
+												</thead>
+													<tr id="linha" name="linha">
+														<td>
+															<input type="text" class="form-control" name="tabName" id="tabName" readonly/>
+														</td>
+														<td>
+															<input type="text" class="form-control" name="tabEmail" id="tabEmail" readonly/>
+															<input type="hidden" id="tabEmailComum" name="tabEmailComum"/>
+														</td>
+														<td>
+															<input type="text" class="form-control" name="tabCpf" id="tabCpf" readonly/>
+															<input type="hidden" id="tabCpfComum" name="tabCpfComum"/>															
+														</td>
+														<td>
+															<select name="tabTipoAssinatura" id="tabTipoAssinatura" class="form-control"/>
+															  <option value="E">Eletrônica</option>
+															  <option value="D">Digital</option>
+															</select>
+														</td>
+														<td>
+															<input type="text" class="form-control" name="tabTitulo" id="tabTitulo"/>
+														</td>
+														<td>
+															<input type="text" class="form-control" name="tabEtapa" id="tabEtapa" readonly/>
+														</td>
+														<td>
+															<button class="btn btn-link" onclick="fnCustomDelete(this);"> 
+																<i class="fs-color-danger flaticon flaticon-trash icon-md"></i>
+															</button>
+														</td>
+													</tr>
+											</table>
+											</div>
+										</div>
+									</div>
+			
+									<input type="hidden" class="form-control" name="arrSigners" id="arrSigners" readonly value="" />
+
+								</div>
+								
+							</div>
+							
+							
+							
+							
+							
+						</div>	
+	</div>	
+	
+	<div class="panel panel-success novos_assinantes">
+					<div class="panel-heading fs-txt-center">
+						<table width='100%'>
+							<tr>
+								<td width='1%' align=left><button class="fluigicon fluigicon-plus-sign fluigicon-sm" name='bt_newSigner' onclick="addChild('tableNewSigner');" ></button></td>
+								<td width='89%' align=center><b>Novos Assinantes</b></td>
+								<td width='10%' align=right></td>
+							</tr>
+						</table>
+					</div>
+					<div class="panel-body">
+								<div class="row">
+									<label>Cadastrar novos assinantes:</label>
+								</div>
+								
+								<div class="row">
+										<div class="col-md-12">
+											
+											<table class="table" tablename="tableNewSigner" id="tableNewSigner" name="tableNewSigner" noaddbutton="true">
+												<thead>
+													<tr>
+														<td width='30%' class="text-center">Nome</td>
+														<td width='20%' class="text-center">E-mail</td>
+														<td width='10%' class="text-center">CPF</td>
+														<td width='10%' class="text-center">Tipo Assinatura</td>
+														<td width='20%' class='text-center'>Titulo</td>
+														<td width='10%' class="text-center">Etapa</td>
+													</tr>
+												</thead>
+													<tr>
+														<td><input type="text" class="form-control" name="tabNameNew" id="tabNameNew" valida='S'></td>
+														<td><input type="text" class="form-control" name="tabEmailNew" id="tabEmailNew" regra='email' ></td>
+														<td><input type="tel" class="form-control" name="tabCpfNew" id="tabCpfNew" mask="000.000.000-00" regra='cpf'/></td>
+														<td><select name="tabTipoAssinaturaNew" id="tabTipoAssinaturaNew" class="form-control" valida='S'>
+															  <option value="E">Eletrônica</option>
+															  <option value="D">Digital</option>
+															</select>
+														</td>
+														<td><input type="text" class="form-control" name="tabTituloNew" id="tabTituloNew" valida='S'></td>
+														<td><input type="number" id="tabEtapaNew" name="tabEtapaNew" class="form-control" min="1" max="5" value="1"/></td>
+													</tr>
+											</table>
+								
+										</div>
+									
+								</div>
+								
+							</div>
+	</div>		
+	
+	<div class="panel panel-success assinantes_fixos">
+					<div class="panel-heading fs-txt-center">
+						<table width='100%'>
+							<tr>
+								<td width='1%' align=left></td>
+								<td width='89%' align=center><b>Assinantes Fixos do Tipo de Documento</b></td>
+								<td width='10%' align=right></td>
+							</tr>
+						</table>
+					</div>
+					<div class="panel-body">
+								<div class="row">
+										<div class="col-md-12">
+											
+											<table class="table" tablename="tableFixoSigner" id="tableFixoSigner" name="tableFixoSigner" noaddbutton="true">
+												<thead>
+													<tr>
+														<td width='30%' class="text-center">Nome</td>
+														<td width='20%' class="text-center">E-mail</td>
+														<td width='10%' class="text-center">CPF</td>
+														<td width='10%' class="text-center">Tipo Assinatura</td>
+														<td width='20%' class='text-center'>Titulo</td>
+														<td width='10%' class="text-center">Etapa</td>
+													</tr>
+												</thead>
+													<tr>
+														<td><input type="text" class="form-control" name="tabNameFixo" id="tabNameFixo" valida='S'></td>
+														<td><input type="text" class="form-control" name="tabEmailFixo" id="tabEmailFixo" regra='email' readonly></td>
+														<td><input type="tel" class="form-control" name="tabCpfFixo" id="tabCpfFixo" mask="000.000.000-00" regra='cpf'/></td>
+														<td><select name="tabTipoAssinaturaFixo" id="tabTipoAssinaturaFixo" class="form-control" valida='S'>
+															  <option value="E">Eletrônica</option>
+															  <option value="D">Digital</option>
+															</select>
+														</td>
+														<td><input type="text" class="form-control" name="tabTituloFixo" id="tabTituloFixo" valida='S'></td>
+														<td><input type="number" id="tabEtapaFixo" name="tabEtapaFixo" class="form-control" min="1" max="5" value="1"/></td>
+													</tr>
+											</table>
+								
+										</div>
+									
+								</div>
+								
+							</div>
+	</div>			
+	
+	<div class="panel panel-success parecer_documento">
+					<div class="panel-heading fs-txt-center">
+						<table width='100%'>
+							<tr>
+								<td width='10%' align=left></td>
+								<td width='80%' align=center><b>Parecer sobre o Documento</b></td>
+								<td width='10%' align=right></td>
+							</tr>
+						</table>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-10">
+								<label class='control-label' for="advogado">Nome Advogado(a)</label>
+								<input type='text' class='form-control' name='advogado_parecer' id='advogado_parecer' valida="Nome Advogado"/>
+							</div>	
+							<div class="col-md-2">
+								<label class='control-label' for="advogado">Data do Parecer</label>
+								<input type='text' class='form-control' name='data_parecer' id='data_parecer' readonly />
+							</div>	
+						</div>
+						<div class='row'>
+							<div class="col-md-12">
+								<label class='control-label' for="parecer">Parecer/Comentários</label>
+								<textarea class="form-control" rows="3" id="parecer" name="parecer" valida="Parecer" pattern="[a-zA-Z0-9]+" maxlength="4000"></textarea>
+							</div>	
+						</div>
+						<div class='row'>
+							<div class="col-md-2">
+								<button type="button" class="btn btn-success" name='grava_parecer' id='grava_parecer' onclick="salvaParecer();">Adicionar</button>
+							</div>	
+						</div>
+					</div>
+					<div class="panel-body">
+							<div class="row">
+								<div class="col-md-12">	
+		
+									<table class="table table-condensed table-bordered" border="1" tablename="historico" id="historico" name="historico" noaddbutton=true nodeletebutton=true addbuttonclass="wdkbuttonClass" >
+									
+										<thead>
+											<tr>
+												<td width='100%' class="cell-ellipsis"><b>Historico</b></td>
+											</tr>
+										</thead>
+											<tr>
+												<td>
+													<div class="row">
+														<div class="col-md-4">
+															<input type="text" class="form-control" name="data_hist" id="data_hist" readonly >
+														</div>
+														<div class="col-md-8">
+															<input type="text" class="form-control" name="advogado_hist" id="advogado_hist" readonly >
+														</div>
+														
+													</div>
+													<div class="row">
+														<div class="col-md-12">
+															<textarea rows="4" name="parecer_hist" id="parecer_hist" class="form-control"  readonly ></textarea>
+														</div>
+													</div>						
+											</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+	</div>
+	
+	<div class="panel panel-success documentos_ser_enviados">
+					<div class="panel-heading fs-txt-center">
+						<table width='100%'>
+							<tr>
+								<td width='1%' align=left></td>
+								<td width='89%' align=center><b>Documentos a Serem Enviados</b></td>
+								<td width='10%' align=right></td>
+							</tr>
+						</table>
+					</div>
+					<div class="panel-body">
+								<div class="row">
+										<div class="col-md-12">
+											
+											<table class="table" tablename="tableDocumentos" id="tableDocumentos" name="tableDocumentos" noaddbutton="true" nodeletebutton="true">
+												<thead>
+													<tr>
+														<td width='10%' class="text-center">Envia</td>
+														<td width='70%' class="text-center">Descrição</td>
+														<td width='20%' class="text-center">Data/Hora Publicação</td>
+													</tr>
+												</thead>
+													<tr>
+														<td><input type="checkbox" class="form-control checks" name="envia_doc" id="envia_doc" onclick="checa2()"></td>
+														<td><input type="text" class="form-control" name="descricao_doc" id="descricao_doc" readonly ></td>
+														<td><input type="text" class="form-control" name="data_hora_doc" id="data_hora_doc" readonly/></td>
+														<td><input type="hidden" class="form-control" name="id_doc" id="id_doc"/></td>
+														<td><input type="hidden" class="form-control" name="versao_doc" id="versao_doc"/></td>
+														<td><input type="hidden" class="form-control" name="integrar" id="integrar"/></td>
+													</tr>
+											</table>
+								
+										</div>
+									
+								</div>
+								
+							</div>
+	</div>	
+	
+	<input type="hidden" name="numSolic" id="numSolic" class="form-control">
+	<input type="hidden" name="Params" id="Params" class="form-control">
+	<input type="hidden" name="task" id="task" class="form-control">
+	<input type="hidden" name="matricula" id="matricula" class="form-control">
+	<input type="hidden" name="ies_tipo_direto" id="ies_tipo_direto" class="form-control">
+	<input type="hidden" name="ies_doc_analise" id="ies_doc_analise" class="form-control">
+</form>
+</div>
+</body>
+</html>

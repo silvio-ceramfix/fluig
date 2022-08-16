@@ -1,0 +1,627 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css"/>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script src="/portal/resources/js/jquery.mask.min.js"></script>	
+	
+	<script type="text/javascript" src="controle.js"></script>
+	<script type="text/javascript" src="zoom.js"></script>
+	<script type="text/javascript" src="negocio.js"></script>
+	<script type="text/javascript" src="modalZoom.js"></script>
+	<script type="text/javascript" src="modalZoomPF.js"></script>
+	<script type="text/javascript" src="util.js"></script>
+	<script type="text/javascript" src="jquery.maskMoney.min.js"></script>
+	
+	<link type="text/css" rel="stylesheet" href="controle.css"/>	
+	
+	<script src="/webdesk/vcXMLRPC.js"></script>
+	
+</head>
+<body onload="loadBody()">
+<form name="form" role="form">
+<div class="fluig-style-guide">
+	<div class="panel panel-info panel_abertura">
+		<div class="panel-heading fs-txt-center">
+			<b>RNC - Registro de Não Conformidade</b>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-2">
+					<label for="exampleTag" >Origem</label>
+					<select class="form-control abertura" name="cod_origem" id="cod_origem" dataset="origem_rnc" datasetkey="cod_origem_rnc" datasetvalue="den_origem_rnc" addBlankLine=true onchange="changeOrigem()" >
+					</select>
+					<input type="hidden" id="den_origem" name="den_origem" >
+				</div>
+				<div class="col-md-2">
+					<label for="exampleTag" >Doc. Origem </label>
+					<input type="text" name="num_doc_origem" id="num_doc_origem" class="form-control" readonly />
+				</div>
+				<div class="col-md-2">
+					<label for="exampleTag" >Empresa</label>
+					<select name="empresa" id="empresa" class="form-control abertura"  dataset="empresa" datasetkey="cod_empresa" datasetvalue="den_reduz" valida="Empresa" addBlankLine="true" onchange="setEmpresa()" >
+					</select>
+					<input type="hidden" name="den_empresa" id="den_empresa" />
+				</div>
+				<div class="col-md-2">
+					<label for="exampleTag" >RNC</label>
+					<input type="text" name="num_rnc" id="num_rnc" class="form-control" readonly />
+					<input type="hidden" name="num_rnc_pai" id="num_rnc_pai" />
+					<input type="hidden" name="sequencia" id="sequencia" />
+				</div>
+				<div class="col-md-2">
+					<label for="exampleTag" >Data</label>
+					<input type="text" name="data_abert" id="data_abert" class="form-control" readonly />
+				</div>
+				<div class="col-md-2">
+					<label for="exampleTag">Area</label>
+					<select class="form-control abertura" name="id_area_rnc" id="id_area_rnc" addBlankLine=true onchange="setAreaCapa()" >
+					</select>
+					<input type="hidden" name="area_rcn" id="area_rnc" />
+					<input type="hidden" name="pool_area" id="pool_area" />
+					<input type="hidden" name="gestor_area" id="gestor_area" />
+					<input type="hidden" name="cod_responsavel_rnc" id="cod_responsavel_rnc" />
+				</div>
+								
+			</div>
+			<div class="row">
+			
+				<div class="col-md-4">
+					<label for="exampleTag" >Motivo Raiz</label>
+					<select name="motivo_raiz" id="motivo_raiz" class="form-control abertura" onchange="setMotivo();" >
+					</select>
+					<input type="hidden" name="den_motivo" id="den_motivo" />
+				</div>
+				
+				<div class="col-md-2">
+					<label for="origem">Origem Solic</label>
+					<select name="origem_solic" id="origem_solic" class="form-control" onchange="$('.solicitante').val(''); setSolic();" >
+						<option value="I">Interno</option>
+						<option value="C">Comercial</option>
+						<option value="M">Informado</option>
+					</select>
+				</div>
+				<div class="col-md-4">
+					<label for="nome_solicitante" >Solicitante</label>
+					<div class="input-group">
+						<input type="text" name="nome_solicitante" id="nome_solicitante" class="form-control abertura solicitante" maxlength="70" size="70" readonly />
+						<span class="input-group-addon fluigicon fluigicon-search fluigicon-lg" id="bt_solicitante" onClick="zoom(this.id)" ></span>
+					</div>
+					<input type="hidden" name="cod_solicitante" id="cod_solicitante" class="solicitante" />
+					<input type="hidden" name="cod_emp_solicitante" id="cod_emp_solicitante" class="solicitante" />
+				</div>
+				
+			</div>
+						
+			<div class="row"  >
+			
+				<div class="col-md-2">
+					<label for="exampleTag">CNPJ</label>
+					<div class="input-group">
+						<input type="text" name="cnpj_cliente" id="cnpj_cliente" class="form-control" readonly />
+						<span id = "bt_cliente" name="bt_cliente" class="input-group-addon fluigicon fluigicon-zoom-in fluigicon-sm" onclick="zoom(this.id)" ></span>
+						<input type="hidden" name="cod_cliente" id="cod_cliente" />
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<label for="exampleTag" >Cliente/Fornecedor</label>
+					<input type="text" id="nom_cliente" name="nom_cliente" class="form-control" readonly tabindex="-1" />
+				</div>
+
+				<div class="col-md-2 item">
+					<label for="exampleTag">Cod. Item</label>
+					<div class="input-group">
+						<input type="text" name="cod_item_cab" id="cod_item_cab" class="form-control item" readonly />
+						<span id="bt_item_cab" name="bt_item_cab" class="input-group-addon fluigicon fluigicon-zoom-in fluigicon-sm" onclick="zoom(this.id)" ></span>
+					</div>
+				</div>
+				<div class="col-md-4 item">
+					<label for="exampleTag" >Item</label>
+					<input type="text" name="den_item_cab" id="den_item_cab" class="form-control item" readonly />
+				</div>
+				
+			</div>
+			
+		</div>
+	</div>
+	
+	<div class="panel panel-info cliente">
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr>
+					<td width='5%' align=left > <button class="fluigicon fluigicon-plus-sign fluigicon-sm" id="addNF" onclick="zoom( this.id );" ></button> </td>
+					<td width='90%' align=center ><b>NFs</b></td>
+					<td width='5%' align=right > &nbsp; </td>
+				</tr>
+			</table>
+		</div>
+				
+		<div class="panel-body" style="padding-top: 0px; padding-bottom: 0px;">		
+			<div class="row">
+				<div class="col-sm-12" style="padding-right: 0px; padding-left: 0px;" >
+					<table class="table table-condensed table-bordered table-striped" style="margin-bottom: 0px;" border="0" tablename="itens" noaddbutton=true nodeletebutton=false deleteicon="trash.png" customFnDelete="fnCustomDelete(this)" >
+						<thead>
+							<tr>
+								<td width='100%' style="height: 0px; padding-top: 0px; padding-bottom: 0px; border-bottom-width: 0px;"></td>
+							</tr>
+						</thead>
+						<tr>
+							<td>
+								<div class="row">
+									<div class="col-md-2">
+										<label for="exampleTag">Cod Item</label>
+										<input type="text" name="cod_item" id="cod_item" class="form-control abertura pf" readonly />
+									</div>
+									<div class="col-md-6">
+										<label for="exampleTag" >Item</label>
+										<input type="text" id="den_item" name="den_Item" class="form-control abertura pf" readonly tabindex="-1" />
+									</div>
+									<div class="col-md-2">
+										<label for="exampleTag" >NF</label>
+										<input type="text" name="num_nf" id="num_nf" class="form-control abertura pf" readonly />
+									</div>
+									<div class="col-md-2">
+										<label for="exampleTag" >Data NF</label>
+										<input type="text" class="form-control abertura pf" name="data_nf" id="data_nf" readonly />
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info panel_abertura" >
+		<div class="panel-heading fs-txt-center">
+			<b>Descri&ccedil;&atilde;o da n&atilde;o conformidade</b>
+		</div>
+		<div class="panel-body" style="padding-top: 0px; padding-right: 0px; padding-left: 0px; padding-bottom: 0px;" >	
+			<div class="row">
+				<div class="col-md-12">
+					<textarea rows="2" class="form-control abertura" name="analise_dados" id="analise_dados" ></textarea> 
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-info panel_qualidade">
+		<div class="panel-heading fs-txt-center">
+			<b>Complemento Qualidade</b>
+		</div>
+		<div class="panel-body" style="padding-top: 0px; padding-right: 0px; padding-left: 0px; padding-bottom: 0px;" >	
+			<div class="row">
+				<div class="col-md-12">
+					<textarea rows="2" class="form-control" name="complemento_dados" id="complemento_dados" ></textarea> 
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="panel panel-info panel_acao_imediata">
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr>
+					<td width='5%' align=left > <span class="fluigicon fluigicon-plus-sign fluigicon-sm" onclick="addAcaoContencao( this.id );" ></span> </td>
+					<td width='90%' align=center ><b>A&ccedil;&otilde;es imediatas</b></td>
+					<td width='5%' align=right > &nbsp; </td>
+				</tr>
+			</table>
+		</div>
+		<input type="hidden" name="prazo_acao_imed_geral" id="prazo_acao_imed_geral" />
+		<div class="panel-body" style="padding-top: 0px; padding-top: 0px; padding-right: 0px; padding-left: 0px; padding-bottom: 0px;">		
+			<div class="row" style="margin-left: 0px; margin-right: 0px;">
+				<div class="col-sm-12" style="padding-right: 0px; padding-left: 0px;" >
+					<table class="table table-condensed table-bordered table-striped" border="0" tablename="acao_contencao" noaddbutton=true nodeletebutton=true >
+						<thead>
+							<tr>
+								<td width='50%' class="cell-ellipsis tab-sint"><b>A&ccedil;&otilde;es imediatas</b></td>
+								<td width='30%' class="cell-ellipsis tab-sint"><b>Respons&aacute;vel</b></td>
+								<td width='10%' class="cell-ellipsis tab-sint"><b>Prazo</b></td>
+								<td width='8%' class="cell-ellipsis tab-sint"><b>Status</b></td>
+								<td width='3%' class="cell-ellipsis tab-sint"></td>
+							</tr>
+						</thead>
+						<tr>
+							<td>
+								<textarea rows="1" class="form-control" name="acao_imediata" id="acao_imediata" ></textarea>
+							</td>
+							<td>
+								<div class="input-group">
+									<input type="text" name="den_resp_acao_imed" id="den_resp_acao_imed" class="form-control acoes_imed pf" readonly />
+									<span class="input-group-addon fluigicon fluigicon-search fluigicon-sm" onclick="zoom( this.children[0].id )" >
+										<input type="hidden" id="bt_resp_acao_imed" name="bt_resp_acao_imed" />
+									</span>
+								</div>
+								<input type="hidden" name="cod_resp_acao_imed" id="cod_resp_acao_imed" />
+							</td>
+							<td>
+								<input type="text" name="prazo_acao_imed" id="prazo_acao_imed" onBlur="setDataAcaoImediata()" class="form-control data-fluig acoes_imed pf" />
+							</td>
+							<td>
+								<select name="status_acao_imed" id="status_acao_imed" class="form-control acoes_imed pf" >
+									<option value='' > </option>
+									<option value='I' > Criado </option>
+									<option value='A' > Andamento </option>
+									<option value='V' > Valida&ccedil;&atilde;o </option>
+									<option value='C' > Conclu&iacute;do </option>
+								</select>
+							</td>
+							<td>
+								<button class="btn btn-default btn-sm fluigicon fluigicon-trash fluigicon-xs" type="button" onclick="fnCustomDelete( this.children[0] );" tabindex="-1" >
+									<input type="hidden" id="btDelAcaoImed" name="btDelAcaoImed" />
+								</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+
+	<div class="panel panel-info panel_causa">
+		<div class="panel-heading fs-txt-center">
+			<b>An&aacute;lise de Causa</b>
+		</div>
+		<div class="panel-body" style="padding-top: 0px; padding-right: 0px; padding-left: 0px; padding-bottom: 0px;" >	
+			<div class="row">
+				<div class="col-md-9">
+					<div class="row">
+						<div class="col-md-4">
+							<label for="exampleTag">Mat&eacute;ria Prima</label>
+							<textarea rows="4" class="form-control" name="materia_prima" id="materia_prima" ></textarea>
+						</div>	
+						<div class="col-md-4">
+							<label for="exampleTag">M&aacute;quina</label>
+							<textarea rows="4" class="form-control" name="maquina" id="maquina" ></textarea>
+						</div>
+						<div class="col-md-4">
+							<label for="exampleTag">Medi&ccedil;&atilde;o</label>
+							<textarea rows="4" class="form-control" name="medicao" id="medicao" ></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<img src="ishikawa.png" width="100%" height="80" align="absmiddle" />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4">
+							<textarea rows="4" class="form-control" name="mao_de_obra" id="mao_de_obra" ></textarea>
+							<label for="exampleTag">M&atilde;o de Obra</label>
+						</div>
+						<div class="col-md-4">
+							<textarea rows="4" class="form-control" name="meio_ambiente" id="meio_ambiente" ></textarea>
+							<label for="exampleTag">Meio Ambiente</label>
+						</div>
+						<div class="col-md-4">				
+							<textarea rows="4" class="form-control" name="metodo" id="metodo" ></textarea>
+							<label for="exampleTag">M&eacute;todo</label>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-3">
+					<label for="exampleTag">Problema</label>
+					<textarea rows="13" class="form-control" name="problema" id="problema" ></textarea>
+				</div>
+			</div>
+			
+			<input type="hidden" name="responsaveis_causa" id="responsaveis_causa" />
+			<input type="hidden" name="gestores_causa" id="gestores_causa" />
+			<div class="row" style="margin-left: 0px; margin-right: 0px;" >
+				<div class="col-sm-12" style="padding-right: 0px; padding-left: 0px;" >
+					<table class="table table-condensed table-bordered table-striped" border="0" tablename="causa_detalhe" noaddbutton=true nodeletebutton=true >
+						<thead>
+							<tr>
+								<td width='8%' class="cell-ellipsis"><span class="fluigicon fluigicon-plus-sign fluigicon-sm" id="bt_causa" onclick="zoom( this.id );"></span></td>
+								<td width='15%' class="cell-ellipsis"><b>Causa</b></td>
+								<td width='15%' class="cell-ellipsis"><b>Detalhe</b></td>
+								<td width='15%' class="cell-ellipsis"><b>Area</b></td>
+								<td width='47%' class="cell-ellipsis"><b>Resumo</b></td>
+								<td width='3%' class="cell-ellipsis"></td>
+							</tr>
+						</thead>
+						<tr>
+							<td>
+								<input type="text" name="seq_causa" id="seq_causa" class="form-control causa pf" readonly />
+							</td>
+							<td>
+								<input type="text" name="causa" id="causa" class="form-control causa pf" readonly />
+								<input type="hidden" name="id_causa" id="id_causa" />
+							</td>
+							<td>
+								<input type="text" name="detalhe" id="detalhe" class="form-control causa pf" readonly />
+								<input type="hidden" name="id_detalhe" id="id_detalhe" />
+							</td>
+							<td>
+								<select class="form-control causa pf" name="id_area" id="id_area" dataset="area" datasetkey="metadata#id" datasetvalue="area" addBlankLine=true onchange="setAreaCausa(this.id)"  >
+								</select>
+								<input type="hidden" name="den_area_causa" id="den_area_causa" />
+								<input type="hidden" name="pool_area_causa" id="pool_area_causa" />
+								<input type="hidden" name="gestor_area_causa" id="gestor_area_causa" />
+								<input type="hidden" name="cod_responsavel_causa" id="cod_responsavel_causa" />
+							</td>
+							<td>
+								<textarea rows="1" class="form-control" name="resumo_causa" id="resumo_causa" ></textarea>
+							</td>
+							<td>
+								<button class="btn btn-default btn-sm fluigicon fluigicon-trash fluigicon-xs" type="button" onclick="fnCustomDelete( this.children[0] );" tabindex="-1" >
+									<input type="hidden" name="btDelCausa" id="btDelCausa" />
+								</button>
+							</td>						
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div class="panel panel-info panel_acoes">
+		<div class="panel-heading fs-txt-center">
+			<table width='100%' >
+				<tr>
+					<td width='5%' align=left > <span class="fluigicon fluigicon-plus-sign fluigicon-sm" id="bt_acao" onclick="zoom( this.id );" ></span> </td>
+					<td width='90%' align=center ><b>A&ccedil;&otilde;es Corretivas / Preventivas</b></td>
+					<td width='5%' align=right > &nbsp; </td>
+				</tr>
+			</table>
+		</div>
+		<input type="hidden" name="responsaveis_acao" id="responsaveis_acao" />
+		<input type="hidden" name="gestores_acao" id="gestores_acao" />
+		<div class="panel-body" style="padding-top: 0px; padding-top: 0px; padding-right: 0px; padding-left: 0px; padding-bottom: 0px;">		
+			<div class="row" style="margin-left: 0px; margin-right: 0px;">
+				<div class="col-sm-12" style="padding-right: 0px; padding-left: 0px;" >
+					<table class="table table-condensed table-bordered table-striped" border="0" tablename="acao" noaddbutton=true nodeletebutton=true >
+						<thead>
+							<tr>
+								<td width='8%' class="cell-ellipsis"></td>
+								<td width='40%' class="cell-ellipsis"><b>A&ccedil;&otilde;es</b></td>
+								<td width='13%' class="cell-ellipsis"><b>Area</b></td>
+								<!-- <td width='15%' class="cell-ellipsis"><b>Respons&aacute;vel</b></td> -->
+								<td width='13%' class="cell-ellipsis"><b>Prazo</b></td>
+								<td width='13%' class="cell-ellipsis"><b>Conclus&atilde;o</b></td>
+								<td width='10%' class="cell-ellipsis"></td>
+							</tr>
+						</thead>
+						<tr>
+							<td>
+								<input type="text" name="seq_acao" id="seq_acao" class="form-control acao pf" readonly />
+							</td>
+							<td>
+								<textarea rows="1" class="form-control acao pf" name="acao" id="acao" ></textarea>
+							</td>
+							<td>
+								<select class="form-control acao pf" name="id_area_acao" id="id_area_acao" dataset="area" datasetkey="metadata#id" datasetvalue="area" addBlankLine=true onchange="setArea(this.id)" >
+								</select>
+								<input type="hidden" name="den_area_acao" id="area_acao" />
+								<input type="hidden" name="pool_area_acao" id="pool_area_acao" />
+								<input type="hidden" name="gestor_area_acao" id="gestor_area_acao" />
+								<input type="hidden" name="cod_responsavel_acao" id="cod_responsavel_acao" />
+								
+								<input type="hidden" name="id_area_acao_orig" id="id_area_acao_orig" />
+								<input type="hidden" name="cod_responsavel_acao_orig" id="cod_responsavel_acao_orig" />
+								
+							</td>
+							<!-- <td>
+								<div class="input-group">
+									<input type="text" name="den_resp_acao" id="den_resp_acao" class="form-control acao pf" readonly />
+									<span class="input-group-addon fluigicon fluigicon-search fluigicon-sm" onclick="zoom( this.children[0].id )" >
+										<input type="hidden" id="bt_resp_acao" name="bt_resp_acao" />
+									</span>
+								</div>
+								<input type="hidden" name="cod_resp_acao" id="cod_resp_acao" />
+							</td>-->
+							<td>
+								<input type="text" name="prazo_acao" id="prazo_acao" class="form-control data-fluig acao pf" onBlur="trataPrazo();" />
+							</td>
+							<td>
+								<input type="text" name="conclusao_acao" id="conclusao_acao" class="form-control data-fluig acao_conc pf" />
+							</td>
+							<td>
+								<div class="btn-group" data-toggle="buttons">
+									<button class="btn btn-info btn-sm fluigicon fluigicon-paperclip fluigicon-xs" type="button" onclick="showCamera( this.children[0].id )" >
+										<input type="hidden" class="form-control" name="doc_acao" id="doc_acao"/>
+									</button>
+									<button class="btn btn-danger btn-sm fluigicon fluigicon-trash fluigicon-xs" type="button" onclick="fnCustomDelete( this.children[0] );" tabindex="-1" >
+										<input type="hidden" name="btDelAcao" id="btDelAcao" />
+									</button>
+									<button class="btn btn-success btn-sm fluigicon fluigicon-comment fluigicon-xs" type="button" onclick="fupItem( this.children[0].id )">
+										<input type="hidden" class="form-control" name="btFup" id="btFup"/>
+									</button>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			
+			<div class="row" id="hist" name="hist" style="display: none;" >	
+				<div class="col-sm-12 pd_her">	
+					<table class="table table-condensed table-bordered" border="1" tablename="followup"  noaddbutton=true nodeletebutton=true addbuttonclass="wdkbuttonClass" >
+						<thead>
+							<tr>
+								<td width='100%' class="cell-ellipsis"><b>Historico</b></td>
+							</tr>
+						</thead>
+						<tr>
+							<td id="tbl_fup">
+								<div class="row  row_table">
+									<div class="col-sm-2 pd_her">
+										<label for="exampleTag">Data Hist.</label>
+										<input type="text" class="form-control" name="data_hist" id="data_hist" readonly >
+									</div>
+									<div class="col-sm-4 pd_her">
+										<label for="exampleTag">Usuario</label>
+										<input type="text" class="form-control" name="user_hist" id="user_hist" readonly >
+										<input type="hidden" class="form-control" name="cod_user_hist" id="cod_user_hist" readonly >
+									</div>
+									<div class="col-sm-6 pd_her">
+										<label for="exampleTag">Item</label>
+										<input type="text" class="form-control" name="item_hist" id="item_hist" readonly >
+										<input type="hidden" class="form-control" name="cod_item_hist" id="cod_item_hist" readonly >
+										<input type="hidden" class="form-control" name="den_item_hist" id="den_item_hist" readonly >
+									</div>
+								</div>
+								<div class="row  row_table">
+									<div class="col-sm-12 pd_her">
+										<textarea rows="1" name="desc_hist" id="desc_hist" class="form-control"  readonly ></textarea>
+									</div>
+								</div>	
+							</td>					
+						</tr>
+					</table>
+				</div>			
+			</div>
+			
+		</div>
+	</div>
+	
+	
+	<div class="panel panel-info panel_aprov_proposta">
+		<div class="panel-heading fs-txt-center">
+			<b>Aprova&ccedil;&atilde;o das A&ccedil;&otilde;es Propostas</b>
+		</div>
+		<div class="panel-body" style="padding-top: 0px; padding-right: 0px; padding-left: 0px; padding-bottom: 0px;" >
+			<div class="row">
+				<div class="col-md-2">
+					<label for="exampleTag">Aprova A&ccedil;&atilde;o?</label>
+					<select name="aprova_acao" id="aprova_acao" class="form-control analise" >
+						<option value='' > </option>
+						<option value='S' >Sim</option>
+						<option value='N' >N&atilde;o</option>
+					</select> 
+				</div>
+				<div class="col-md-10">
+					<label for="exampleTag">&nbsp;</label>
+					<textarea rows="1" class="form-control" name="analise_eficacia" id="analise_eficacia" ></textarea> 
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="panel panel-info panel_aprov_eficaz" >
+		<div class="panel-heading fs-txt-center">
+			<b>Verifica&ccedil;&atilde;o da Efic&aacute;cia</b>
+		</div>
+		<div class="panel-body" style="padding-top: 0px; padding-right: 0px; padding-left: 0px; padding-bottom: 0px;" >	
+			<div class="row">
+				<div class="col-md-2">
+					<label for="exampleTag">Eficaz?</label>
+					<select name="eficaz" id="eficaz" class="form-control eficaz" >
+						<option value='' > </option>
+						<option value='S' >Sim</option>
+						<option value='N' >N&atilde;o</option>
+					</select> 
+				</div>
+				<div class="col-md-2">
+					<label for="exampleTag">Nova RNC?</label>
+					<select name="nova_rnc" id="nova_rnc" class="form-control eficaz" >
+						<option value='' > </option>
+						<option value='S' >Sim</option>
+						<option value='N' >N&atilde;o</option>
+					</select> 
+				</div>
+				
+				<div class="col-md-2">
+					<label for="exampleTag" >Prazo Verifica&ccedil;&atilde;o</label>
+					<input type="text" name="data_prazo" id="data_prazo" class="form-control data-fluig" readonly />
+				</div>
+				
+				<div class="col-md-2">
+					<label for="exampleTag" >Data Verifica&ccedil;&atilde;o</label>
+					<input type="text" name="data_verificacao" id="data_verificacao" class="form-control data-fluig" readonly />
+				</div>
+				
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="exampleTag">ResponsÃ¡vel</label>
+						<div class="input-group">
+							<input type="text" name="usuario_verificacao" id="usuario_verificacao" class="form-control" readonly />
+							<span id = "bt_user_verificacao" name="bt_user_verificacao" class="input-group-addon fluigicon fluigicon-zoom-in fluigicon-sm" onclick="zoom(this.id)" ></span>
+							<input type="hidden" name="cod_usuario_verificacao" id="cod_usuario_verificacao" />
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<textarea rows="1" class="form-control" name="observacao_verificacao" id="observacao_verificacao" ></textarea> 
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--
+	<div class="panel panel-info">
+		<div class="panel-heading fs-txt-center">
+			<b>Follow-UP</b>
+		</div>
+		<div class="panel-body" style="padding-top: 0px; padding-right: 0px; padding-left: 0px; padding-bottom: 0px;" >	
+			<div class="row">
+				<div class="col-md-12">
+					<textarea rows="5" class="form-control" name="interacao" id="interacao" ></textarea> 
+				</div>
+			</div>
+		</div>
+	</div>
+		
+	<div class="panel panel-info">
+		<div class="panel-heading fs-txt-center">
+			<b>Hist&oacute;rico</b>	
+		</div>
+		<div class="panel-body" style="padding-top: 0px; padding-right: 0px; padding-left: 0px; padding-bottom: 0px;" >	
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table table-condensed table-bordered" border="1" tablename="folowup"  noaddbutton=true nodeletebutton=true addbuttonclass="wdkbuttonClass" >			
+						<thead>
+							<tr>
+								<td width='100%' class="cell-ellipsis"><b>Historico</b></td>
+							</tr>
+						</thead>
+						<tr>
+							<td>
+								<div class="row">
+									<div class="col-md-2">
+										<input type="text" class="form-control" name="data_hist" id="data_hist" readonly >
+									</div>
+									<div class="col-md-6">
+										<input type="text" class="form-control" name="user_hist" id="user_hist" readonly >
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<textarea rows="1" name="desc_hist" id="desc_hist" class="form-control"  readonly ></textarea>
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table> 
+				</div>
+			</div>
+		</div>
+	</div>
+-->
+</div>	
+
+
+<input type="hidden" name="tem_acao_pend" id="tem_acao_pend" />
+<input type="hidden" name="cod_resp_qualidade" id="cod_resp_qualidade" />
+<input type="hidden" name="acao_alterada" id="acao_alterada" />
+
+<input type="hidden" name="processo_origem" id="processo_origem" />
+<input type="hidden" name="task" id="task" />
+<input type="hidden" name="user_atual" id="user_atual" />
+
+
+<input type="hidden" name="proc_rec_cli" id="proc_rec_cli" />
+
+</form>
+</body>
+</html>

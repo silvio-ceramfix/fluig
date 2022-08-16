@@ -1,0 +1,623 @@
+<html>
+
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
+
+	<link type="text/css" rel="stylesheet" href="/portal/resources/style-guide/css/fluig-style-guide.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/portal/resources/style-guide/css/fluig-style-guide-filter.min.css"/>
+	
+	<link href="FLUIGADHOC.css" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery.mask.min.js"></script>
+	
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script	type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide-filter.min.js"></script>
+	
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	
+	<script type="text/javascript" src="zoom.js"></script>
+	<script type="text/javascript" src="modalZoom.js"></script>	
+	<script type="text/javascript" src="modalZoom2.js"></script>	
+	<script type="text/javascript" src="wizardItem.js"></script>	
+	<script type="text/javascript" src="modalEndEntrega.js"></script>	
+	<script type="text/javascript" src="valida.js"></script>
+	<script type="text/javascript" src="controle.js"></script>
+	<script type="text/javascript" src='jquery.maskMoney.min.js'></script>	
+	
+	<style>
+	
+		#email:valid {background:#006600;color:#fff }
+		
+		#email:invalid {background:#990000; color:#fff}
+	  
+    </style>
+	
+	<script type="text/javascript">
+			
+		
+	</script>
+	<script language="javascript">
+    	function disablePullToRefresh(){
+    		return true;
+    	}
+    </script>
+
+</head>
+
+<body class="fluig-style-guide"  onload="loadBody()"> 
+        
+	<form id="form" name="form" role="form">
+						    
+	<div class="container-fluid">
+	
+		<div class="fluig-style-guide" id="divPrincipal">
+			<div class="panel panel-info aba_1" id="aba_1"  >
+				<div class="panel-heading fs-txt-center">
+					<table width='100%' >
+						<tr>
+							<td width='90%' align=center ><b>Pedido</b></td>
+							<td width='10%' align=right > <input type="text" name="num_pedido" id="num_pedido" readonly style=" border-top-width: 0px; padding-bottom: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px; padding-top: 0px; background-color: #d9edf7;" size="10" /> </td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+					
+						<div class="col-md-4" id = "razao_social_grp">	
+							<label  for="razao_social">Cliente</label>
+							<input	type="zoom" id="razao_social" name="razao_social" class="form-control" valida="CLIENTE" readonly />
+							<input type="hidden" name="cpf_cliente" id="cpf_cliente" />
+							<input type="hidden" name="cod_cliente" id="cod_cliente" />
+							<input type="hidden" name="num_telefone" id="num_telefone" />
+							<input type="hidden" name="email" id="email" />
+							<input type="hidden" name="ies_cliente" id="ies_cliente" />
+							<input type="hidden" name="cod_class" id="cod_class" />
+							<input type="hidden" name="ins_estadual" id="ins_estadual" />
+							<input type="hidden" name="ies_tip_fornec" id="ies_tip_fornec" />
+							<input type="hidden" name="tipo_cliente" id="tipo_cliente" />
+							<input type="hidden" name="cod_tip_carteira_cli" id="cod_tip_carteira_cli" />
+							<input type="hidden" name="cod_moeda_cli" id="cod_moeda_cli" />
+							<input type="hidden" name="cod_tip_cli" id="cod_tip_cli" />
+							<input type="hidden" name="ies_inf_pedido" id="ies_inf_pedido" />
+							<input type="hidden" name="cli_exc_mix" id="cli_exc_mix" />
+							<input type="hidden" name="eh_contribuinte" id="eh_contribuinte" />							
+							<input type="hidden" name="cod_repres" id="cod_repres" />
+							<input type="hidden" name="tipo_venda" id="tipo_venda" />
+							<input type="hidden" name="nat_operacao" id="nat_operacao" />
+							<input type="hidden" name="tipo_entrega" id="tipo_entrega" />
+							<input type="hidden" name="moeda" id="moeda" />
+							
+							<input type="hidden" name="finalidade" id="finalidade" />
+							<input type="hidden" name="tipo_funcio" id="tipo_funcio" />
+						</div>
+						
+						<div class="col-md-4">
+							<label  for="emailPed">E-Mail para receber cópia do pedido.</label>
+							<input type="text" name="emailPed" id="emailPed" class="form-control"  />
+						</div>
+						
+						<div class="col-md-2">
+							<label  for="data_emissao">Data Emiss&atilde;o</label>
+							<input type="text" name="data_emissao" id="data_emissao" class="form-control" readonly />
+						</div>
+						
+						<div class="col-md-2">
+							<label  for="data_emissao">Data Entrega</label>
+							<input type="text" name="data_coleta" id="data_coleta" class="form-control" readonly />
+						</div>
+					
+					</div>
+					<div class="row">
+						
+						<div class="col-md-1">
+							<label for="duvida" >Dúvida</label>
+							<input type="checkbox" chass="checkbox check_situacao" name="duvida" id="duvida" data-on-color="danger" data-off-color="default" data-size="small" onchange="setComentario();" >
+						</div>
+						
+						<div class="col-md-2">	
+							<label  for="empresa">Empresa</label>
+							<select name="empresa" id="empresa" class="form-control"  valida="Empresa" onchange="if(  setLista() ){ setEmpresa(); atualizaEmpresa(); }" > </select>
+							<input type="hidden" name="empresa_hd" id="empresa_hd" />
+							<input type="hidden" name="empresa_cad" id="empresa_cad" />
+						</div>
+						
+						<div class="col-md-2">	
+							<label  for="lista_preco">Lista de Preço</label>
+							<select name="lista_preco" id="lista_preco" class="form-control"  valida="Lista de Preço" onchange="setListaPreco()" > </select>
+							<input type="hidden" name="lista_preco_hd" id="lista_preco_hd" />
+						</div>
+						
+						<div class="col-md-2">
+							<label  for="forma_pagamento">Forma Pagamento</label>
+							<select name="forma_pagamento" id="forma_pagamento" class="form-control" onchange="setFormaPagto()" valida="Forma Pagamento" >
+								<option value='' >  </option> 
+								<option value='B' id="boleto" > Boleto Bancário </option> 
+								<option value='D' id="desconto" > Desconto em Folha </option>
+								<option value='A' id="a_vista" > A Vista </option>
+							</select>
+						</div>
+						
+						<div class="col-md-2">	
+							<label  for="cond_pagamento">Cond. Pagamento</label>
+							<select name="cond_pagamento" id="cond_pagamento" class="form-control"  valida="Condição Pagamento" onchange="setCondPagto()" > </select>
+							<input type="hidden" name="ies_emite_dupl_cond" id="ies_emite_dupl_cond" class="form-control" />
+						</div>
+								
+						<div class="col-md-2">	
+							<label  for="tipo_frete">Tipo Frete</label>
+							<select name="tipo_frete" id="tipo_frete" class="form-control"  valida="Tipo Frete" onchange="setTipoFrete()" >
+								<option value='' >  </option> 
+								<option value='FOB' > FOB </option> 
+								<option value='RET' > RET </option>
+							</select>
+							<input type="hidden" name="tipo_frete_logix" id="tipo_frete_logix" />
+							<input type="hidden" name="cod_trans" id="cod_trans" />
+						</div>
+					</div>
+					
+					<div class="row row_duvida" >
+					
+						<div class="panel panel-info edit-followup"  style="margin-bottom: 0px;">
+							<div class="panel-heading fs-txt-center">
+								<table width='100%' >
+									<tr>
+										<td align=center ><b>Dúvida</b></td>
+									</tr>
+								</table>
+							</div>
+							<div class="panel-body">
+								<div class="row coment-interno">
+									<div class="col-sm-12">
+										<label for="exampleTag">Coment&aacute;rio</label>
+										<textarea rows="2" name="comentario" id="comentario" class="form-control" ></textarea>
+									</div>				
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-info"  style="margin-bottom: 0px;">
+							<div class="panel-heading fs-txt-center">
+								<table width='100%' >
+									<tr>
+										<td align=center ><b>Historico</b></td>
+									</tr>
+								</table>
+							</div>
+							<div class="panel-body">
+								<div class="row" id="hist" name="hist" >	
+									<div class="col-sm-12">	
+										<table class="table table-condensed table-bordered" border="1" tablename="folowup"  noaddbutton=true nodeletebutton=true addbuttonclass="wdkbuttonClass" >
+											<thead style="display:none">
+												<tr >
+													<td width='100%' class="cell-ellipsis"><b>Historico</b></td>
+												</tr>
+											</thead>
+												<tr>
+													<td>
+														<input type="hidden" name="tipo_hist" id="tipo_hist" />
+														<div class="row">
+															<div class="col-sm-2">
+																<label for="exampleTag">Data Hist.</label>
+																<input type="text" class="form-control" name="data_hist" id="data_hist" readonly >
+															</div>
+															<div class="col-sm-4">
+																<label for="exampleTag">Usuario</label>
+																<input type="text" class="form-control" name="user_hist" id="user_hist" readonly >
+																<input type="hidden" name="cod_user_hist" id="cod_user_hist" readonly >
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-sm-12">
+																<textarea rows="3" name="desc_hist" id="desc_hist" class="form-control"  readonly ></textarea>
+															</div>
+														</div>
+													</td>
+												</tr>
+										</table>
+									</div>			
+								</div>
+							</div>
+						</div>	
+					
+					</div>
+				</div>
+			</div>
+			
+			<div class="panel panel-info aba_1" id="aba_1"  >
+				<div class="panel-heading fs-txt-center">
+					<table width='100%' >
+						<tr>
+							<td width='90%' align=center ><b>Item do Pedido</b></td>
+							<td width='10%' align=right > <input type="text" name="cotacao" id="cotacao" readonly style=" border-top-width: 0px; padding-bottom: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px; padding-top: 0px; background-color: #d9edf7;" size="10" /> </td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="panel-body">
+					<div class="row edit_item">
+						<div class="col-md-2">	
+							<label  for="cod_item_edit">Codigo</label>
+							<div class="input-group">
+								<input	type="text" id = "cod_item_edit" name="cod_item_edit" class="form-control"  onblur="buscaItem( this.id );" onfocus="setItem( this.id );" />
+								<span class="input-group-addon fluigicon fluigicon-paste fluigicon-lg" onClick="modalWizardItem()" ></span>
+								<span id="bt_item" name="bt_item" class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm" onclick="zoomButton(this.id)"></span>
+							</div>
+							
+							
+							
+							<input	type="hidden" id = "cod_item_zoom_edit" name="cod_item_zoom_edit" class="form-control"  />
+							<input type="hidden" name="den_item_reduz_edit" id="den_item_reduz_edit" class="form-control"   />							
+							<input type="hidden" name="peso_edit" id="peso_edit" class="form-control"   />
+							<input type="hidden" name="cubagem_edit" id="cubagem_edit" class="form-control"   />
+							<input type="hidden" name="qtd_pad_edit" id="qtd_pad_edit" class="form-control"   />
+							<input type="hidden" name="cod_lin_prod_edit" id="cod_lin_prod_edit" class="form-control"   />
+							<input type="hidden" name="cod_lin_recei_edit" id="cod_lin_recei_edit" class="form-control"   />
+							<input type="hidden" name="cod_seg_merc_edit" id="cod_seg_merc_edit" class="form-control"   />
+							<input type="hidden" name="cod_cla_uso_edit" id="cod_cla_uso_edit" class="form-control"   />
+							<input type="hidden" name="cod_grupo_item_edit" id="cod_grupo_item_edit" class="form-control"   />
+							<input type="hidden" name="cod_tip_carteira_edit" id="cod_tip_carteira_edit" class="form-control"   />
+							<input type="hidden" name="ies_mix_edit" id="ies_mix_edit" class="form-control"   />							
+							<input type="hidden" name="linha_edit" id="linha_edit" class="form-control"   />
+							<input type="hidden" name="cod_motivo_edit" id="cod_motivo_edit" />
+							<input type="hidden" name="sequencia_edit" id="sequencia_edit" />
+							<input type="hidden" name="valor_unit_liq_edit" id="valor_unit_liq_edit" class="form-control"   />
+							
+							<input type="hidden" name="editar" id="editar" />
+							
+						</div>
+						<div class="col-md-10">
+							<label  for="den_item_edit">Produto</label>
+							<input	type="zoom"
+									id = "den_item_edit"
+									name="den_item_edit"
+									class="form-control"
+									readonly
+								/>
+						</div>
+					</div>
+					<div class="row edit_item">
+						<div class="col-md-2">
+							<label  for="valor_unit_edit">Vlr. Unit&aacute;rio</label>
+							<input type="text" name="valor_unit_edit" id="valor_unit_edit" class="form-control preco_unit" style="text-align:right" readonly />
+							<input type="hidden" name="valor_unit_lista_edit" id="valor_unit_lista_edit" />
+						</div>
+						<div class="col-md-2">
+							<label  for="quantidade_edit">Quantidade / 
+								<input type="text" name="um_edit" id="um_edit" readonly style="width: 34px; border-top-width: 0px; padding-bottom: 0px; border-bottom-width: 0px; border-left-width: 0px; border-right-width: 0px; padding-top: 0px; " />
+							</label>
+							<div class="input-group">
+								<span class="input-group-addon fluigicon fluigicon-minus-circle fluigicon-lg" onClick="removeLote()" ></span>
+								<input type="tel" name="quantidade_edit" id="quantidade_edit" class="form-control decimal_2" onblur="calcDescTotal( this.id )" style="text-align:right" />
+								<span class="input-group-addon fluigicon fluigicon-plus-circle fluigicon-lg" onClick="addLote()" ></span>
+							</div>
+						</div>  
+						<div class="col-md-2">
+							<label  for="valor_total_edit">Vlr. Total</label>
+							<input type="text" name="valor_total_edit" id="valor_total_edit" class="form-control" readonly style="text-align:right" />
+						</div>
+						<div class="col-md-1">
+							<label  for="grava_edit">&nbsp;</label>
+							<button id="grava_edit" name="grava_edit" class="form-control btn btn-success" onclick="gravaItem('ped_itens', true);" >Gravar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="panel panel-info aba_1" id="aba_1"  >
+				<div class="panel-heading fs-txt-center">
+					<table width='100%' >
+						<tr>
+							<td width='100%' align=center ><b>Itens do Pedido</b></td>
+						</tr>
+					</table>
+				</div>
+				
+				<div class="panel-body">					
+					<div class="row">						
+						<!-- <div class="col-md-12">-->
+							<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+								<table class="table table-condensed table-bordered table-striped" border="1" tablename="ped_itens" nodeletebutton=false noaddbutton=true addbuttonclass="wdkbuttonClass" deleteicon="trash.png" customFnDelete="fnCustomDelete(this)" >
+									<thead>
+										<tr class="tableHeadRow" >	
+											<th width="10%" class="tableColumn"><b>C&oacute;digo</b></th>
+											<th width="50%" class="tableColumn"><b>Produto</b></th>											
+											<th width="10%" class="tableColumn"><b>UM</b></th>
+											<th width="10%" class="tableColumn"><b>P.Unit </b></th>
+											<th width="10%" class="tableColumn"><b>Quant.</b></th>
+											<th width="10%" class="tableColumn" ><b>Total</b></th>
+										</tr>
+									</thead>
+									<tr id="linha" name="linha" ondblclick="editItem( this.id )">
+										<td ><input type="text" class="form-control" name="cod_item" id="cod_item" readonly valida="Cod Item" pf="S" ></td>
+										<td ><input type="hidden" class="form-control" name="den_item" id="den_item" >
+											<input type="text" class="form-control" name="den_item_reduz" id="den_item_reduz" readonly > 
+											<input type="hidden" name="data_entrega" id="data_entrega" />
+											<input type="hidden" name="data_entrega_calc" id="data_entrega_calc" />
+										</td>
+										<td ><input type="text" class="form-control" name="um" id="um" readonly valida="Unidade de Medida" pf="S" >
+											<input type="hidden" name="peso" id="peso" />
+											<input type="hidden" name="cubagem" id="cubagem" />
+											<input type="hidden" name="qtd_pad" id="qtd_pad" />
+											<input type="hidden" name="valor_unit_lista" id="valor_unit_lista" />
+											<input type="hidden" name="pct_desc_adic" id="pct_desc_adic" />
+											
+											<input type="hidden" name="ies_apv_desc_item_reg" id="ies_apv_desc_item_reg" />
+											<input type="hidden" name="ies_apv_desc_item_nac" id="ies_apv_desc_item_nac" />											
+											
+											<input type="hidden" name="custo" id="custo" />
+											<input type="hidden" name="icms" id="icms" />
+											<input type="hidden" name="cofins" id="cofins" />
+											<input type="hidden" name="pis" id="pis" />
+											<input type="hidden" name="comis" id="comis" />
+											
+											<input type="hidden" name="st" id="st" />
+											<input type="hidden" name="ipi" id="ipi" />
+											
+											<input type="hidden" name="ult_preco" id="ult_preco" />
+											
+
+											<input type="hidden" name="acordo_comerc" id="acordo_comerc" />
+											<input type="hidden" name="verb_mark" id="verb_mark" />
+											<input type="hidden" name="custo_trans" id="custo_trans" />
+
+											<input type="hidden" name="custo_aditivo" id="custo_aditivo" />
+											<input type="hidden" name="custo_agregado" id="custo_agregado" />
+											<input type="hidden" name="custo_cimento" id="custo_cimento" />
+											<input type="hidden" name="custo_embalagem" id="custo_embalagem" />
+											<input type="hidden" name="custo_materia_prima" id="custo_materia_prima" />
+											<input type="hidden" name="custo_material_secundario" id="custo_material_secundario" />
+											<input type="hidden" name="custo_material_revenda" id="custo_material_revenda" />
+											<input type="hidden" name="custo_servico_terceiro" id="custo_servico_terceiro" />
+											<input type="hidden" name="custo_embalagem_logistica" id="custo_embalagem_logistica" />
+											<input type="hidden" name="custo_transferecia" id="custo_transferecia" />
+
+											<input type="hidden" name="verba_marketing" id="verba_marketing" />
+											<input type="hidden" name="acordo_comercial" id="acordo_comercial" />
+											<input type="hidden" name="verba_rapel" id="verba_rapel" />
+											<input type="hidden" name="verba_cross_dock" id="verba_cross_dock" />
+
+											<input type="hidden" name="val_royaltie" id="val_royaltie" />
+
+											<input type="hidden" name="cod_lin_prod" id="cod_lin_prod" />
+											<input type="hidden" name="cod_lin_recei" id="cod_lin_recei" />
+											<input type="hidden" name="cod_seg_merc" id="cod_seg_merc" />
+											<input type="hidden" name="cod_cla_uso" id="cod_cla_uso" />
+											<input type="hidden" name="cod_grupo_item" id="cod_grupo_item" />
+											<input type="hidden" name="cod_tip_carteira" id="cod_tip_carteira" />
+										
+											<input type="hidden" name="pedido_cli_item" id="pedido_cli_item" />
+											<input type="hidden" name="seq_pedido_cli_item" id="seq_pedido_cli_item" />
+
+											<input type="hidden" name="sequencia" id="sequencia" />
+											<input type="hidden" name="qtd_orig" id="qtd_orig" />
+																		
+											<input type="hidden" name="cod_motivo" id="cod_motivo" />
+											
+
+										</td>
+										<td ><input type="text" class="form-control" name="valor_unit" id="valor_unit" style="text-align:right" readonly valida="Pre&ccedil;o Unit&aacute;rio" pf="S" ></td>
+										<td ><input type="text" class="form-control" name="quantidade" id="quantidade" style="text-align:right" readonly valida="Quantidade" pf="S" ></td>
+										<td ><input type="text" class="form-control" name="valor_total" id="valor_total" style="text-align:right" readonly valida="Valor Total" pf="S" ></td>
+									</tr>
+								</table>
+							</div>
+						<!-- </div> -->
+					</div>
+										
+					<div class="row">
+					 
+						<div class="col-md-2  col-sm-offset-8" >
+							<label class="valor_real lbl_moeda" id="lb_valor_total_geral" for="valor_total_edit">Total (R$)</label>
+							<input type="text" name="valor_total_real" id="valor_total_real" class="form-control valor_real lbl_moeda" readonly />
+						</div>
+					
+						<div class="col-md-2 " >
+							<label  for="valor_total_edit">Total KG</label>
+							<input type="text" name="peso_total_geral" id="peso_total_geral" class="form-control" style="text-align:right" readonly />
+							<input type="hidden" name="cubagem_total_geral" id="cubagem_total_geral" class="form-control"/>
+						</div>
+					</div>					
+				</div>
+			</div>
+
+			<!-- style="display:none;" -->
+			<div class="panel panel-info aba_2" id="aba_2" style="display:none;" >
+				<div class="panel-heading fs-txt-center">
+				
+					<table>
+						<tr>
+							<td width='100%' align=center ><b>Endere&ccedil;o de Entrega</b></td>
+						</tr>
+					</table>
+				
+				</div>
+				<div class="panel-body">	
+					<div class="row">
+						<div class="col-md-2">
+							<label for="exampleTag">Tipo de Logradouro</label>
+							<select name="tipo_logradouro_ent" id="tipo_logradouro_ent" class="form-control validaAltera" valida="Tipo Logradou" dataset="tip_logradouro" datasetkey="tip_logradouro" datasetvalue="tip_logradouro" addBlankLine="true" >
+							</select>
+						</div>
+						<div class="col-md-8">
+							<div class="form-group">
+								<label for="exampleTag">Endere&ccedil;o</label>
+								<input type="text" name="endereco_ent" id="endereco_ent" class="form-control validaAltera" valida="Endereço" maxlength="22" pattern="[a-zA-Z0-9]+" onBlur="retiraAcento(this.value, this); cargaCidadesEnt();"/>
+								<input type="hidden" name="seq_end" id="seq_end" />
+							</div>
+						</div> 
+						<div class="col-md-2">
+							<div class="form-group">
+								<label for="exampleTag">N&uacute;mero</label>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<input type="checkbox" name="sem_numero_ent" id="sem_numero_ent" onchange="setSemNumero( this.id, 'numero_ent' )" >
+									</span>
+									<input type="tel" mask="000000"  maxlength=6 name="numero_ent" id="numero_ent" class="form-control  validaAltera" valida="N&uacute;mero" />
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<label for="exampleTag">Pais</label>
+							<input type="text" name="pais_ent" id="pais_ent" class="form-control" readonly />
+							<input type="hidden" name="cod_pais_ent" id="cod_pais_ent" class="form-control" readonly />
+						</div>
+						<div class="col-md-2">
+							<label for="exampleTag">Estado</label>
+							<input type="text" name="estado_ent" id="estado_ent" class="form-control" readonly />
+						</div>
+						<div class="col-md-6" id = "cidade_ent_grp">
+							<div class="form-group">
+								<label for="exampleTag">Cidade</label>
+								<input	type="zoom"
+										id = "cidade_ent"
+										name="cidade_ent"
+										class="foco  validaAltera"
+										valida="Cidade"
+										data-zoom="{
+											'displayKey':'den_cidade',
+											'datasetId':'cidades',
+											'filterValues':'cod_uni_feder,__',
+											'standard':'true', 
+											'search':'true',
+											'fields':[
+												{
+												   'field':'cod_cidade',
+												   'label':'Codigo',
+												   'standard':'true',
+											       'search':'true'
+												},{
+												  'field':'den_cidade',
+												  'label':'Cidade',
+												  'standard':'true', 
+												  'search':'true'
+												}
+											]
+										 }" 
+									/>
+								<input type="hidden" name="cod_cidade_ent" id="cod_cidade_ent" class="form-control" valida="Codigo Cidade"/> 
+							</div>
+						</div>
+						<div class="col-md-2">
+							<div class="form-group">
+								<label for="exampleTag">CEP</label>
+								<input type="tel" mask="00000-000" name="cep_ent" id="cep_ent" class="form-control  validaAltera" valida="CEP"  regra="cep"/>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="exampleTag">Bairro</label>
+								<div class="input-group">
+									<span class="input-group-addon">
+										<input type="checkbox" name="ies_bairro_ent_manual" id="ies_bairro_ent_manual" onchange="alteraCampos( this.id, 'bairro_ent_sel', 'bairro_ent' )">
+									</span>
+									<select name="bairro_ent_sel" id="bairro_ent_sel" class="form-control  validaAltera" valida="Bairro" ></select>
+									<input type="text"  maxlength=30 name="bairro_ent" id="bairro_ent" class="form-control  validaAltera" valida="Bairro" pattern="[a-zA-Z0-9]+" onBlur="retiraAcento(this.value, this)"/>
+								</div>	
+							</div>
+						</div>		
+						
+					</div>
+				</div>
+			</div>
+			
+			<!--  #### navegacao #### -->
+			<div class="vertical-align-parent">
+				<div id="actions_wizard" class="row">
+					<div class="row" >
+						<table width = '100%'>
+							<tr>
+								<td width = '2%' >
+								</td>
+								<td width = '30%' >
+									<div id="divPreviousStopButton" class="col-md-12 fs-txt-left" >
+										<button id="btn_cancel" name="btn_cancel" class="btn btn-danger"  style="display:none;" onclick="lastPage()">Voltar</button>
+									</div>
+								</td>
+								<td width = '30%'>
+									<div id="divPreviousStopButton" class="col-md-12 fs-txt-center">
+										<h3><span id="current_step"></span> de <span id="total_steps"></span></h3>
+									</div>
+								</td>
+								<td width = '30%'>
+									<div id="divNextStopButton" class="col-md-12 fs-txt-right">
+										<button id="btn_confirma" name="btn_confirma" class="btn btn-success" onClick="nextPage()">Avan&ccedil;ar</button>
+									</div>
+								</td>
+								<td width = '2%' >
+								</td>
+							</tr>
+						</table>
+					</div>
+					
+					<div class="row" id="obs_reg" style="display:none;">
+						<div class="col-md-12">	
+							<label  for="ped_cliente">OBS. Gerente  Regional</label>
+							<textarea name="obs_ger_reg" id="obs_ger_reg" rows="3" class="form-control" ></textarea>
+						</div>
+					</div>
+					<div class="row" id="obs_nac" style="display:none;">
+						<div class="col-md-12">	
+							<label  for="ped_cliente">OBS. Gerente Nacional</label>
+							<textarea name="obs_ger_nac" id="obs_ger_nac" rows="3" class="form-control" ></textarea>
+						</div>
+					</div>
+					<div class="row" id="obs_ctr" style="display:none;">
+						<div class="col-md-12">	
+							<label  for="ped_cliente">OBS. Controler</label>
+							<textarea name="obs_ctr" id="obs_ctr" rows="3" class="form-control" ></textarea>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+		
+		<input type="hidden" name="cod_cidade_ent_md" id="cod_cidade_ent_md" />		
+		<input type="hidden" name="bairro_ent_sel_md" id="bairro_ent_sel_md" />
+		<input type="hidden" name="userFluig" id="userFluig" />
+		<input type="hidden" name="userFluigNome" id="userFluigNome" />
+		<input type="hidden" name="tipoCadUser" id="tipoCadUser" />
+		<input type="hidden" name="login" id="login" />
+		
+		<input type="hidden" name="task" id="task" />	
+		<input type="hidden" name="processo" id="processo" />
+		
+		<input type="hidden" name="dup_item" id="dup_item" />
+		<input type="hidden" name="casas_preco" id="casas_preco" />
+
+		<input type="hidden" name="sit_pedido" id="sit_pedido" />
+		<input type="hidden" name="modo" id="modo" />
+		<input type="hidden" name="tipo_entrega_hd" id="tipo_entrega_hd"/>
+		
+		<input type="hidden" name="ies_orcamento" id="ies_orcamento" />
+		<input type="hidden" name="valor_min_tip_cliente" id="valor_min_tip_cliente" class="form-control"/>
+		
+		<input type="hidden" name="ies_end_entrega" id="ies_end_entrega" />
+		
+		<div style="display:none">
+			<textarea style="display:none" name="consistencias" id="consistencias" ></textarea>
+		</div>
+
+		<div style="display:none">
+			<div id="div_mot_cancel" >
+				<select id="mot_cancel" name="mot_cancel" class="form-control"  dataset="motivo_cancel" datasetkey="cod_motivo" datasetvalue="den_motivo"  addBlankLine="true" > </select>
+			</div>		
+		</div>
+	</div>	
+	</form>
+	v 1.04a
+</body>
+
+</html>

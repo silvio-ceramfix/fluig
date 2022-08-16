@@ -1,0 +1,454 @@
+<html>
+
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
+
+	<link type="text/css" rel="stylesheet" href="/portal/resources/style-guide/css/fluig-style-guide.min.css"/>
+	<link rel="stylesheet" type="text/css" href="/portal/resources/style-guide/css/fluig-style-guide-filter.min.css"/>
+	
+	<link href="FLUIGADHOC.css" type="text/css" rel="stylesheet" />
+	
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery.mask.min.js"></script>
+	
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script	type="text/javascript" src="/portal/resources/style-guide/js/fluig-style-guide-filter.min.js"></script>
+	
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	
+	<script type="text/javascript" src="zoom.js"></script>
+	<script type="text/javascript" src="modalZoom.js"></script>	
+	<script type="text/javascript" src="modalEndEntrega.js"></script>	
+	<script type="text/javascript" src="valida.js"></script>
+	<script type="text/javascript" src="controle.js"></script>
+	<script type="text/javascript" src='jquery.maskMoney.min.js'></script>
+	<script type="text/javascript" src="geraEspelhoNFD.js"></script>	
+	
+
+ 
+    <script type="text/javascript">         //<![CDATA[
+     window.addEventListener('load', function() {
+          var maybePreventPullToRefresh = false;
+          var lastTouchY = 0;
+          var touchstartHandler = function(e) {
+            if (e.touches.length != 1) return;
+            lastTouchY = e.touches[0].clientY;
+            // Pull-to-refresh will only trigger if the scroll begins when the
+            // document's Y offset is zero.
+            maybePreventPullToRefresh =
+                window.pageYOffset == 0;
+          }
+
+          var touchmoveHandler = function(e) {
+            var touchY = e.touches[0].clientY;
+            var touchYDelta = touchY - lastTouchY;
+            lastTouchY = touchY;
+
+            if (maybePreventPullToRefresh) {
+              // To suppress pull-to-refresh it is sufficient to preventDefault the
+              // first overscrolling touchmove.
+              maybePreventPullToRefresh = false;
+              if (touchYDelta > 0) {
+                e.preventDefault();
+                return;
+              }
+            }
+          }
+
+          document.addEventListener('touchstart', touchstartHandler, false);
+          document.addEventListener('touchmove', touchmoveHandler, false);      });
+            //]]>    </script>
+    
+
+	
+	<style type="text/css">
+	
+		#email:valid {background:#006600;color:#fff }
+		
+		#email:invalid {background:#990000; color:#fff}
+		
+  		}	
+	  
+    </style>
+
+</head>
+
+<body class="fluig-style-guide"  onload="loadBody()" "> 
+        
+	<form id="form" name="form" role="form">
+						    
+	<div class="container-fluid">
+	
+		<div class="fluig-style-guide" id="divPrincipal">
+			<div class="panel panel-info" id="aba_1"  >
+				<div class="panel-heading fs-txt-center">
+					<table width='100%' >
+						<tr>
+							<td width='80%' align=center ><b>Devolução</b></td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-6" id = "razao_social_grp">	
+							<label  for="razao_social">Cliente</label>
+							
+							<input	type="zoom"
+									id = "razao_social"
+									name="razao_social"
+									class="foco"
+									valida="Cliente"
+									data-zoom="{
+										'displayKey':'nom_cliente',
+										'datasetId':'clientes_logix',
+										'fields':[
+											{
+											   'field':'cod_cliente',
+											   'label':'Codigo',
+											   'standard':'true'
+											},{
+											  'field':'nom_cliente',
+											  'label':'Cliente'
+											}
+										]
+									 }" 
+								/>
+								
+						</div>
+						
+						<div class="col-md-4">
+							<label  for="razao_social">CNPJ</label>
+							<input type="tel" mask="000.000.000/0000-00" name="cnpj" id="cnpj" class="form-control" valida="CNPJ" readonly />
+							<input type="hidden" name="cod_cliente" id="cod_cliente" class="form-control"/>
+							<input type="hidden" name="cod_class" id="cod_class" class="form-control"/>
+							<input type="hidden" name="ins_estadual" id="ins_estadual" class="form-control"/>
+							<input type="hidden" name="cod_tip_carteira_cli" id="cod_tip_carteira_cli" class="form-control"/>
+							<input type="hidden" name="cod_moeda_cli" id="cod_moeda_cli" class="form-control"/>
+							<input type="hidden" name="cod_tip_cli" id="cod_tip_cli" class="form-control"/>
+							<input type="hidden" name="ies_inf_pedido" id="ies_inf_pedido" class="form-control"/>
+							<input type="hidden" name="qtd_saldo_a_devolver" id="qtd_saldo_a_devolver" class="form-control"/>
+							<input type="hidden" name="qtd_itens" id="qtd_itens" class="form-control"/>
+						</div>
+						<div class="col-md-2">
+							<label  for="data_inclusao">Data</label>
+							<input type="tel" name="data_inclusao" id="data_inclusao" class="form-control" readonly />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">	
+							<label  for="cidade">Cidade</label>
+							<input	type="text" id = "den_cidade" name="den_cidade" class="form-control" readonly />
+						</div>
+						<div class="col-md-2">	
+							<label  for="cidade">UF</label>
+							<input	type="text" id = "uf" name="uf" class="form-control" readonly />
+						</div>
+						<div class="col-md-2">	
+							<label  for="empresa">Empresa</label>
+							<select name="empresa" id="empresa" class="form-control"  valida="Empresa" onchange="carregaNotasFiscais()" > </select>
+							<input type="hidden" name="empresa_hd" id="empresa_hd" />
+						</div>
+						<div class="col-md-2">	
+							<label  for="nota_fiscal">Nota Fiscal</label>
+							<select name="nota_fiscal" id="nota_fiscal" class="form-control" valida="Nota Fiscal" onchange="loadItensNota($('#empresa').val(), $('#nota_fiscal').val());"> </select>
+							<input type="hidden" name="trans_nota_fiscal" id="trans_nota_fiscal" />
+							<input type="hidden" name="num_nota_fiscal" id="num_nota_fiscal" />
+						</div>
+					</div>	
+					
+					<div class="row">
+						<div class="col-md-1">	
+							<label  for="cod_repres">Cod.</label>
+							<input	type="text" id = "cod_repres" name="cod_repres" class="form-control" readonly />
+						</div>
+						<div class="col-md-4">	
+							<label  for="cod_repres">Representante</label>
+							<input	type="text" id = "nom_repres" name="nom_repres" class="form-control" readonly />
+						</div>	
+					
+						<div class="col-md-4">	
+							<label  for="motivo_devolucao">Motivo de Devolução</label>
+							<select name="motivo_devolucao" id="motivo_devolucao" class="form-control" onchange="getResponsavelDevolucao();" valida="Motivo de Devolução"> </select>
+							<input type="hidden" name="responsavel_devolucao" id="responsavel_devolucao" />
+						</div>
+						
+						<div class="col-md-3">
+							<label  for="tipo_devolucao">Tipo de Devolução</label>
+							<select name="tipo_devolucao" id="tipo_devolucao" class="form-control" valida="Tipo de Devolução" onchange="loadTipoDevolucao(); loadItensNota($('#empresa').val(), $('#nota_fiscal').val());">
+								<option value=''> </option> 
+								<option value='1' > TOTAL </option>
+								<option value='2' > PARCIAL </option>
+							</select>
+						</div>
+					</div>					
+					
+				</div>
+			</div>
+
+			<div class="panel panel-info" id="aba_2" style="display:none;"  >
+				<div class="panel-heading fs-txt-center"><b>Itens da Devolução</b></div>
+					<div class="panel-body">
+					<div class="row">
+					
+					<!-- <div class="col-md-12">-->
+						<div class="form-field table-responsive" data-type="tabledetail" data-show-properties="" data-field-name="tabledetail">
+							<table class="table table-condensed table-bordered table-striped" border="1" tablename="nota_itens" nodeletebutton=false noaddbutton=true addbuttonclass="wdkbuttonClass" deleteicon="trash.png" customFnDelete="fnCustomDelete(this)" >
+								<thead>
+									<tr class="tableHeadRow" >	
+										<th width="5%" class="tableColumn"><b>Seq.</b></th>
+										<th width="10%" class="tableColumn"><b>Código</b></th>
+										<th width="30%" class="tableColumn"><b>Produto</b></th>
+										<th width="5%" class="tableColumn"><b>UM</b></th>
+										<th width="10%" class="tableColumn"><b>P.Unit</b></th>
+										<th width="10%" class="tableColumn"><b>Quant.</b></th>
+										<th width="10%" class="tableColumn"><b>P. Total</b></th>
+										<th width="10%" class="tableColumn" ><b>Qtd. Devolvida</b></th>
+										<th width="10%" class="tableColumn" ><b>Qtd a Devolver</b></th>
+									</tr>
+								</thead>
+								<tr id="linha" name="linha" ondblclick="editItem( this.id )">
+									<td ><input type="text" class="form-control" name="seq_item" id="seq_item" readonly valida="Seq Item" pf="S" tabindex="-1"></td>
+									<td ><input type="text" class="form-control" name="cod_item" id="cod_item" readonly valida="Cod Item" pf="S" tabindex="-1"></td>
+									<td ><input type="text" class="form-control" name="des_item" id="des_item" readonly tabindex="-1"> </td>
+									<td ><input type="text" class="form-control" name="um" id="um" readonly valida="Unidade de Medida" pf="S" tabindex="-1"></td>
+									<td ><input type="text" class="form-control" name="pre_unit" id="pre_unit" style="text-align:right" readonly valida="PreÃ§o Unitário" pf="S" tabindex="-1"></td>
+									<td ><input type="text" class="form-control" name="quantidade" id="quantidade" style="text-align:right" readonly tabindex="-1"></td>
+									<td ><input type="text" class="form-control" name="pre_total" id="pre_total" style="text-align:right" readonly tabindex="-1" ></td>
+									<td ><input type="text" class="form-control" name="qtd_devolvida" id="qtd_devolvida" style="text-align:right" readonly tabindex="-1"></td>	
+									<td ><input type="tel" class="form-control" name="qtd_devolver" id="qtd_devolver" onblur="calculaTotal( this.id,'S' )" style="text-align:right" >
+										 <input type="hidden" class="form-control" name="qtd_pad_edit" id="qtd_pad_edit" >
+										 <input type="hidden" class="form-control" name="bc_fecomp" id="bc_fecomp" >
+										 <input type="hidden" class="form-control" name="val_fecomp" id="val_fecomp" >
+										 <input type="hidden" class="form-control" name="bc_ipi" id="bc_ipi" >
+										 <input type="hidden" class="form-control" name="val_ipi" id="val_ipi" >
+										 <input type="hidden" class="form-control" name="bc_st" id="bc_st" >
+										 <input type="hidden" class="form-control" name="val_st" id="val_st" >
+										 <input type="hidden" class="form-control" name="bc_st_gnre" id="bc_st_gnre" >
+										 <input type="hidden" class="form-control" name="val_st_gnre" id="val_st_gnre" >
+										 <input type="hidden" class="form-control" name="bc_icms" id="bc_icms" >
+										 <input type="hidden" class="form-control" name="val_icms" id="val_icms" >
+										 <input type="hidden" class="form-control" name="aliquota_icms" id="aliquota_icms" >
+										 <input type="hidden" class="form-control" name="fecomp_proporcional" id="fecomp_proporcional" >
+										 <input type="hidden" class="form-control" name="ipi_proporcional" id="ipi_proporcional" >
+										 <input type="hidden" class="form-control" name="icms_proporcional" id="icms_proporcional" >
+										 <input type="hidden" class="form-control" name="icms_st_proporcional" id="icms_st_proporcional" >
+										 <input type="hidden" class="form-control" name="base_ipi_proporcional" id="base_ipi_proporcional" >
+										 <input type="hidden" class="form-control" name="base_fecomp_proporcional" id="base_fecomp_proporcional" >
+										 <input type="hidden" class="form-control" name="base_icms_proporcional" id="base_icms_proporcional" >
+										 <input type="hidden" class="form-control" name="base_icms_st_proporcional" id="base_icms_st_proporcional" >
+										 <input type="hidden" class="form-control" name="valor_proporcional" id="valor_proporcional" >
+									</td>
+								</tr>
+							</table>
+						</div>
+					<div class="panel-body">	
+						<div class="row">
+							<div class="col-md-2  col-sm-offset-2" >
+								<label  for="valor_total_fecomp">Total FCP</label>
+								<input type="text" name="valor_total_fecomp" id="valor_total_fecomp" class="form-control" style="text-align:right" readonly />
+							</div>
+							<div class="col-md-2 " >
+								<label  for="valor_total_IPI">Total IPI</label>
+								<input type="text" name="valor_total_IPI" id="valor_total_IPI" class="form-control" style="text-align:right" readonly />
+							</div>
+							<div class="col-md-2" >
+								<label  for="valor_total_ICMS">Total ICMS</label>
+								<input type="text" name="valor_total_ICMS" id="valor_total_ICMS" class="form-control" style="text-align:right" readonly />
+							</div>
+							<div class="col-md-2" >
+								<label  for="valor_total_ICMS_ST">Total ICMS ST</label>
+								<input type="text" name="valor_total_ICMS_ST" id="valor_total_ICMS_ST" class="form-control" style="text-align:right" readonly />
+							</div>
+							<div class="col-md-2" >
+								<label  for="valor_total_edit">Total</label>
+								<input type="text" name="valor_total_geral" id="valor_total_geral" class="form-control" style="text-align:right" readonly />
+							</div>
+							<div class="col-md-2" >
+								<label  for="valor_total_edit">Total c/ ST e IPI</label>
+								<input type="text" name="valor_total_impostos" id="valor_total_impostos" class="form-control" style="text-align:right" readonly />
+							</div>
+								<input type="hidden" name="valor_total_bc_fecomp" id="valor_total_bc_fecomp" class="form-control" />
+								<input type="hidden" name="valor_total_bc_icms" id="valor_total_bc_icms" class="form-control" />
+								<input type="hidden" name="valor_total_bc_icms_st" id="valor_total_bc_icms_st" class="form-control" />
+								<input type="hidden" name="valor_total_bc_ipi" id="valor_total_bc_ipi" class="form-control" />
+								<input type="hidden" name="cfop_geral" id="cfop_geral" class="form-control" />
+								<input type="hidden" class="form-control" name="aliquota_icms_geral" id="aliquota_icms_geral" />
+						</div>
+						
+						
+						<div class="row" >
+						<table width = '100%'>
+							<tr>
+								<td width = '8%' >
+								</td>
+								<td width = '80%' >
+									<div class="col-md-12 fs-txt-left" >
+										<label for="e_mail">E-Mail</label>
+										<input type="text" name="e_mail" id="e_mail" class="form-control" regra="email" maxlength="255" />
+									</div>
+								</td>
+								<td width = '20%'>
+									<div class="btn-group-lg">
+										<button id="btn_enviamail" name="btn_enviamail" class="btn btn-success" onClick="geraEspelhoNFD();">Enviar NFD Espelho</button>
+									</div>
+								</td>
+								<td width = '2%' >
+								</td>
+							</tr>
+						</table>
+					</div>
+						
+						
+					</div>			
+						
+					<!-- </div> -->
+				</div>
+					</div>
+			</div>
+
+			<!-- style="display:none;" -->
+			<div class="panel panel-info" id="aba_3" style="display:none;" >
+				<div class="panel-heading fs-txt-center"><b>Dados Adicionais</b></div>
+					<div class="panel-body">
+						<div class="col-md-12">	
+							<label for="exampleTag">Nota Fiscal Emitida por:</label>
+							<div class="radio">
+								<div class="col-md-6">
+									<label>
+										<input type="radio" name="radio_tipo_nota" id="radio_tipo_nota" value="1"  " checked>
+										<b>Emitida pelo Cliente</b>
+									</label>
+										<div class="alert alert-success" role="alert">-Destacar Impostos referentes a devolução; </br>-Caso clientes SIMPLES NACIONAL ou não tenha obrigação
+										de destacar os impostos nos campos da NF, destacá-los nos dados adicionais; </div>
+										</div>
+										<div class="col-md-6" name="div_ceramfix_nota" id="div_ceramfix_nota">
+											<label>
+												<input type="radio" name="radio_tipo_nota" id="radio_tipo_nota" value="2" ">
+													<b>Ceramfix</b>
+											</label>
+												<div class="alert alert-warning" role="alert">-Informar o motivo da recusa no verso da Nota Fiscal com carimbo e assinatura.</div>
+												</div>
+										</div>
+								</div>
+								<div class="col-md-12">
+								<div class="checkbox" name="div_check_anexa_nfd" id="div_check_anexa_nfd">
+        						<label>
+        							<input type="checkbox" name="check_anexa_nfd" id="check_anexa_nfd"> Anexa nota fiscal internamente?
+        						</label>
+    							</div>
+							</div>
+							</div>
+							
+							<div class="panel-heading fs-txt-center">
+							<table width='90%' >
+								<tr>
+									<td width='100%' align=left	>
+									Informações Sobre Movimentação da Mercadoria:
+									</td>
+								</tr>
+							</table>
+						</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-4">	
+										<label  for="mercadoria_retorna">Mercadoria Irá Retornar para a empresa?</label>
+										<select name="mercadoria_retorna" id="mercadoria_retorna" class="form-control"  valida="Mercadoria Retorna"> 
+											<option value=''> </option>
+											<option value='SIM' > SIM </option>
+											<option value='NAO' > NÃO </option>
+										</select>
+									</div>
+								</div>
+							</div>
+							
+							<div class="panel-heading fs-txt-center">
+							<table width='90%' >
+								<tr>
+									<td width='100%' align=left	>
+									OBSERVAÇÕES (para uso da Ceramfix):
+									</td>
+								</tr>
+							</table>
+						</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-md-12">	
+										<textarea class="form-control" rows="3" id="descricao" name="descricao" valida="ObservaÃ§Ãµes"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+			
+					
+			
+			
+			
+			<!--  #### navegacao #### -->
+			<div class="vertical-align-parent">
+				<div id="actions_wizard" class="row">
+					<div class="row" >
+						<table width = '100%'>
+							<tr>
+								<td width = '2%' >
+								</td>
+								<td width = '30%' >
+									<div id="divPreviousStopButton" class="col-md-12 fs-txt-left" >
+										<button id="btn_cancel" name="btn_cancel" class="btn btn-danger"  style="display:none;" onclick="lastPage()">Voltar</button>
+									</div>
+								</td>
+								<td width = '30%'>
+									<div id="divPreviousStopButton" class="col-md-12 fs-txt-center">
+										<h3><span id="current_step"></span> de <span id="total_steps"></span></h3>
+									</div>
+								</td>
+								<td width = '30%'>
+									<div id="divNextStopButton" class="col-md-12 fs-txt-right">
+										<button id="btn_confirma" name="btn_confirma" class="btn btn-success" onClick="nextPage()">Avan&ccedil;ar</button>
+									</div>
+								</td>
+								<td width = '2%' >
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<input type="hidden" name="cod_cidade_ent_md" id="cod_cidade_ent_md" />		
+		<input type="hidden" name="bairro_ent_sel_md" id="bairro_ent_sel_md" />
+		<input type="hidden" name="userFluig" id="userFluig" />
+		<input type="hidden" name="userFluigNome" id="userFluigNome" />
+		<input type="hidden" name="tipoCadUser" id="tipoCadUser" />
+		<input type="hidden" name="task" id="task" />
+		<input type="hidden" name="processo" id="processo" />
+		<input type="hidden" name="diferenca_qtd" id="diferenca_qtd"/>
+		
+		
+		<input type="hidden" name="dup_item" id="dup_item" />
+		<input type="hidden" name="casas_preco" id="casas_preco" />
+
+		<input type="hidden" name="sit_pedido" id="sit_pedido" />
+		<input type="hidden" name="modo" id="modo" />
+		<input type="hidden" name="consistencias" id="consistencias" />
+		<input type="hidden" name="dev_asstecnica" id="dev_asstecnica" />
+
+		<div style="display:none">
+			<div id="div_mot_cancel" >
+				<select id="mot_cancel" name="mot_cancel" class="form-control"  dataset="motivo_cancel" datasetkey="cod_motivo" datasetvalue="den_motivo"  addBlankLine="true" > </select>
+			</div>		
+		</div>
+	</div>	
+	</form>
+</body>
+
+</html>

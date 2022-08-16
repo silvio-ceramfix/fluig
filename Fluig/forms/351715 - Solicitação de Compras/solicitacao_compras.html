@@ -1,0 +1,866 @@
+<html>
+
+<head>
+<link type="text/css" rel="stylesheet"
+	href="/portal/resources/style-guide/css/fluig-style-guide.min.css" />
+<script type="text/javascript"
+	src="/portal/resources/js/jquery/jquery.js"></script>
+<script type="text/javascript"
+	src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript"
+	src="/portal/resources/js/jquery.mask.min.js"></script>
+<script type="text/javascript"
+	src="/portal/resources/js/mustache/mustache-min.js"></script>
+<script type="text/javascript"
+	src="/portal/resources/style-guide/js/fluig-style-guide.min.js"
+	charset="utf-8"></script>
+
+
+
+
+<script type="text/javascript" src="zoom.js"></script>
+
+<script type="text/javascript" src="modalZoom.js"></script>
+<script type="text/javascript" src="modalTable.js"></script>
+<script type="text/javascript" src="controle.js"></script>
+<script type="text/javascript" src='autosize.min.js'></script>
+<script type="text/javascript" src='print.js'></script>
+<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+<script type="text/javascript" src='jquery.maskMoney.min.js'></script>
+
+<script type="text/javascript" src="jquery.btechco.excelexport.js"></script>
+<script type="text/javascript" src="jquery.base64.js"></script>
+
+<link type="text/css" rel="stylesheet" href="controle.css" />
+<script type="text/javascript" src="fileUpload.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+
+
+	</script>
+
+
+<style type="text/css">
+</style>
+
+<!--<script type="text/javascript" src="controle.js"></script>-->
+
+
+
+</head>
+
+<body onload="loadBody()" style="padding-top: 200px;">
+	<div class="fluig-style-guide" id="divPrincipal">
+		<form name="form" role="form">
+
+			<div class="panel panel-info tipo_solicitacao">
+				<div class="panel-heading fs-txt-center">
+					<table width='100%'>
+						<tr>
+							<td width='10%' align=left></td>
+							<td width='80%' align=center><b>Requisi&ccedil;&atilde;o
+									de Compra</b></td>
+							<td width='10%' align=right></td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-body">
+					<div class="row row_table">
+						<div class="col-sm-6">
+
+							<label for="exampleTag">Tipo</label>
+							<div class="input-group">
+								<input type="text" name="den_tipo_solic" id="den_tipo_solic"
+									class="form-control" readonly /> <span id="bt_tipo"
+									name="bt_tipo"
+									class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm"
+									onclick="zoom(this.id)"></span>
+							</div>
+							<input type="hidden" name="regularizacao" id="regularizacao" />
+							<input type="hidden" name="papel" id="papel" /> <input
+								type="hidden" name="cod_papel" id="cod_papel" /> <input
+								type="hidden" name="pool_papel" id="pool_papel" /> <input
+								type="hidden" name="tipo" id="tipo" /> <input type="hidden"
+								name="tipo_c" id="tipo_c" /> <input type="hidden"
+								name="ies_conta_item" id="ies_conta_item" />
+
+						</div>
+
+						<div class="col-sm-2">
+							<label for="exampleTag">Empresa</label>
+							
+							<select name="empresa" id="empresa" class="form-control"
+								onclick="validaTipo();" onchange="setTipo(); setComprador()">
+							</select>
+						</div>
+
+						<div class="col-sm-2">
+							<label for="exampleTag">Data</label> <input type="text"
+								id="data_abertura" name="data_abertura" class="form-control"
+								readonly tabindex="-1" />
+						</div>
+
+						<div class="col-sm-2">
+							<label for="exampleTag">Prazo Entrega Material</label> <input
+								type="text" id="data_entrega" name="data_entrega"
+								class="form-control" onblur="validaData(this.id)" />
+						</div>
+					</div>
+
+					<div class="row row_table regulariza">
+						<div class="row">
+							<div class="col-sm-2">
+								<label for="exampleTag">Codigo</label>
+								<div class="input-group">
+									<input type="text" name="cod_fornecedor" id="cod_fornecedor"
+										class="form-control regulariza" readonly /> 
+									<span
+										id="bt_fornecedor" name="bt_fornecedor"
+										class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm"
+										onclick="zoom(this.id)"></span>
+								</div>
+							</div>
+							<div class="col-sm-4">
+								<label for="exampleTag">Fornecedor</label> <input type="text"
+									name="raz_social" id="raz_social" class="form-control" readonly />
+							</div>
+	
+							<div class="col-sm-3">
+								<label for="exampleTag">Cond. Pagto</label>
+								<div class="input-group">
+									<input type="text" name="des_cnd_pgto" id="des_cnd_pgto"
+										class="form-control regulariza" readonly /> <span
+										id="bt_cnd_pgto" name="bt_cnd_pgto"
+										class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm"
+										onclick="zoom(this.id)"></span> <input type="hidden"
+										name="cnd_pgto" id="cnd_pgto" />
+								</div>
+							</div>
+	
+							<div class="col-sm-3">
+								<label for="exampleTag">Comprador</label>
+								<div class="input-group">
+									<input type="text" name="nom_comprador" id="nom_comprador"
+										class="form-control regulariza" readonly /> <span
+										id="bt_comprador" name="bt_comprador"
+										class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm"
+										onclick="zoom(this.id)"></span> <input type="hidden"
+										name="cod_comprador" id="cod_comprador" />
+								</div>
+							</div>
+
+					</div>
+					<div class="row">
+						<div class="col-sm-2">
+								<label for="exampleTag">N&ordm; NF</label> 
+								<input type="text" name="numero_nf" id="numero_nf" class="form-control" />
+						</div>
+						
+						<div class="col-sm-2">
+							<label for="exampleTag">Data Emiss&atilde;o</label> 
+							<input type="text" class="form-control" name="data_emissao" id="data_emissao" onBlur="calcVencimentos()" /> 
+						</div>
+						
+						<div class="col-sm-2">
+								<label for="exampleTag">Tipo de Pagamento</label> 
+								<select name="tipo_pagamento" id="tipo_pagamento" class="form-control" > 
+											<option value='1' > Boleto </option>
+											<option value='2' > Dep&oacute;sito </option>
+											<option value='3' > Adiantamento </option>
+								</select>
+						</div>
+						<div class="col-sm-2">
+								<label for="exampleTag">Vencimentos</label> 
+								<div class="input-group">
+												<input type="text" class="form-control" name="data_vencimento" id="data_vencimento" /> 
+												<span class="input-group-addon fluigicon fluigicon-calendar fluigicon-sm" onclick="progVencimento( this.children[0].id )"> 
+													<input type="hidden" id="bt_vencimento" name="bt_vencimento" />
+												</span>
+								</div>
+								<table tablename="programacao_vencimento_item" style="display: none"
+									noaddbutton=true nodeletebutton=true>
+									<!--<thead style="visibility: collapse;">-->
+									<thead>
+										<tr style="display: none">
+										</tr>
+									</thead>
+									<tr>
+										<td><input type="text" name="seq_item_pai_vencimento" id="seq_item_pai_vencimento" />
+											<input type="text" name="dat_vencimento_item" id="dat_vencimento_item" />
+										</td>
+									</tr>
+								</table>
+						</div>
+						
+						<div class="col-sm-2">
+							<label for="exampleTag">Num Pedido</label> 
+							<input type="text"	name="num_pedido_sup" id="num_pedido_sup" class="form-control" readonly />
+						</div>
+						
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-info tipo_solicitacao">
+				<div class="panel-heading fs-txt-center">
+					<table width='100%'>
+						<tr>
+							<td width='10%' align=left><button
+									class="fluigicon fluigicon-plus-sign fluigicon-sm"
+									name='bt_moeda' onclick="addLinha('itens_solic', 'button')"></button></td>
+							<td width='80%' align=center><b>Itens</b></td>
+							<td width='10%' align=right>
+								<td width='10%' align=left><button
+									class="fluigicon fluigicon-process-adhoc fluigicon-sm"
+									name='bt_cotacao' id='bt_cotacao'
+									onclick="detalheCotacao(this.id)"></button></td>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-body"
+					style="padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px;">
+					<div class="row row_table">
+						<table class="table table-condensed table-bordered table-striped"
+							border="0" tablename="itens_solic" noaddbutton=true
+							nodeletebutton=true>
+							<!--<thead style="visibility: collapse;">-->
+							<thead>
+								<tr style="display: none">
+									<td width='100%' class="cell-ellipsis"><b>Itens
+											solicitados</b></td>
+								</tr>
+							</thead>
+							<tr>
+								<td name="linha_item" id="linha_item">
+									<input type="hidden" name="seq_item" id="seq_item" />
+									<div class="row row_table linha_item">
+										<div class="col-sm-2 docum_item">
+											<label for="exampleTag">Ordem Prod.</label>
+											<div class="input-group">
+												<input type="text" class="form-control"
+													name="doc_origem_item" id="doc_origem_item"
+													onblur="zoom( 'bt_doc_item', this.id )" /> <span
+													class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm"
+													onclick="zoom( this.children[0].id )"> <input
+													type="hidden" id="bt_doc_item" name="bt_doc_item" />
+												</span> <input type="hidden" class="form-control"
+													name="cod_item_op" id="cod_item_op" /> <input
+													type="hidden" class="form-control" name="den_item_op"
+													id="den_item_op" /> <input type="hidden"
+													class="form-control" name="projeto_item" id="projeto_item" />
+											</div>
+										</div>
+										<div class="col-sm-2">
+											<label for="cod_item"> Cod.Item 
+											</label>
+											<div class="input-group">
+												<!-- onblur="buscaItem( this.id )" -->
+												<input type="text" class="form-control" name="cod_item"
+													id="cod_item" onkeyup="maiuscula(this)"
+													onblur="zoom( 'bt_item', this.id )" /> <span
+													class="input-group-addon fluigicon fluigicon-search fluigicon-sm"
+													onclick="zoom( this.children[0].id )"> <input
+													type="hidden" id="bt_item" name="bt_item" />
+												</span> <input type="hidden" name="cod_item_busca"
+													id="cod_item_busca" /> <input type="hidden"
+													id="tmp_lead_time" name="tmp_lead_time" />
+											</div>
+										</div>
+										<div class="col-sm-3">
+											<label for="exampleTag">Item</label> <input type="text"
+												class="form-control" name="den_item" id="den_item" readonly
+												tabindex="-1" /> <input type="hidden" name="den_item_reduz"
+												id="den_item_reduz" /> <input type="hidden"
+												name="num_conta_item" id="num_conta_item" />
+										</div>
+										<div class="col-sm-1">
+											<label for="cod_um"> UM </label>
+											<div class="input-group">
+												<!-- onblur="buscaItem( this.id )" -->
+												<input type="text" class="form-control" name="cod_unid_med"
+													id="cod_unid_med" readonly /> <span
+													class="input-group-addon fluigicon fluigicon-search fluigicon-sm"
+													onclick="zoom( this.children[0].id )"> 
+													<input
+													type="hidden" id="bt_UM" name="bt_UM" />
+												</span> 
+											</div>
+										</div>
+										<div class="col-sm-2">
+											<label for="exampleTag">Qtd. Requis</label>
+											<div class="input-group">
+												<input type="tel" class="form-control" name="qtd_solic"
+													id="qtd_solic" style="text-align: right"
+													onblur="calcTotalItem(this.id)" /> <span
+													class="input-group-addon fluigicon fluigicon-calendar fluigicon-sm"
+													onclick="progEntrega( this.children[0].id )"> <input
+													type="hidden" id="bt_op" name="bt_op" />
+												</span>
+											</div>
+										</div>
+										<div class="col-sm-2 nao_regulariza" >
+											<label for="exampleTag">Pre&ccedil;o Estimado Total</label>
+											<div class="input-group">
+												<!-- onblur="buscaItem( this.id )" -->
+												<input
+												type="tel" class="form-control" name="preco_est"
+												id="preco_est" style="text-align: right"
+												onblur="calcTotalItemEstimado(this.id)"
+												onfocus="guardaEstimadoOriginal(this.id)" value='0,000'/> 
+												<input
+												type="hidden" class="form-control" name="maior_que_tolerancia"
+												id="maior_que_tolerancia" />
+												<input
+												type="hidden" class="form-control" name="preco_est_ori"
+												id="preco_est_ori" /> <span
+													class="input-group-addon fluigicon fluigicon-tag fluigicon-sm"
+													onclick="zoom( this.children[0].id )"> 
+													<input
+													type="hidden" id="bt_UltPreco" name="bt_UltPreco" />
+												</span> 
+											</div>
+										</div>
+										<div class="col-sm-2 regulariza">
+											<label for="exampleTag">Pre&ccedil;o Unit.</label> <input
+												type="tel" class="form-control regulariza" name="preco_unit"
+												id="preco_unit" style="text-align: right"
+												onblur="calcTotalItem(this.id)" />
+										</div>
+										<div class="col-sm-2 regulariza">
+											<label for="exampleTag">Valor Total</label> <input type="tel"
+												class="form-control regulariza" name="preco_total"
+												id="preco_total" style="text-align: right" readonly />
+										</div>
+									</div>
+									<div class="row row_table linha_desp">
+										<div class="col-sm-4">
+											<label for="exampleTag">Grupo Despesa</label> 
+											<div class="input-group">
+												<input type="text" class="form-control" name="den_grp_desp"
+													id="den_grp_desp" readonly tabindex="-1" /> <input
+													type="hidden" name="cod_grp_desp" id="cod_grp_desp" />
+													<span class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm"
+														onclick="zoom( this.children[0].id )"> <input
+														type="hidden" id="bt_GD" name="bt_GD" />
+													</span>	
+												</div>	
+										</div>
+										<div class="col-sm-4">
+											<label for="exampleTag">Tipo Despesa</label>
+											<div class="input-group">
+												<input type="text" class="form-control" name="den_tipo_desp"
+													id="den_tipo_desp" readonly tabindex="-1" /> <input
+													type="hidden" name="cod_tipo_desp" id="cod_tipo_desp" /> <span
+													class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm"
+													onclick="zoom( this.children[0].id )"> <input
+													type="hidden" id="bt_TD" name="bt_TD" />
+												</span>
+											</div>
+										</div>
+										<div class="col-sm-2">
+											<label for="exampleTag">Comprador</label> <input type="text"
+												class="form-control" name="nom_comprador_item"
+												id="nom_comprador_item" readonly tabindex="-1" /> <input
+												type="hidden" name="cod_comprador_item"
+												id="cod_comprador_item" />
+										</div>
+										<div class="col-sm-2">
+											<label for="exampleTag">Ordem</label> <input type="text"
+												class="form-control" name="num_oc" id="num_oc" readonly
+												tabindex="-1" />
+										</div>
+									</div>
+									<div class="row row_table linha_dd">
+										<div class="col-sm-6">
+											<label for="exampleTag">Aplica&ccedil;&atilde;o</label> <input
+												type="text" class="form-control" name="aplicacao"
+												id="aplicacao" maxlength="60" />
+										</div>
+										<div class="col-sm-6">
+											<label for="exampleTag">Observa&ccedil;&atilde;o
+												Interna</label> <input type="text" class="form-control"
+												name="observacao" id="observacao" maxlength="60" />
+										</div>
+									</div>
+
+									<div class="row row_table">
+										<div class="col-sm-9 linha_obs">
+											<label for="exampleTag">Descritivo do Item</label>
+											<textarea rows="1" class="form-control"
+												name="texto_ped_cotacao" id="texto_ped_cotacao"
+												onkeydown="exitObsArea( event )"> </textarea>
+										</div>
+										<div class="col-sm-2">
+											<label for="exampleTag">&nbsp
+											</label>
+											<div class="btn-group" style="top: 25px;" >
+												<button name="btCotacao"
+													class="btn btn-default fluigicon fluigicon-user-cost fluigicon-xs"
+													type="button" onclick="cotacaoItem(this.children[0].id);"
+													tabindex="-1" >
+													<input type="hidden" name="btnCotacao" id="btnCotacao">
+												</button>
+												<button name="btDetalhe"
+													class="btn btn-default fluigicon fluigicon-app fluigicon-xs"
+													type="button" onclick="detalheItem(this.children[0].id);"
+													tabindex="-1" >
+													<input type="hidden" name="btnDetalhe" id="btnDetalhe">
+												</button>
+												<button name="btDelItem"
+													class="btn btn-default fluigicon fluigicon-trash fluigicon-xs"
+													type="button" onclick="fnCustomDelete(this.id, this);" tabindex="-1">
+													<input type="hidden" name="btnDelete" id="btnDelete"></button>
+											</div>
+										</div>
+										<div class="fluig-style-guide" name="integra_col" id="integra_col" style="display: none;">
+											<div class="col-sm-1" >
+												<label for="integra">Integra?<br>
+												</label>
+													<input type="checkbox" name="integra" id="integra" class="form-control" style="box-shadow:none" value="S" checked/>
+													<input type="hidden" name="integrou" id="integrou"/>			
+											</div>
+										</div>	
+									</div>
+									<div class="row row_table">
+											<div class="col-xs-4">
+												<label for="doc_anexo" data-toggle="tooltip" data-placement="bottom" title="Anexar foto/anexo para este item, o nome não pode conter caracteres especiais ou espaço" >Anexo do Item</label>
+												<div class="input-group">
+													<input type="hidden" name="doc_anexo" id="doc_anexo" />
+													<input type="text" name="titulo_doc_anexo" id="titulo_doc_anexo" class="form-control" readonly />
+													<span class="input-group-addon  fluigicon fluigicon-file-doc fluigicon-lg" id="bt_doc_anexo" name="bt_doc_anexo" onclick="loadFile( this.id )"> </span>
+													<span class="input-group-addon fluigicon fluigicon-eye-open fluigicon-lg" id="bt_doc_anexo_open" name="bt_doc_anexo_open" onclick="openFile( this );"  > </span>
+												</div>
+											</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+
+					<div class="row regulariza">
+						<div class="col-md-12 ">
+							<div class="form-group row">
+								<label for="inputKey"
+									class="col-md-2 col-sm-offset-8 control-label" align="left"><b>Total
+										Geral:</b></label>
+								<div class="col-md-2 ">
+									<input type="text" class="form-control"
+										style="text-align: right" name="total_geral" id="total_geral"
+										readonly>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-12 ">
+							<div class="form-group row nao_regulariza">
+								<label for="inputKey"
+									class="col-md-2 col-sm-offset-8 control-label" align="left"><b>Total
+										Geral Estimado:</b></label>
+								<div class="col-md-2 ">
+									<input type="text" class="form-control"
+										style="text-align: right" name="total_geral_est"
+										id="total_geral_est" readonly>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="panel panel-info tipo_solicitacao">
+				<div class="panel-heading fs-txt-center">
+					<table width='100%'>
+						<tr>
+							<td width='10%' align=left><button
+									class="fluigicon fluigicon-plus-sign fluigicon-sm"
+									name='bt_rateio' id='bt_rateio'
+									onclick="addLinha('rateio', 'button')"></button></td>
+							<td width='80%' align=center><b>Rateio</b></td>
+							<td width='10%' align=right></td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-body"
+					style="padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px;">
+					<div class="row" id="linha_rateio">
+						<div class="col-sm-12">
+							<table class="table table-condensed table-bordered table-striped"
+								border="0" tablename="rateio" id="rateio" noaddbutton=true
+								nodeletebutton=true>
+								<!--<thead style="visibility: collapse;">-->
+								<thead>
+									<tr style="display: none">
+										<td width='100%' class="cell-ellipsis"><b>Rateio
+												Itens</b></td>
+									</tr>
+								</thead>
+								<tr>
+									<td>
+										<div class="row row_table linha_perc">
+											<div class="col-sm-2">
+												<label for="exampleTag">Percentual</label>
+												<div class="input-group">
+													<input type="tel" class="form-control" name="perc_reateio"
+														id="perc_reateio" mask="#00.000.000.000.000,00"
+														style="text-align: right"
+														onblur="validaPercent( this.id, false ); calcSaldoOSposOC(this.id);" />
+													<span
+														class="input-group-addon fluigicon fluigicon-query-multiple fluigicon-sm"
+														onclick="calcPerc( this.children[0].id )"> <input
+														type="hidden" id="bt_calc" name="bt_calc" />
+													</span>
+												</div>
+											</div>
+											<div class="col-sm-2">
+												<label for="exampleTag">Doc Origem</label>
+												<div class="input-group">
+													<input type="text" class="form-control" name="doc_origem"
+														id="doc_origem" onblur="zoom( 'bt_doc', this.id )"
+														readonly="" tabindex="-1" /> <span
+														class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm"
+														onclick="zoom( this.children[0].id )"> <input
+														type="hidden" id="bt_doc" name="bt_doc" />
+													</span>
+												</div>
+											</div>
+											<div class="col-sm-1">
+												<label for="exampleTag">Tipo</label> <input type="text"
+													class="form-control" name="tipo_doc_origem"
+													id="tipo_doc_origem" readonly tabindex="-1" />
+											</div>
+											<div class="col-sm-4">
+												<label for="exampleTag">Complemento Documento</label> <input
+													type="text" class="form-control" name="compl_doc_origem"
+													id="compl_doc_origem" tabindex="-1" />
+											</div>
+											<div class="col-sm-2">
+												<label for="exampleTag">Saldo OS</label> <input type="text"
+													id="saldo_os" name="saldo_os" class="form-control" readonly
+													tabindex="-1" />
+											</div>
+											<div class="col-sm-1">
+												<label for="exampleTag"> &nbsp&nbsp<br>
+												</label>
+												<button name="btDelRat"
+													class="btn btn-default btn-sm fluigicon fluigicon-trash fluigicon-xs"
+													type="button" onclick="fnCustomDelete(this.id, this);"
+													style="margin-top: 25px; margin-left: 10px;" tabindex="-1"></button>
+											</div>
+										</div>
+										<div class="row row_table linha_cc">
+											<div class="col-sm-2">
+												<label for="exampleTag">Centro de Custo</label>
+												<div class="input-group">
+													<input type="text" class="form-control" name="cod_cc"
+														id="cod_cc" onblur="zoom( 'bt_cc', this.id )" /> <span
+														class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm"
+														onclick="zoom( this.children[0].id )"> <input
+														type="hidden" id="bt_cc" name="bt_cc" />
+													</span>
+												</div>
+											</div>
+											<div class="col-sm-2">
+												<label for="exampleTag">Descri&ccedil;&atilde;o</label> <input
+													type="text" class="form-control" name="den_cc" id="den_cc"
+													readonly tabindex="-1" />
+											</div>
+											<div class="col-sm-2">
+												<label for="exampleTag">Se&ccedil;&atilde;o
+													Recebedora</label>
+												<div class="input-group">
+													<input type="text" class="form-control"
+														name="cod_unid_func" id="cod_unid_func"
+														onblur="zoom( 'bt_uf', this.id )" /> <span
+														class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm"
+														onclick="zoom( this.children[0].id )"> <input
+														type="hidden" id="bt_uf" name="bt_uf" />
+													</span>
+												</div>
+											</div>
+											<div class="col-sm-2">
+												<label for="exampleTag">Descri&ccedil;&atilde;o</label> <input
+													type="text" class="form-control" name="den_unid_func"
+													id="den_unid_func" readonly tabindex="-1" />
+											</div>
+											<div class="col-sm-2">
+												<label for="exampleTag">Conta Contabil</label>
+												<div class="input-group">
+													<input type="text" class="form-control" name="num_conta"
+														id="num_conta" onblur="validaPercent( this.id, true )" />
+													<span
+														class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm"
+														onclick="zoom( this.children[0].id )"> <input
+														type="hidden" id="bt_pc" name="bt_pc" />
+													</span>
+												</div>
+											</div>
+											<div class="col-sm-2">
+												<label for="exampleTag">Descri&ccedil;&atilde;o</label> <input
+													type="text" class="form-control" name="den_conta"
+													id="den_conta" readonly tabindex="-1" />
+											</div>
+										</div>
+										<div class="row row_table linha_aen">
+											<div class="col-sm-2">
+												<label for="exampleTag">AEN</label>
+												<div class="input-group">
+													<input type="text" class="form-control" name="cod_aen"
+														id="cod_aen" onblur="zoom( 'bt_aen', this.id )" /> <span
+														class="input-group-addon fluigicon fluigicon-search-test fluigicon-sm"
+														onclick="zoom( this.children[0].id )"> <input
+														type="hidden" id="bt_aen" name="bt_aen" />
+													</span>
+												</div>
+											</div>
+											<div class="col-sm-4">
+												<label for="exampleTag">Descri&ccedil;&atilde;o</label> <input
+													type="text" class="form-control" name="aen_compl"
+													id="aen_compl" readonly tabindex="-1" />
+											</div>
+											<div class="col-sm-2">
+												<label for="exampleTag">Saldo OS p&oacute;s OC</label> <input
+													type="tel" class="form-control" name="saldo_os_rat"
+													id="saldo_os_rat" readonly tabindex="-1" />
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-info tipo_solicitacao">
+				<div class="panel-heading fs-txt-center">
+					<table width='100%'>
+						<tr>
+							<td width='10%' align=left></td>
+							<td width='80%' align=center><b>Texto Geral</b></td>
+							<td width='10%' align=right></td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-body"
+					style="padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px;">
+					<div class="row">
+						<div class="col-sm-12">
+							<textarea rows="3" class="form-control" name="texto_solic"
+								id="texto_solic" cols="60"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-info tipo_solicitacao nao_regulariza">
+				<div class="panel-heading fs-txt-center">
+					<table width='100%'>
+						<tr>
+							<td width='5%' align=left><button
+									class="fluigicon fluigicon-user-search fluigicon-sm"
+									name='bt_fornec' id='bt_fornec' onclick="zoom( this.id )"></button></td>
+							<td width='5%' align=left><button
+									class="fluigicon fluigicon-file-user fluigicon-sm"
+									name='bt_fornec_limpo' id='bt_fornec_limpo' onclick="addlinhaFornec()"></button></td>		
+							<td width='80%' align=center><b>Fornecedores Sugeridos</b></td>
+							<td width='5%' align=center><button
+									class="fluigicon fluigicon-print fluigicon-sm" name='bt_fornec'
+									id='bt_fornec' onclick="printRequisicao()"></button></td>
+							<td width='5%' align=rigth><button
+									class="fluigicon fluigicon-envelope fluigicon-sm"
+									name='bt_fornec' id='bt_fornec' onclick="sendMail( )"></button></td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-body"
+					style="padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px;">
+					<div class="row" id="linha_fornecedor">
+						<div class="col-sm-12">
+							<table class="table table-condensed table-bordered table-striped"
+								border="0" tablename="fornecedor" id="fornecedor"
+								noaddbutton=true nodeletebutton=true>
+								<!--<thead style="visibility: collapse;">-->
+								<thead>
+									<tr style="display: none">
+										<td width='100%' class="cell-ellipsis"><b>Fornecedores</b></td>
+									</tr>
+								</thead>
+								<tr>
+									<td>
+										<div class="row">
+											<div class="col-sm-4">
+												<label for="exampleTag">Fornecedor</label> <input
+													type="text" class="form-control" name="nom_fornecedor"
+													id="nom_fornecedor"  />
+													<input
+													type="hidden" class="form-control" name="cod_fornecedor_sugerido"
+													id="cod_fornecedor_sugerido"  />
+											</div>
+											<div class="col-sm-2">
+												<label for="exampleTag">Cidade</label> <input type="text"
+													class="form-control" name="cidade_fornecedor"
+													id="cidade_fornecedor"  />
+											</div>
+											<div class="col-sm-6">
+												<label for="exampleTag">E-Mail</label> <input type="text"
+													class="form-control" name="email_fornecedor"
+													id="email_fornecedor" />
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-sm-5">
+												<label for="exampleTag">OBS Interna</label>
+												<textarea rows="1" class="form-control" name="obs_interna"
+													id="obs_interna"></textarea>
+											</div>
+											<div class="col-sm-5">
+												<label for="exampleTag">OBS Fornecedor</label>
+												<textarea rows="1" class="form-control"
+													name="obs_fornecedor" id="obs_fornecedor"></textarea>
+											</div>
+											<div class="col-sm-2">
+												<label for="exampleTag">&nbsp&nbsp</label>
+												<div class="btn-group"
+													style="margin-top: 25px; margin-left: 10px;">
+													<button name="btMail"
+														class="btn btn-default btn-sm fluigicon fluigicon-envelope fluigicon-xs"
+														type="button" onclick="sendMail( this.children[0].id );"
+														tabindex="-1">
+														<input type="hidden" id="cnpj_fornecedor"
+															name="cnpj_fornecedor" />
+													</button>
+													<button name="btDelFornec"
+														class="btn btn-default btn-sm fluigicon fluigicon-trash fluigicon-xs"
+														type="button" onclick="fnCustomDelete(this.id, this);"
+														tabindex="-1"></button>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-info tipo_solicitacao nao_regulariza">
+				<div class="panel-heading fs-txt-center">
+					<table width='100%'>
+						<tr>
+							<td width='10%' align=left></td>
+							<td width='80%' align=center><b>Informa&ccedil;&otilde;es ao Fornecedor</b></td>
+							<td width='10%' align=right></td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-body"
+					style="padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px;">
+					<div class="row">
+						<div class="col-sm-12">
+							<textarea rows="3" class="form-control" name="obs_fornec"
+								id="obs_fornec" cols="60" ></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-info ">
+				<div class="panel-heading fs-txt-center">
+					<table width='100%'>
+						<tr>
+							<td></td>
+							<td width='99%' align=center><b>Motivo Reprova&ccedil;&atilde;o</b></td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+				<div class="panel-body"
+					style="padding-top: 0px; padding-bottom: 0px; padding-left: 0px; padding-right: 0px;">
+					<div class="row">
+						<div class="col-sm-12">
+							<textarea rows="3" class="form-control" name="motivo" id="motivo"
+								cols="60"></textarea>
+						</div>
+					</div>
+					
+					<table tablename="programacao_entrega_item" style="display: none"
+						noaddbutton=true nodeletebutton=true>
+						<!--<thead style="visibility: collapse;">-->
+						<thead>
+							<tr style="display: none">
+							</tr>
+						</thead>
+						<tr>
+							<td><input type="text" name="seq_item_pai" id="seq_item_pai" />
+								<input type="text" name="dat_entrega_item" id="dat_entrega_item" />
+								<input type="text" name="qtd_entrega_item" id="qtd_entrega_item" />
+							</td>
+						</tr>
+					</table>
+					
+					<table tablename="cotacao_item" style="display: none"
+						noaddbutton=true nodeletebutton=true>
+						<!--<thead style="visibility: collapse;">-->
+						<thead>
+							<tr style="display: none">
+							</tr>
+						</thead>
+						<tr>
+							<td><input type="text" name="seq_item_cotacao_pai" id="seq_item_cotacao_pai" />
+								<input type="text" name="designado" id="designado" />
+								<input type="text" name="cod_fornec_cotacao" id="cod_fornec_cotacao" />
+								<input type="text" name="den_fornec_cotacao" id="den_fornec_cotacao" />
+								<input type="text" name="cotacao" id="cotacao" />
+								<input type="text" name="observ_cotacao" id="observ_cotacao" />
+							</td>
+						</tr>
+					</table>
+					
+				</div>
+			</div>
+
+			<input type="hidden" name="cod_operacao" id="cod_operacao" /> <input
+				type="hidden" name="task" id="task" /> <input type="hidden"
+				name="cod_empresa" id="cod_empresa" /> <input type="hidden"
+				name="data_hora_insp" id="data_hora_insp" /> <input type="hidden"
+				name="perc_conc" id="perc_conc" /> <input type="hidden"
+				name="user_atual" id="user_atual" /> <input type="hidden"
+				name="familia" id="familia" /> <input type="hidden"
+				name="grupo_estoque" id="grupo_estoque" /> <input type="hidden"
+				name="conta" id="conta" /> <input type="hidden" name="aen" id="aen" />
+			<input type="hidden" name="tem_os_negativa" id="tem_os_negativa" />
+			<input type="hidden" name="ctr_estoque" id="ctr_estoque" /> <input
+				type="hidden" name="aprov_tec" id="aprov_tec" /> <input
+				type="hidden" name="aprov_unic" id="aprov_unic" /> <input
+				type="hidden" name="mat_aprov" id="mat_aprov" /> <input
+				type="hidden" name="matricula_solicitante"
+				id="matricula_solicitante" /> <input type="hidden"
+				name="matricula_aprovador" id="matricula_aprovador" /> <input
+				type="hidden" name="tem_aprov_1" id="tem_aprov_1" /> <input
+				type="hidden" name="tem_aprov_2" id="tem_aprov_2" />
+				<input
+				type="hidden" name="tem_aprov_3" id="tem_aprov_3" />
+				<input
+				type="hidden" name="mat_aprov_1" id="mat_aprov_1" /> <input
+				type="hidden" name="mat_aprov_2" id="mat_aprov_2" /><input
+				type="hidden" name="mat_aprov_3" id="mat_aprov_3" /> <input
+				type="hidden" id="num_solic" name="num_solic" /> <input
+				type="hidden" id="mail_atual" name="mail_atual" />
+				<input type="hidden" id="integracao_pendente" name="integracao_pendente" />
+				<input type="hidden" id="perc_tolerancia" name="perc_tolerancia" />
+				<input type="hidden" id="aprov_perc_tolerancia" name="aprov_perc_tolerancia" />
+				<input type="hidden" id="ies_simples_cotacao" name="ies_simples_cotacao"/>
+				<input type="hidden" name="num_pasta_anexo" id="num_pasta_anexo" />
+				<input type="hidden" name="file_name" id="file_name" />
+				<input type="hidden" name="aprova_financeiro" id="aprova_financeiro" />
+				<textarea class="form-control" name="texto_completo" id="texto_completo" readonly style="display: none;"></textarea>
+				<input type="file" name="load_file" id="load_file" title="" style="display: none;" onchange="selectFile(this.files)" />
+		</form>
+	</div>
+</body>
+
+</html>
